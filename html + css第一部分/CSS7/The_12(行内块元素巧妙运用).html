@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .box {
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .box a {
+            display: inline-block;
+            height: 36px;
+            width: 36px;
+            text-align: center;
+            line-height: 36px;
+            text-decoration: none;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            color: #333;
+        }
+
+        .box .prev,
+        .box .next {
+            width: 85px;
+        }
+
+        .box .current {
+            background-color: #fff;
+            border: 0;
+        }
+
+        .box input {
+            width: 45px;
+            height: 36px;
+            border: 1px solid #ccc;
+            outline: none;
+            /* background-color: #fff; */
+        }
+
+        .box button {
+            width: 60px;
+            height: 36px;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <a href="#" class="prev">&lt;&lt;上一页</a>
+        <a href="#">1</a>
+        <a href="#" class="current">2</a>
+        <a href="#">3</a>
+        <a href="#">4</a>
+        <a href="#">5</a>
+        <a href="#" class="current">...</a>
+        <a href="#" class="next">下一页&gt;&gt</a>
+        <span>共10页 到第</span>
+        <!-- 共10页 到第 -->
+        <input type="text">
+        <span>页</span>
+        <button>确定</button>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="animate.js"></script>
+    <style>
+        .box {
+            position: absolute;
+            right: 0;
+            bottom: 300px;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            font-size: 20px;
+            text-align: center;
+            background-color: purple;
+            color: white;
+
+        }
+
+        .feedback {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 200px;
+            height: 40px;
+            background-color: purple;
+            z-index: -999;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <span>⬅</span>
+        <div class="feedback">问题反馈</div>
+    </div>
+    <script>
+        // 鼠标经过，盒子滑动出来，滑完后，调整箭头方向
+        var box = document.querySelector('.box');
+        var feedback = document.querySelector('.feedback');
+        var span = document.querySelector('span');
+        var target;
+        box.addEventListener('mouseenter', function () {
+            target = 0 - (feedback.offsetWidth - box.offsetWidth);
+            animate(feedback, target, function () {
+                span.innerHTML = "➡"
+            });
+        })
+        // 鼠标离开，盒子划入，划回后调整箭头方向，并隐藏
+        box.addEventListener('mouseleave', function () {
+            target = 0;
+            animate(feedback, target, function () {
+                span.innerHTML = "⬅";
+            })
+        })
+    </script>
+</body>
+
+</html>

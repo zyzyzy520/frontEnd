@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 利用var s1 = prompt(“请输入任意字符”,””)可以获取用户输入的字符（存到变量s1中了），试编程将用户输入的字符“反转顺序”并首尾字母转为大写，其他字母转为小写后alert出来
+        // 用一个新数组来存储反转的字符，从尾部遍历字符串，判断位置是否是首尾，是就转换为大写，不是就转换为小写
+        // 利用joint将数组里的字符组合成字符串输出
+        var s1 = prompt('请输入任意字符');
+        var arr = []
+        for (var i = s1.length - 1; i >= 0; i--) {
+            if (i == s1.length - 1 || i == 0) arr.push(s1[i].toUpperCase());
+            else arr.push(s1[i].toLowerCase());
+        }
+        var newStr = arr.join('');
+        alert(newStr);
+
+        // 法二：利用数组具有直接翻转的函数，先把当前的字符串分割成数组，再将数组翻转
+        // 接着遍历，判断位置是否是首尾，是就转换为大写，不是就转换为小写
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

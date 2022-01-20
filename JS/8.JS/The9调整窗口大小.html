@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 调整窗口大小，直到窗口小于900px时，将盒子隐藏。所以触发事件是窗口大小变化，然后判断条件是小于900px */
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+
+        // 页面整个加载完毕，有了div标签，再获取div对象，再绑定事件
+        window.addEventListener('load', function () {
+            var div = document.querySelector('div');
+            window.addEventListener('resize', function () {
+                if (window.innerWidth <= 900) {
+                    div.style.display = 'none';
+                }
+            })
+        })
+    </script>
+    <div></div>
+</body>
+
+</html>

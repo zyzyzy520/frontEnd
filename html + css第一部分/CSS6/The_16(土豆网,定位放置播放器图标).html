@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .out-box {
+            position: relative;
+            /* 记得设置盒子的宽度，不设置的话，盒子默认宽度是整一行，并不是包含的内容宽度，盒子居中会没有效果 */
+            width: 445px;
+            height: 320px;
+            margin: auto;
+            /* background-color: pink; */
+        }
+
+        .tudou {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            /* width: 445px; */
+            width: 100%;
+            /* height: 320px; */
+            height: 100%;
+        }
+
+        /* .arr { */
+        /* position: absolute; */
+        /* top: 50%; */
+        /* } */
+
+        .in-box {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 2;
+            width: 100%;
+            height: 320px;
+            display: none;
+            background-color: rgba(0, 0, 0, .3);
+        }
+
+        .out-box:hover .in-box {
+            display: block;
+        }
+
+        .arr {
+            position: absolute;
+            /* 弄清楚定位在盒子水平居中，与定位在盒子两边的区别 */
+            /* 绝对定位盒子垂直居中 */
+            top: 50%;
+            margin-top: -17px;
+            /* 绝对定位盒子水平居中 */
+            left: 50%;
+            margin-left: -17px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="out-box">
+        <img src="images/tudou.jpg" alt="" class="tudou">
+        <div class="in-box">
+            <img src="images/arr.png" alt="" class="arr">
+        </div>
+
+    </div>
+</body>
+
+</html>

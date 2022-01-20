@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul>
+        <li>榴莲</li>
+        <li>臭豆腐</li>
+        <li>鲱鱼罐头</li>
+        <li>大猪蹄子</li>
+    </ul>
+    <script>
+        // 自定义属性设置setAttribute,
+        // 自定义属性获取getAttribute.
+
+        var lis = document.querySelectorAll('li');
+        /*for (var i = 0; i < lis.length; i++) {
+            lis[i].setAttribute('index', i);
+            lis[i].addEventListener('click', function () {
+                console.log(this.getAttribute('index'));
+                // console.log(i);
+            })
+        }*/
+        /*调用函数
+        function add(i) {
+            lis[i].addEventListener('click', function () {
+                console.log(i);
+            })
+        }
+        for (var i = 0; i < lis.length; i++) {
+            add(i);
+        }*/
+        /*立即执行函数*/
+        for (var i = 0; i < lis.length; i++) {
+            (function (i) {
+                lis[i].addEventListener('click', function () {
+                    console.log(i);
+                })
+            })(i)
+        }
+
+    </script>
+</body>
+
+</html>

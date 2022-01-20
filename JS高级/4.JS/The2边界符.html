@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //  /abc/表示只要包含abc就可
+        var simbol = /abc/;
+        console.log(simbol.test('abcdefg'));
+        console.log(simbol.test('aabcc'));
+        console.log(simbol.test('aabbcc'));
+        // ^：以XXX开头
+        simbol = /^abc/; //将字符放在注释符号之间就代表创建一个正则表达式对象
+        console.log(simbol.test('abcd'));
+        console.log(simbol.test('babc'));
+        // $：以XXX结尾
+        simbol = /abc$/;
+        console.log(simbol.test('babc'));
+        console.log(simbol.test('dabcc'));
+        // ^ $都存在,必须只能是中间的内容
+        simbol = /^abc$/; //只能是abc
+        console.log(simbol.test('abcabc'));
+        console.log(simbol.test('abc'));
+
+    </script>
+</body>
+
+</html>

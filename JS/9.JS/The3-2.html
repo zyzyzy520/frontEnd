@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>菜鸟教程(runoob.com)</title>
+    <style>
+        .box {
+            position: relative;
+            top: 200px;
+            left: 50%;
+            transform: translate(-50%, 0);
+            /* margin-left: -250px; */
+            border: 1px solid black;
+            width: 500px;
+            height: 200px;
+            /* margin: 100px 200px; */
+
+        }
+
+        h4 {
+            height: 20px;
+            line-height: 20px;
+            text-align: center;
+            /* 在h4内移动，鼠标变成move */
+            cursor: move;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="box">
+        <h4>登录</h4>
+    </div>
+    <script>
+
+        // 因为鼠标相对于盒子的距离是不会改变的，所以要得到盒子的top和left值，可以通过点击时计算出相对距离，然后在移动时，用鼠标的位置减去相对距离即可以得到盒子的top和left值
+        // 1.给h4添加按下事件，按下获取当前鼠标相对于盒子(注意是盒子，不是h4)的位置
+        var h4 = document.querySelector('h4');
+        var box = document.querySelector('.box');
+        h4.addEventListener('mousedown', function (e) {
+            // 相对位置 = 当前鼠标的位置 - 当前盒子的位置；盒子的位置要通过设置top和left调整，不会自己移动
+            var x = e.pageX - box.offsetLeft;
+            var y = e.pageY - box.offsetTop;
+            console.log(x, y);
+            // 2.按下后不放，才触发移动
+            function fn(e) {
+                box.style.top = e.pageY - y + 'px';
+                box.style.left = e.pageX - x + 'px';
+            }
+            // 不带fn(e)，用鼠标对象直接引用即可，参数会传
+            document.addEventListener('mousemove', fn);
+            // 3.鼠标弹起，清除移动事件
+            document.addEventListener('mouseup', function () {
+                this.removeEventListener('mousemove', fn);
+            })
+        });
+    </script>
+
+</body>
+
+</html>

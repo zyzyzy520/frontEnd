@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .box {
+            /* width: 120px; */
+            width: 300px;
+            height: 70px;
+            margin: 0 auto;
+            background-color: pink;
+        }
+
+        .pic {
+            float: left;
+            margin-right: 5px;
+            width: 120px;
+            height: 60px;
+        }
+
+        .pic img {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <!-- 图片可能经常换，将其放在盒子里，查找父盒子类名更换，比较方便 -->
+        <div class="pic">
+            <img src="images/img.png" alt="">
+        </div>
+        <!-- 只能文字围绕，数字围绕无效 -->
+        <p>你好，你比如说，也就是说，所以说</p>
+    </div>
+</body>
+
+</html>

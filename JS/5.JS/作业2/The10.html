@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 对以下学员随机排序，生成一个新数组：
+        // 重复五次这样的操作
+        // 随机生成两个0~length-1之间的数字索引，交换这两个位置的数据
+        var arr = ["鹿晗", "王俊凯", "蔡徐坤", "彭于晏", "周杰伦", "刘德华", "赵本山"];
+        for (var i = 1; i <= arr.length; i++) {
+            var index1 = Math.floor(Math.random() * (arr.length - 1 - 0 + 1));
+            var index2 = Math.floor(Math.random() * (arr.length - 1 - 0 + 1));
+            var temp = arr[index1];
+            arr[index1] = arr[index2];
+            arr[index2] = temp;
+        }
+        console.log(arr);
+
+        var arr = ["鹿晗", "王俊凯", "蔡徐坤", "彭于晏", "周杰伦", "刘德华", "赵本山"];
+
+        arr.sort(function () {
+            //前置知识点：Math.random 结果是：0--1之间的数字，减去0.5，这样的最后的结果是不准确的（丢失精度问题） 利用这一弱点。
+            return Math.random() - 0.5;
+        });
+        console.log(arr);
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

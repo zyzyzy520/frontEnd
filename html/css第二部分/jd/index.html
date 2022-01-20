@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
+    <!-- 引入初始化CSS -->
+    <link rel="stylesheet" href="css/normalize.css">
+    <!-- 引入index独有CSS -->
+    <link rel="stylesheet" href="css/index.css">
+    <!-- 引入swiper -->
+    <link rel="stylesheet" href="css/swiper-bundle.min.css">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <!-- 1. 头部制作开始 -->
+    <header class="app">
+        <!-- 自己方法 
+        !-- 关闭模块 --
+        <div class="close"></div>
+        !-- LOGO模块 --
+        <h1 class="logo">
+            <a href="index.html" title="京东网站">京东网站</a>
+        </h1>
+        !-- 提示信息 --
+        <p class="mess">
+            打开京东APP，购物更轻松
+        </p>
+        !-- 打开跳转链接 --
+        <a href="#" class="open">立即打开</a>
+        -->
+        <ul>
+            <li><img src="images/close.png" alt=""></li>
+            <li><img src="images/logo.png" alt=""></li>
+            <li>打开京东APP，购物更轻松</li>
+            <li><a href="#">立即打开</a></li>
+        </ul>
+    </header>
+    <!-- 头部制作结束 -->
+
+    <!-- 2. 搜索模块开始 -->
+    <!-- 自己方法 
+    <div class="search">
+        <ul>
+            <li><img src="images/s-btn.png" alt=""></li>
+            <li>
+                <div class="jd_logo"></div>
+                <div class="search_btn">
+                    <div class="image"></div>
+                </div>
+            </li>
+            <li>登陆</li>
+        </ul>
+    </div>-->
+    <div class="search-wrap">
+        <div class="search-btn">
+            <!-- <a href="#"></a> -->
+        </div>
+        <div class="search-login">
+            <a href="#">登陆</a>
+        </div>
+        <div class="search-box">
+            <div class="jd-icon"></div>
+            <div class="sou"></div>
+        </div>
+    </div>
+
+    <!-- 3. 主体部分 -->
+    <div class="main-content">
+        <!-- 焦点图 -->
+        <div class="slide">
+            <!-- Swiper -->
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="upload/banner.dpg" alt="">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="upload/banner.dpg" alt="">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="upload/banner.dpg" alt="">
+                    </div>
+                    <div class="swiper-slide">Slide 4</div>
+                    <div class="swiper-slide">Slide 5</div>
+                    <div class="swiper-slide">Slide 6</div>
+                    <div class="swiper-slide">Slide 7</div>
+                    <div class="swiper-slide">Slide 8</div>
+                    <div class="swiper-slide">Slide 9</div>
+                    <div class="swiper-slide">Slide 10</div>
+                </div>
+                <!-- Add Arrows -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </div>
+
+        <!-- 品牌日图 -->
+        <div class="brand">
+            <!-- 自己方法
+            <a href="#">
+                <img src="upload/pic1.dpg" alt="">
+                <img src="upload/pic2.dpg" alt="">
+                <img src="upload/pic3.dpg" alt="">
+            </a> -->
+            <div>
+                <a href="#">
+                    <img src="upload/pic11.dpg" alt="">
+                </a>
+            </div>
+            <div>
+                <a href="#">
+                    <img src="upload/pic22.dpg" alt="">
+                </a>
+            </div>
+            <div>
+                <a href="#">
+                    <img src="upload/pic33.dpg" alt="">
+                </a>
+            </div>
+        </div>
+        <!-- 导航栏模块 -->
+        <nav class="nav clearfix">
+            <!-- 自己方法 
+            <ul>
+                <li>
+                    <a href="#">
+                        <img src="upload/nav2.webp" alt="">
+                        <span>京东超市</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="upload/nav2.webp" alt="">
+                        <span>京东超市</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="upload/nav2.webp" alt="">
+                        <span>京东超市</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="upload/nav2.webp" alt="">
+                        <span>京东超市</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="upload/nav2.webp" alt="">
+                        <span>京东超市</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="upload/nav2.webp" alt="">
+                        <span>京东超市</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="upload/nav2.webp" alt="">
+                        <span>京东超市</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="upload/nav2.webp" alt="">
+                        <span>京东超市</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="upload/nav2.webp" alt="">
+                        <span>京东超市</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="upload/nav2.webp" alt="">
+                        <span>京东超市</span>
+                    </a>
+                </li>
+            </ul>-->
+            <!-- l老师方法-->
+            <a href="#">
+                <img src="upload/nav2.webp" alt="">
+                <span>京东超市</span>
+            </a>
+            <a href="#">
+                <img src="upload/nav2.webp" alt="">
+                <span>京东超市</span>
+            </a>
+            <a href="#">
+                <img src="upload/nav2.webp" alt="">
+                <span>京东超市</span>
+            </a>
+            <a href="#">
+                <img src="upload/nav2.webp" alt="">
+                <span>京东超市</span>
+            </a>
+            <a href="#">
+                <img src="upload/nav2.webp" alt="">
+                <span>京东超市</span>
+            </a>
+            <a href="#">
+                <img src="upload/nav2.webp" alt="">
+                <span>京东超市</span>
+            </a>
+            <a href="#">
+                <img src="upload/nav2.webp" alt="">
+                <span>京东超市</span>
+            </a>
+            <a href="#">
+                <img src="upload/nav2.webp" alt="">
+                <span>京东超市</span>
+            </a>
+            <a href="#">
+                <img src="upload/nav2.webp" alt="">
+                <span>京东超市</span>
+            </a>
+            <a href="#">
+                <img src="upload/nav2.webp" alt="">
+                <span>京东超市</span>
+            </a>
+        </nav>
+        <div class="news">
+            <a href="#"><img src="upload/new1.dpg" alt=""></a>
+            <a href="#"><img src="upload/new2.dpg" alt=""></a>
+            <a href="#"><img src="upload/new3.dpg" alt=""></a>
+
+        </div>
+    </div>
+    <!-- 因为自己写的js要用到swiper，所以swiper放在前面 -->
+    <script src="js/swiper-bundle.min.js"></script>
+    <script src="js/index.js"></script>
+</body>
+
+</html>

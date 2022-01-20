@@ -1,0 +1,484 @@
+@font-face {
+    font-family: 'icomoon';
+    src:  url('../fonts/icomoon.eot?vm1u9q');
+    src:  url('../fonts/icomoon.eot?vm1u9q#iefix') format('embedded-opentype'),
+      url('../fonts/icomoon.ttf?vm1u9q') format('truetype'),
+      url('../fonts/icomoon.woff?vm1u9q') format('woff'),
+      url('../fonts/icomoon.svg?vm1u9q#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+  }
+/* 主页开始 */
+.main {
+    width: 981px;
+    height: 456px;
+    margin-left: 219px;
+    margin-top: 10px;
+    /* background-color: pink; */
+}
+    /* 热点图制作 */
+.main .focus {
+    position: relative;
+    float: left;
+    width: 721px;
+    height: 455px;
+    overflow: hidden;
+}
+/* 轮播图制作，首先将li都放到一行, 将ul设置为整个幻灯片的长度，focus 作为显示窗口，固定为一张图片的大小，然后overflow：hidden*/
+.main .focus .slider {
+    position: absolute;
+    top:0;
+    left: 0;
+    height: 455px;
+    width: 500%;
+}
+.main .focus li {
+    float: left;
+}
+.focus .row {
+    display: none;
+    position: absolute;
+    top: 50%;
+    width: 24px;
+    height: 43px;
+    line-height: 43px;
+    font-size: 25px;
+    color: white;
+    text-align: center;
+    background-color: rgba(0,0,0,.3);
+}
+.focus .left-row {
+    left:0;
+}
+.focus .right-row {
+    right: 0;
+}
+/* 小圆圈 */
+.focus .circle {
+    position: absolute;
+    left: 50px;
+    bottom: 7px;
+}
+.focus .circle li {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 1px solid white;
+    margin: 0 3px;
+    cursor: pointer;
+}
+.current {
+    background-color: white;
+}
+    /* 快报模块制作 */
+.main .newflash {
+    /* float: left; */
+    float: right;
+    height: 455px;
+    width: 251px;
+    /* margin-left: 9px; */
+    /* background-color: purple; */
+}
+.main .newflash .news{
+    height: 163px;
+    width: 100%;
+    /* background-color: pink; */
+    border: 1px solid #e4e4e4;
+}
+            /* 品优购报模块制作 */
+.main .newflash .news .news-hd{
+    /* position: relative; */
+    height: 32px;
+    /* 文字垂直居中 */
+    line-height: 32px;
+    border-bottom: 1px dashed #e8e8e7;
+    padding: 0 15px;
+    font-size: 12px;
+}
+.main .newflash .news .news-hd h4 {
+    float: left;
+    font-size: 14px;
+}
+.main .newflash .news .news-hd a{
+    /* position: absolute; */
+    float: right;
+    /* right: 18px; */
+}
+.main .newflash .news .news-hd a::after{
+    font-family: 'icomoon';
+    content: '\e920';
+}
+.main .newflash .news .news-bd ul li{
+    padding-left: 16px;
+    /* height: 25px; */
+    margin-top: 7px;
+    /* 一行内显示 */
+    white-space: nowrap;
+    /* 溢出文字隐藏 */
+    overflow: hidden;
+    /* 省略号显示 */
+    text-overflow: ellipsis;
+    
+}
+            /* 生活服务模块制作 */
+.main .newflash .lifeservice {
+    width: 100%;
+    height: 209px;
+    border-left: 1px solid #e4e4e4;
+}
+.main .newflash .lifeservice ul li {
+    float: left;
+    width: 62px;
+    height: 70px;
+    border-right: 1px solid #e4e4e4;
+    border-bottom: 1px solid #e4e4e4;
+    text-align: center;
+}
+/* .main .newflash .lifeservice ul li:nth-child(1) .images{ */
+.main .newflash .lifeservice ul li i{ 
+    display: inline-block;
+    width: 20px;
+    height: 28px;
+    background: url(../images/icons.png) no-repeat -19px -15px;
+    margin-top: 12px;
+    /* margin: 12px auto; */
+    /* margin-bottom: 4px; */
+}
+            /* 广告模块制作 */
+.main .bargain {
+    margin-top: 5px;
+}
+
+/* 推荐模块开始 */
+.recom {
+    height: 163px;
+    margin-top: 11px;
+    /* background-color: pink; */
+}
+.recom .recom-hd{
+    float: left;
+    width: 206px;
+    height: 100%;
+    padding-top: 31px;
+    background-color: #5c5251;
+    text-align: center;
+}
+.recom .recom-bd{
+    float: left;
+    width: 994px;
+    height: 100%;
+    background-color: #ebebeb;
+}
+/*小竖线：自己的方法是在照片之间加一个li表项设置高度宽度。  */
+/* 
+.recom .recom-bd ul li:nth-child(odd) {
+    float: left;
+    width: 247px;
+    /* ul没有设置高度，所以不能用100% */
+    /* height: 163px; */
+    /* background-color: pink; */
+/*    background-image: url(../upload/recom_03.jpg);
+} 
+.recom .recom-bd ul li:nth-child(even) {
+    float: left;
+    width: 1px;
+    height: 144px;
+    margin-top: 10px;
+    background-color: #dddddd;
+}*/
+.recom .recom-bd ul li {
+    float: left;
+    position: relative;
+}
+.recom .recom-bd ul li img {
+    width: 247px;
+    height: 163px;
+}
+.recom .recom-bd ul li:nth-child(-n+3)::after {
+    /* display: inline-block; 不行*/
+    /* float: right; 向右浮动，配上margin-top也可实现
+    margin-top: 10px;*/
+    position: absolute;
+    top: 10px;
+    right: 0;
+    content: '';
+    width: 1px;
+    height: 144px;
+    background-color: #dddddd;
+}
+/* 推荐模块结束 */
+
+/* 猜你喜欢模块开始 */
+.guess_like{
+    height: 273px;
+    margin-top: 19px;
+    /* background-color: pink; */
+}
+    /* 猜你喜欢头部制作 */
+.guess_like .like_hd{
+    height: 40px;
+    line-height: 40px;
+    /* background-color: purple; */
+}
+.guess_like .like_hd h3 {
+    float: left;
+    font-size: 18px;
+    font-weight: 400;
+}
+.guess_like .like_hd a {
+    float: right;
+    margin-right: 22px;
+}
+.guess_like .like_hd a::after {
+    font-family: 'icomoon';
+    /* 伪元素必备 */
+    content: '\ea2e';
+    margin-left: 8px;
+}
+    /* 猜你喜欢身体部分制作 */
+.guess_like .like_bd {
+    height: 232px;
+    border-top: 1px solid #ededed;
+    border-bottom: 1px solid #ededed;
+}
+/* 适当扩容ul，因为最后也是空白，看不出来， */
+.guess_like .like_bd ul {
+    width: 1215px;
+}
+.guess_like .like_bd ul li {
+    float: left;
+    height: 232px;
+    width: 202px;
+    /* background-color: purple; */
+}
+.guess_like .like_bd ul li .like_img {
+    width: 201px;
+    height: 160px;
+}
+.guess_like .like_bd ul li .like_info{
+    position: relative;
+    height: 31px;
+    padding-left: 35px;
+    padding-bottom: 13px;
+}
+.guess_like .like_bd ul li .like_info p {
+    line-height: 21px;
+    font-size: 12px;
+    /* padding: 0 47px 0 35px; */
+}
+.guess_like .like_bd ul li .like_info p:last-child {
+    font-size: 18px;
+    font-weight: 700;
+    color: #df3033;
+}
+/* 选中前五个小li，再给每个小li中的like_info，每个小li中的like_info只有一个添加伪元素 */
+.guess_like .like_bd ul li:nth-child(-n+5) .like_info::after {
+    /* float: right; 用浮动可能存在问题，因为里面的内容盒子都是标准流，会导致伪元素被挤到下面，所以用定位最好*/
+    position: absolute;
+    right: 0;
+    top: 0;
+    content: '';
+    width: 1px;
+    height: 62px;
+    background-color: #ededed;
+
+}
+/* 猜你喜欢模块结束 */
+
+/* 有趣区模块开始 */
+.inte_area {
+    margin-top: 21px;
+    height: 442px;
+    /* background-color: pink; */
+}
+    /* 有趣区模块头部制作 */
+.inte_area .inte_hd{
+    height: 36px;
+    line-height: 36px;
+    border-bottom: 1px solid #ededed;
+    /* background-color: purple; */
+}
+.inte_area .inte_hd h3{
+    font-size: 18px;
+    font-weight: 400;
+}
+    /* 有趣区模块身体制作 */
+.inte_area .inte_bd {
+    height: 406px;
+    border-bottom: 1px solid #ededed;
+    /* background-color: pink; */
+}
+        /* 左边图片 */
+.inte_area .inte_bd .img_left {
+    float: left;
+    width: 404px;
+    height: 100%;
+    /* background-color: purple; */
+}
+        /* 中间图片1 */
+.inte_area .inte_bd .mid_box1 {
+    float: left;
+    width: 228px;
+    height: 100%;
+    border-right: 1px solid #ededed;
+    /* background-color: pink; */
+}
+/* 两个 */
+.inte_area .inte_bd .mid_title {
+    padding: 0 17px;
+    height: 39px;
+}
+.inte_area .inte_bd .mid_title h4{
+    height: 39px;
+    line-height: 39px;
+    border-bottom: 1px dashed #ededed;
+    text-align: center;
+}
+.inte_area .inte_bd .mid_box1 .mid1_img img:first-child {
+    height: 206px;
+    width: 228px;
+    border-bottom: 1px solid #ededed;
+}
+        /* 中间图片2 */
+.inte_area .inte_bd .mid_box2{
+    float: left;
+    width: 406px;
+    height: 100%;
+    border-right: 1px solid #ededed;
+    background-color: #f7f7f7; 
+}
+.inte_area .inte_bd .mid_box2 .mid2_img ul li {
+    float: left;
+}
+.inte_area .inte_bd .mid_box2 .mid2_img ul li img{
+    /* 最好对图片设置高度宽度，避免图片超出盒子范围，遮住设定的边框 */
+    width: 201px;
+    height: 159px;
+}
+.inte_area .inte_bd .mid_box2 .mid2_img ul li:first-child img{
+    /* 最好对图片设置高度宽度，避免图片超出盒子范围，遮住设定的边框 */
+    width: 406px;
+    height: 206px;
+    border-bottom: 1px solid #ededed;
+    /* background-color: pink; */
+}
+.inte_area .inte_bd .mid_box2 .mid2_img ul li:nth-child(2) img{
+    /* 最好对图片设置高度宽度，避免图片超出盒子范围，遮住设定的边框 */
+    border-right: 1px solid #ededed;
+}
+        /* 右边图片 */
+.inte_area .inte_bd .right_box {
+    float: left;
+    width: 162px;
+    height: 405px;
+    padding: 15px 0 0 10px;
+    /* background-color: pink; */
+}
+.inte_area .inte_bd .right_box ul li {
+    float: left;
+    text-align: center;
+    width: 74px;
+    height: 56px;
+    border-bottom: 1px dashed #ededed;
+
+}
+/* 一定要为照片设置高度，否则超出的话，会遮盖盒子设计内容 */
+.inte_area .inte_bd .right_box ul li img {
+    width: 72px;
+    height: 45px;
+
+}
+.inte_area .inte_bd .right_box ul li:nth-child(-n+2),
+.inte_area .inte_bd .right_box ul li:nth-child(n+13){
+    height: 48px;
+}
+.inte_area .inte_bd .right_box ul li:nth-child(odd){
+    border-right: 1px dashed #ededed;
+}
+.inte_area .inte_bd .right_box ul li:nth-child(n+13) {
+    border-bottom: 0;
+}
+/* 有趣区模块结束 */
+
+/* 楼层区模块开始 */
+    /*1. 每个楼层的头部可以发现都是一样的  */
+.floor .w {
+    margin-top: 16px;
+}
+.floor .box_hd {
+    height: 30px;
+    /* line-height: 42px; */
+    border-bottom: 2px solid #c81623;
+}
+.floor .box_hd h3 {
+    float: left;
+    font-size: 18px;
+    font-weight: 400;
+    color: #c81623;
+}
+.floor .box_hd .tab_list {
+    float: right;
+    height: 100%;
+    line-height: 30px;
+}
+.floor .box_hd ul li {
+    float: left;
+
+}
+.floor .box_hd ul li a {
+    font-size: 12px;
+    margin: 0 15px;
+}
+    /* 开始machine部分 */
+.floor .box_bd {
+    height: 360px;
+    /* background-color: pink; */
+}
+.tab_list_item>div{
+    float: left;
+}
+.floor .box_bd .tab_list_item .col_210 {
+    width: 210px;
+    height: 360px;
+    text-align: center;
+    background-color: #f9f9f9;
+}
+.floor .box_bd .tab_list_item .col_210 ul {
+    padding-left: 13px;
+}
+.floor .box_bd .tab_list_item .col_210 ul li{
+    float: left;
+    width: 86px;
+    height: 33px;
+    line-height: 33px;
+    margin-right: 12px;
+    /* padding: 0 13px; */
+    /* 文字水平居中 */
+    /* text-align: center; */
+    border-bottom: 1px solid #ededed;
+}
+.floor .box_bd .tab_list_item .col_210 ul li a {
+    font-size: 12px;
+}
+.col_328{
+    width: 328px;
+}
+.col_220 {
+    width: 220px;
+    height: 360px;
+    border-right: 1px solid #eee;
+}
+.col_220 ul li {
+    border-bottom: 1px solid #eee;
+}
+.col_220 a {
+    display: block;
+}
+.col_220>a>img {
+    border-bottom: 1px solid #eee;
+}
+.tab_content .tab_list_item .col_220:last-child{
+    border-right: 0;
+} 
+/* 楼层区模块结束 */

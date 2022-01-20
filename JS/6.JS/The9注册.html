@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 400px;
+            margin: 100px auto;
+        }
+
+        .mess {
+            position: relative;
+            padding-left: 17px;
+            font-size: 12px;
+            color: #999;
+        }
+
+        .icon {
+            position: absolute;
+            left: 0;
+            top: 1px;
+            /* content: ''; */
+            width: 15px;
+            height: 15px;
+            background: url(images/mess.png) no-repeat;
+        }
+
+        .error {
+            background: url(images/wrong.png);
+        }
+
+        .true {
+            background: url(images/right.png);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <input type="password" name="" id="pw">
+        <span class="mess"><i class="icon"></i>请输入6~16位密码</span>
+    </div>
+    <script>
+        var pw = document.getElementById('pw');
+        var mess = document.querySelector('.mess');
+        var icon = document.querySelector('.icon');
+        pw.onblur = function () {
+            var val = this.value;
+            if (val.length < 6 || val.length > 16) {
+                // icon.style.background = 'url(images/wrong.png)';
+                mess.innerHTML = '<i class="icon error"></i>您输入的位数不对要求6~16位';
+                mess.style.color = 'red';
+            } else {
+                mess.innerHTML = '<i class="icon true"></i>您输入的正确';
+                mess.style.color = 'green';
+            }
+        }
+    </script>
+</body>
+
+</html>

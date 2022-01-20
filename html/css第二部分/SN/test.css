@@ -1,0 +1,52 @@
+html {
+  font-size: 50px;
+}
+body {
+  width: 750px;
+  margin: 0 auto;
+}
+.search-box {
+  display: flex;
+  height: 1.76rem;
+  background-color: #FFC001;
+}
+.search-box .classify {
+  margin: 11px 13px 5px 16px;
+}
+.search-box input {
+  flex: 1;
+  height: 1.32rem;
+  border-radius: 0.66rem;
+  margin-top: 10px;
+  border: 0;
+  outline: none;
+  font-size: 0.5rem;
+  padding-left: 50px;
+  background-color: #FFF2CC;
+  color: #ccc;
+}
+.search-box .login {
+  width: 1.5rem;
+  height: 1.4rem;
+  line-height: 1.4rem;
+  text-align: center;
+  font-size: 0.5rem;
+  color: white;
+  text-decoration: none;
+  margin: 10px;
+}
+nav a {
+  float: left;
+  width: 3rem;
+  height: 2.8rem;
+  text-decoration: none;
+  text-align: center;
+  color: black;
+  font-size: 0.5rem;
+}
+nav a img {
+  display: block;
+  width: 1.64rem;
+  height: 1.64rem;
+  margin: 10px auto 5px;
+}

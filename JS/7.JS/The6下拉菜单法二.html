@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        .nav {
+            /* height: 41px; */
+            width: 500px;
+            margin: 200px auto;
+        }
+
+        .nav>li {
+            float: left;
+        }
+
+        li {
+            width: 80px;
+            height: 41px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #000;
+            display: block;
+            width: 100%;
+            height: 100%;
+            line-height: 41px;
+            text-align: center;
+
+        }
+
+        .nav>li>a:hover {
+            background-color: rgb(238, 238, 238);
+        }
+
+        .nav>li>ul {
+            display: none;
+        }
+
+        .nav>li>ul li {
+            border: 1px solid rgb(254, 204, 91);
+            border-top: 0;
+            box-sizing: border-box;
+        }
+
+        .nav>li>ul a:hover {
+            background-color: rgb(255, 245, 218);
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="nav">
+        <li>
+            <a href="#">微博</a>
+            <ul>
+                <li><a href="#">私信</a></li>
+                <li><a href="#">评论</a></li>
+                <li><a href="#">@我</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">微博</a>
+            <ul>
+                <li><a href="#">私信</a></li>
+                <li><a href="#">评论</a></li>
+                <li><a href="#">@我</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">微博</a>
+            <ul>
+                <li><a href="#">私信</a></li>
+                <li><a href="#">评论</a></li>
+                <li><a href="#">@我</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">微博</a>
+            <ul>
+                <li><a href="#">私信</a></li>
+                <li><a href="#">评论</a></li>
+                <li><a href="#">@我</a></li>
+            </ul>
+        </li>
+    </ul>
+    <script>
+        // 选中nav里的所有儿子li，要为儿子li的里面的a绑定鼠标路过事件
+        var Lis = document.getElementsByClassName('nav')[0].children;
+        for (var i = 0; i < Lis.length; i++) {
+            // 因为是给a设置的事件，所以this指代的是a，利用parentNode就可以返回到父节点儿子li。鼠标经过下拉菜单出现，光标移走下拉菜单消失
+            Lis[i].children[0].onmouseover = function () {
+                this.parentNode.children[1].style.display = 'block';
+            }
+            Lis[i].children[0].onmouseout = function () {
+                this.nextElementSibling.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+
+</html>

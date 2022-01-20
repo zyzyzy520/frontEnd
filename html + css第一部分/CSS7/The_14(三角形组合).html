@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            height: 24px;
+            width: 160px;
+            /* 别漏掉边框 */
+            border: 1px solid red;
+            margin: 0 auto;
+            text-align: center;
+            line-height: 24px;
+
+        }
+
+        .current {
+            position: relative;
+            float: left;
+            height: 100%;
+            width: 90px;
+            background-color: red;
+            color: white;
+            /* 设置字体粗细 */
+            font-weight: 700;
+            font-size: 14px;
+            /* margin-right: 1px; */
+
+        }
+
+        .tangle {
+            position: absolute;
+            right: 0;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            /* top的数值与盒子高度一样*/
+            border-width: 24px 10px 0 0;
+            /* 注意透明和白色的区别 */
+            border-color: transparent white transparent transparent;
+        }
+
+        .old {
+            font-size: 12px;
+            color: gray;
+            /* 删除线 */
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <span class="current">
+            $2099.00
+            <!-- 把三角形放在盒子里比较方便定位 -->
+            <i class="tangle"></i>
+        </span>
+        <span class="old">$2649.00</span>
+    </div>
+</body>
+
+</html>

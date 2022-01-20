@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            perspective: 500px;
+        }
+
+        .box {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 200px auto;
+            transition: all 3s;
+            transform-style: preserve-3d;
+
+        }
+
+        .box div {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            line-height: 200px;
+            border-radius: 50%;
+            text-align: center;
+            color: white;
+            transition: all 2s;
+        }
+
+        .box div:first-child {
+            background-color: pink;
+            z-index: 1;
+        }
+
+        .box div:last-child {
+            background-color: purple;
+            transform: rotateY(180deg);
+        }
+
+        .box:hover {
+            transform: rotateY(180deg);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="in1">黑马程序员</div>
+        <div class="in2">我在这里等你</div>
+    </div>
+</body>
+
+</html>

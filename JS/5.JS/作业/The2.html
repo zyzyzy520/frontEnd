@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 反转任意数组的函数
+        function reverseArr(Arr) {
+            var newArr = [];
+            for (var i = Arr.length - 1; i >= 0; i--) {
+                newArr[newArr.length] = Arr[i];
+            }
+            return newArr;
+        }
+
+        // 对数组进行排序 bubble
+        function bubble(Arr) {
+            // 趟数
+            var temp;
+            for (var i = 1; i <= Arr.length - 1; i++) {
+                // 两两之间交换
+                for (var j = 0; j < Arr.length - i; j++) {
+                    if (Arr[j] > Arr[j + 1]) {
+                        temp = Arr[j];
+                        Arr[j] = Arr[j + 1];
+                        Arr[j + 1] = temp;
+                    }
+                }
+            }
+            return Arr;
+        }
+
+        Arr = [2, 11, 7, 9, 10];
+        newArr = reverseArr(Arr);
+        console.log(newArr);
+        OrderedArr = bubble(newArr);
+        console.log(OrderedArr);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

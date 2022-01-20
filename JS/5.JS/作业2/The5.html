@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 获取一个长文件路径（比如”E:\\itcast\\class\\php\\js\\day2\\abc.html"”）中的文件名及其后缀（结果应该为”abc”和”html”）。
+        // 注意因为'\'在JS里有含义，因此直接利用 str.split('\\')无法分割
+        // 先利用.分割得到后缀
+        function parsePath(str) {
+            var arr = str.split('\\');
+            console.log(arr);
+            // 文件名+后缀
+            var filename = arr[arr.length - 1].split('.')[0];
+            var suffix = arr[arr.length - 1].split('.')[1];
+            console.log(filename, suffix);
+        }
+        parsePath('E:\\itcast\\class\\php\\js\\day2\\abc.html');
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

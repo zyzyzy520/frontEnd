@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        while (true) {
+            var num1 = parseFloat(prompt('请输入参与计算的第一个数'));
+            var num2 = parseFloat(prompt('请输入参与计算的饿第二个数'));
+
+
+            /*
+            do {
+                var option = prompt('欢迎使用简易计算器\n1.加法运算;\n2.减法运算;\n3.乘法运算\n4.除法运算\n5.退出\n请输入您的选项：');
+                switch (option) {
+                    case '1':
+                        alert(num1 + num2);
+                        break;
+                    case '2':
+                        alert(num1 - num2);
+                        break;
+                    case '3':
+                        alert(num1 * num2);
+                        break;
+                    case '4':
+                        alert(num1 / num2);
+                        break;
+                    default:
+                        break;
+                }
+            } while (option != 5)*/
+            while (true) {
+                var option = prompt('欢迎使用简易计算器\n1.加法运算;\n2.减法运算;\n3.乘法运算\n4.除法运算\n5.退出\n请输入您的选项：');
+                if (option == '1') alert(num1 + num2);
+                else if (option == '2') alert(num1 - num2);
+                else if (option == '3') alert(num1 * num2);
+                else if (option == '4') alert(num1 / num2);
+                else if (option == '5') break;
+                else alert('error');
+            }
+
+
+
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

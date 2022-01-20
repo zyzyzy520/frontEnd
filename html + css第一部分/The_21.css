@@ -1,0 +1,47 @@
+body {
+    font: 16px/28px 'Microsoft Yahei';
+}
+
+h1 {
+    font-weight: 400;
+}
+
+
+.head {
+    text-align: center;
+}
+
+
+/* head 里元素 CSS调整*/
+.gray {
+    color: #888888;
+    font-size: 12px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.search-input {
+    /*font-weight: 700;*/
+    width: 223;
+    color: #666;
+}
+
+.btn {
+    font-weight: 700;
+}
+
+p {
+    text-indent: 2em;
+}
+
+.image {
+    text-align: center;
+}
+
+.footer {
+    font-size: 12px;
+    color: #888888;
+}

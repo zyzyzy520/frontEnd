@@ -1,0 +1,456 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style: none;
+}
+.center {
+    width: 1200px;
+    margin: auto;
+} 
+
+body {
+   background-color:  #f3f5f7;
+   height: 8000px;
+}
+
+.clearfix:before,.clearfix:after {
+    content: "";
+    display: table;
+}
+.clearfix:after {
+    clear: both;
+}
+.clearfix {
+    *zoom: 1;
+}
+
+/* header 开始*/
+/*..........*/
+.header {
+    height: 42px;
+    margin: 30px auto;
+    /*background-color: pink; */
+}
+/*logo图*/
+.logo {
+    float: left;
+    width: 198px;
+    height: 42px;
+    /* background-color: purple; */
+}
+
+/*导航 不用给宽度，后面自动添加*/
+.nav {
+    float: left;
+    height: 42px;
+    margin-left: 60px;
+    /* background-color:aqua; */
+}
+.nav li {
+    float: left;
+    height: 42px;
+    margin: 0 15px;
+}
+.nav li a {
+    display: inline-block;
+    height: 42px;
+    line-height: 42px;
+    padding: 0 10px;
+    font-size: 18px;
+    color: #000;
+    text-decoration: none;
+}
+.nav li a:hover {
+    border-bottom: 2px solid #00a4ff;
+    color: #00a4ff;
+}
+
+/*搜索框*/
+.search {
+    float: left;
+    width: 412px;
+    height: 42px;
+    margin-left: 50px;
+    /* background-color: purple; */
+}
+.search .text-border {
+    float: left;
+    height: 40px;
+    width: 345px;
+    border: 1px #00a4ff solid;
+    border-right: 0px;
+    padding-left: 15px;
+    font-size: 14px;
+    color: #bfbfbf;
+}
+.search button {
+    float: left;
+    height: 42px;
+    width: 51px;
+    border: 0;
+    background-image: url(images/search.png);
+    background-position: center center;
+}
+
+/*用户模块*/
+.user {
+    float: left;
+    height: 30px;
+    line-height: 30px;
+    margin-left: 41px;
+    padding: 6px 0;
+    /* background-color: green; */
+    font-size: 14px;
+    color: #666666;
+}
+ .user img  { 
+     float: left; 
+ } 
+/*header结束*/
+
+/*banner开始*/
+.banner {
+    height: 420px;
+    width: 100%;
+    background-color: #1c036c;
+}
+.banner .center {
+    height: 420px;
+    background: url(images/banner.png) no-repeat center center;
+}
+.banner .subnav {
+    width: 191px;
+    height: 420px;
+    float: left;
+    background-color: rgba(0,0,0,.3);
+}
+.subnav li{
+    height: 45px; 
+    line-height: 45px; 
+    padding: 0 20px;
+    font-size: 14px;
+    /*background-color: pink;*/
+}
+.subnav li a {
+    text-decoration: none;
+    color: #ffffff;
+}
+.subnav li a:hover{
+    color:#00b4ff
+}
+.subnav li span {
+    float: right;
+}
+.course {
+    float: right;
+    width: 230px;
+    height: 301px;
+   /* 浮动的盒子不会有外边距塌陷问题*/
+    margin-top: 50px;
+    /*background-color: pink;*/
+}
+.course .title {
+    height: 48px;
+    line-height: 48px;
+    background-color: #9bceea;
+    /*文字水平居中*/
+    text-align: center;
+    color: white;
+}
+.course .course-detail {
+    height: 252px;
+    background-color: #fff;
+}
+.course .course-detail ul {
+    width: 191px;
+    margin: auto;
+}
+.course-detail-title {
+    padding: 14px 0 14px 0;
+    border-bottom: 1px solid #eaeaea;
+}
+.course-detail-title h4 {
+    font-size: 16px;
+    color: #4e4e4e;
+}
+.course-detail-title p {
+    color: #a5a5a5;
+    font-size: 12px;
+}
+.banner .course a {
+    display: block;
+    height: 38px;
+    /*padding: 0 62px;*/
+    border: 1px solid #22b0ff;
+    margin-top: 5px;
+    line-height: 38px;
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+    text-align: center;
+    color: #00a4ff;
+}
+/*banner结束*/
+
+/*goods开始*/
+.goods {
+    height: 60px;
+    /*行高会继承*/
+    line-height: 60px;
+    margin-top:  8px;
+    box-shadow: 0px 2px 3px 3px rgba(0,0,0,.1);
+    background-color: #fff;
+}
+.goods h3 {
+    float: left;
+    width: 132px;
+    font-size: 16px;
+    color: #00a4ff;
+    text-align: center;
+}
+.goods ul {
+    float: left;
+    /*height: 16px;*/
+    /*margin: 22px 0;*/
+    /*background-color: pink;*/
+}
+.goods ul li {
+    float: left;
+    /*height: 30px;
+    line-height: 16px;*/
+}
+.goods ul li a {
+    padding: 0 34px;
+    border-left: 1px solid #bfbfbf;
+    text-decoration: none;
+    font-size: 16px;
+    color: #000;
+}
+/*
+.mod{
+    float: right;
+    margin-right: 30px;
+}
+.mod a {
+    /*display: block;*/
+    /*padding: 23px 0;*/
+    /*float: right;
+    font-size: 14px;
+    color: #00a4ff;
+    text-decoration: none;
+}*/
+.mod {
+    float: right;
+    margin-right: 30px;
+    font-size: 14px;
+    color: #00a4ff;
+    text-decoration: none;
+ } 
+ /*goods结束*/
+
+ /*精品推荐大模块开始*/
+ .box {
+     margin-top: 30px ;
+ }
+ .box .box-hd {
+     height: 45px;
+     /* background-color: pink; */
+ }
+.box-hd h3{
+    float: left;
+    font-size: 20px;
+    color: #494949;
+ }
+.box-hd a {
+    float: right;
+    margin: 10px 30px 0 0 ;
+    font-size: 12px;
+    color: #a5a5a5;
+    text-decoration: none;
+ }
+ .box .box-bd ul {
+     width: 1225px;
+ }
+ .box .box-bd ul li {
+    float: left;
+    width: 228px;
+    height: 270px;
+    margin:0 15px 15px 0;
+    background-color: #fff;
+ }
+
+ .box .box-bd ul li img {
+    height: 154px;
+    width: 100%;
+ }
+ .box .box-bd ul li p{
+    height: 60px;
+     /* line-height: 76px; */
+    margin-top: 20px;
+    padding: 0 20px 0 25px;
+    font-size: 14px;
+    /* background-color: pink; */
+ }
+ .box .box-bd ul li .info {
+    margin-left: 20px;
+    font-size: 12px;
+ }
+ .box .box-bd ul li .info .info-class {
+     color:#ff7c2d;
+ }
+ .box .box-bd ul li .info .info-num {
+    color:#999999;
+}
+/*精品推荐大模块结束*/
+
+/*编程入门模块开始*/
+.pro-box {
+    height: 435px;
+    margin-top: 22px;
+    /* background-color: pink; */
+}
+.pro-box .pro-box-hd {
+    height: 42px;
+    /* background-color: pink; */
+}
+.pro-box-hd h3{
+    float: left;
+    font-size: 20px;
+    color: #494949;
+ }
+ .pro-box-hd > a {
+    float: right;
+    margin: 6px 33px 0 0 ;
+    font-size: 12px;
+    color: #a5a5a5;
+    text-decoration: none;
+ }
+ .pro-box-hd ul {
+    float: left;
+    margin: 6px 0 0 352px;
+ }
+ .pro-box-hd li {
+    float: left;
+    margin-right: 71px; 
+ }
+ .pro-box-hd li a {
+    color: #868686;
+    font-size: 16px;
+    text-decoration: none;
+ }
+ .pro-box-hd li a:hover {
+    color: #00a4ff;
+    text-decoration: underline;
+ }
+ .pro-box-bd img {
+     width: 229px;
+     height: 392px;
+ }
+ .pro-box-bd .bd-box {
+     float: right;
+     width: 960px;
+     height: 392px;
+     /* background-color: #fff; */
+ }
+ .pro-box-bd .bd-box img {
+     height: 100px;
+     width: 100%;
+ }
+ .pro-box-bd .bd-box  .bd-box-detail{
+     width: 100%;
+     height: 265px;
+     margin-top: 23px;
+     /* background-color: #fff; */
+ }
+ .pro-box-bd .bd-box  .bd-box-detail ul{
+    width: 976px;
+}
+ .pro-box-bd .bd-box  .bd-box-detail li{
+     float: left;
+     width: 229px;
+     height: 265px;
+     margin-right: 15px;
+     background-color: #ffffff;
+ }
+ .pro-box-bd .bd-box  .bd-box-detail li img {
+     width: 100%;
+     height: 155px;
+ }
+ .pro-box-bd .bd-box .bd-box-detail ul li p{
+    height: 60px;
+    margin-top: 20px;
+    padding: 0 20px 0 25px;
+    font-size: 14px;
+    /* background-color: pink; */
+ }
+ .pro-box-bd .bd-box .bd-box-detail ul li .info {
+    margin-left: 25px;
+    font-size: 12px;
+ }
+ .pro-box-bd .bd-box .bd-box-detail ul li .info .info-class {
+    color:#ff7c2d;
+}
+.box .box-bd ul li .info .info-num {
+   color:#999999;
+}
+/*编程入门模块结束*/
+
+/*footer模块开始*/
+.footer {
+    height: 418px;
+    margin-top: 41px;
+    background-color: #ffffff;
+}
+.footer .center {
+    padding-top: 35px;
+}
+.footer .copyright {
+    float: left;
+}
+/* .footer .copyright img { */
+    /* margin-top: 32px; */
+/* } */
+.footer .copyright p {
+    margin-top: 25px;
+    font-size: 12px;
+    color: #666666;
+}
+.footer .copyright a {
+    display: block;
+    width: 118px;
+    height: 34px;
+    line-height: 34px;
+    margin-top: 16px;
+    border: 1px solid #00a4ff;
+    text-decoration: none;
+    font-size: 16px;
+    color: #00a4ff;
+    text-align: center;
+}
+.footer .links {
+    float: right;
+    /* margin-top: 34px; */
+}
+.footer .links dl {
+    float: left;
+    margin-left: 120px;
+
+}
+.footer .links dt {
+    margin-bottom: 16px;
+    font-size: 16px;
+    color: #333333;
+
+}
+.footer .links dd {
+    margin-bottom: 7px;
+    font-size: 12px;
+}
+.footer .links dd a {
+    text-decoration: none;
+    color: #333333;
+}
+/*footer模块结束*/

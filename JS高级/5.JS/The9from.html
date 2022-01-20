@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let arrObj = {
+            'name': 'a',
+            'age': 'b',
+            'sex': 'c',
+            'length': 3
+        }
+        let arr = Array.from(arrObj);
+        console.log(arr);
+        arrObj = {
+            1: 'a',
+            2: 'b',
+            3: 'c',
+            length: 3
+        }
+        arr = Array.from(arrObj);
+        console.log(arr);
+        arrObj = {
+            '0': 'a',
+            '1': 'b',
+            '2': 'c'
+        }
+        arr = Array.from(arrObj);
+        console.log(arr);
+        arrObj = {
+            '0': 'a',
+            '1': 'b',
+            '2': 'c',
+            'length': 3
+        }
+        arr = Array.from(arrObj, (item) => item + 'a');
+        console.log(arr);
+    </script>
+</body>
+
+</html>

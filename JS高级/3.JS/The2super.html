@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Father {
+            constructor(surname, age) {
+                this.surname = surname;
+                this.age = age;
+            }
+        }
+        Father.prototype.tell = function () {
+            console.log(this.age);
+        }
+        class Son extends Father {
+            constructor(surname, age, grade) {
+                super(surname, age);
+                this.grade = grade;
+            }
+        }
+        var ash = new Son('Ash', 26, 100);
+        ash.tell();
+    </script>
+</body>
+
+</html>

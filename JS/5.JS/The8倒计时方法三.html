@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var end = +new Date('2021-10-1 0:0:0');
+        var now = +new Date();
+        var distance = (end - now) / 1000; //转化成秒
+
+        var day = Math.floor(distance / 60 / 60 / 24); //计算有多少天
+        day = day > 9 ? day : 0 + day;
+
+        var hour = Math.floor(distance / 60 / 60 % 24); //计算有多少小时
+        hour = hour > 9 ? hour : 0 + hour;
+
+        var minutes = Math.floor(distance / 60 % 60); //计算有多少分钟
+        minutes = minutes > 9 ? minutes : 0 + minutes;
+
+        var seconds = Math.floor(distance % 60); //计算有多少秒
+        seconds = seconds > 9 ? seconds : 0 + seconds;
+
+        console.log('还剩' + day + '天' + hour + '时' + minutes + '分' + seconds + '秒');
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

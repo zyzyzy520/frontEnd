@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            margin: 200px auto;
+            width: 500px;
+        }
+
+        input {
+            vertical-align: middle;
+        }
+
+        .icon {
+            padding-left: 20px;
+            background: url(images/mess.png) no-repeat left center;
+            font-size: 12px;
+            color: #999;
+        }
+
+        .error {
+            background-image: url(images/wrong.png);
+            color: red;
+        }
+
+        .right {
+            background-image: url(images/right.png);
+            color: green;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="box">
+        <input type="password" name="" id="pw">
+        <span class="icon">请输入6~16位密码</span>
+    </div>
+    <script>
+        // 获取密码框内的文字，失去光标后，判断长度，根据不同长度改变样式与提示文字,要注意作用的对象
+        var pw = document.getElementById('pw');
+        var icon = document.querySelector('.icon');
+        pw.onblur = function () {
+            if (this.value.length < 6 || this.value.length > 16) {
+                icon.className = 'icon error';
+                icon.innerHTML = '您输入的位数不对要求6~16位';
+            } else {
+                icon.className = 'icon right';
+                icon.innerHTML = '您输入的正确';
+            }
+        }
+    </script>
+</body>
+
+</html>

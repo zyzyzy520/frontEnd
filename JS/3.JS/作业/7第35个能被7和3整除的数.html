@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //total记录找到了几个，num用于找具体满足条件的整数
+        var total = 0, num = 1;
+        while (total != 35) {
+            if (num % 7 == 0 && num % 3 == 0) total++;
+            num++;
+        }
+        console.log(num);
+        var i = 1;
+        var jishu = 0;
+        //第 35 个数字不可能特别大 
+        while (i <= 5000) {
+            if (i % 3 == 0 && i % 7 == 0) {
+                // console.dir(i);
+                jishu = jishu + 1;
+                if (jishu == 35) {
+                    alert(i);
+                    break;
+                }
+            }
+            i++;
+        }
+        console.log('您一共的数字是：' + jishu);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

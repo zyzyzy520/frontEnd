@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var obj = {
+            name: 'ZY',
+            age: 13,
+            msg: {
+                sex: 'girl',
+                play: {
+                    hobby: 'badmiton'
+                }
+            },
+            arr: [1, 2, 3]
+        }
+        var o = {};
+        function deepCopy(target, source) {
+            for (var key in source) {
+                if (obj[key] instanceof Array) {
+                    target[key] = []
+                    deepCopy(target[key], source[key]);
+                } else if (obj[key] instanceof Object) {
+                    target[key] = {};
+                    deepCopy(target[key], source[key]);
+                } else target[key] = source[key];
+            }
+        }
+        deepCopy(o, obj);
+        console.log(o);
+    </script>
+</body>
+
+</html>

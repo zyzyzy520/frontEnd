@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var arr = {
+            sex: 'female',
+            age: 12,
+            name: 'Zhouyu'
+        }
+        function MaxAndMin() {
+            this.Pai = 3.1415926;
+            this.Max = function () {
+                var max = arguments[0];
+                for (var i = 1; i < arguments.length; i++) {
+                    if (max < arguments[i]) max = arguments[i];
+                }
+                return max;
+            }
+            this.Min = function () {
+                var min = arguments[0];
+                for (var i = 1; i < arguments.length; i++) {
+                    if (min > arguments[i]) min = arguments[i];
+                }
+                return min;
+            }
+
+        }
+        var max = new MaxAndMin();
+        arr = [1, 11, 3, 4, 5];
+        console.log(max.Max(...[1, 2, 3, 4, 5]));
+        console.log(max.Max(...arr));
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

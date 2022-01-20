@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+    <!-- 创建根标签 -->
+    <div id="app"></div>
+    <a href="www.baidu.com">点击我</a>
+    <!-- 引入React核心包，包含常用的语法规则 -->
+    <script src="./js/react.development.js"></script>
+    <!-- ReactDOM驱动包：包含虚拟dom和diff算法 -->
+    <script src="./js/react-dom.development.js"></script>
+    <!-- 引入babel包，react中很多语法不能直接被浏览器识别，需要babel转化 -->
+    <script src="./js/babel.js"></script>
+    <script type="text/babel">
+        // 转化JSX语法，使得浏览器可以识别
+        //let template = <h1>Welcome to my home</h1>
+        const son1 = React.createElement("h1", { key: 0 }, "HELLO React");
+        const son2 = React.createElement("h2", { key: 1 }, "Hello JS");
+        const son3 = React.createElement("h3", { key: 2 }, "HHello HTML");
+        const template = React.createElement("div", null, [son1, son2, son3]);
+        // 使用ReactDOM的render方法将模板渲染到app对象上面
+        ReactDOM.render(template, document.getElementById("app"));
+    </script>
+
+</body>
+
+</html>

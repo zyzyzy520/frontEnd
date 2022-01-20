@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var symbol = /^a*$/; //a出现大于等于0次，必须以a结尾 或者 没有字符
+        console.log(symbol.test('a'));
+        console.log(symbol.test(''));
+        // ----------------------------------
+        symbol = /^a*b$/;  //开头a出现大于等于0次，必须以b结尾
+        console.log(symbol.test('b')); //true
+        // ----------------------------------
+        symbol = /^a+$/; //a出现大于等于1次，必须以a开头和结尾，中间不能有其他字符
+        console.log(symbol.test('aaaa'));
+        console.log(symbol.test('ab'));
+        // ----------------------------------
+        symbol = /^a?$/; //a出现0次或1次，必须以a开头结尾，或者没有字符
+        console.log(symbol.test(''));
+        console.log(symbol.test('a'));
+        console.log(symbol.test('ab'));
+        // ----------------------------------
+        symbol = /^a{3}b$/; //a开头，a出现3次，以b结尾
+        console.log(symbol.test('aaab'));
+        console.log(symbol.test('ab'));
+        // ----------------------------------
+        symbol = /^a{3,}$/; //a开头，a结尾，a要连着出现大于等于3次
+        console.log(symbol.test('aaa'));
+        console.log(symbol.test('aaaaaab'));
+        console.log(symbol.test('aaaaaaa'));
+        // -----------------------------------
+        symbol = /^a{3,6}$/; //a开头，a结尾，a要连着出现3~6次
+        console.log(symbol.test('aaaaaa'));
+        console.log(symbol.test('aabbaa'));
+        // -----------------------------------
+        symbol = /^a{3,6}/; //开头3到6个a
+        console.log(symbol.test('aaababa'));
+        // -----------------------------------
+        symbol = /a{2,}/; //字符要有3到6个连着的a就可
+        console.log(symbol.test('abababa'));
+        console.log(symbol.test('aab'));
+        console.log(symbol.test('bbaaabababa'));
+    </script>
+</body>
+
+</html>

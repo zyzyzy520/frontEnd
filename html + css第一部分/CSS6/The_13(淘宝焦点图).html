@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        .tb-promo {
+            position: relative;
+            width: 520px;
+            height: 280px;
+            margin: 100px auto;
+            /* background-color: pink; */
+        }
+
+        .tb-promo img {
+            width: 520px;
+            height: 280px;
+        }
+
+        .tb-promo a {
+            position: absolute;
+            /* 绝对定位的盒子垂直居中：1.水平方向上移动到盒子中间，2.往上移动半个盒子距离 */
+            top: 50%;
+            margin-top: -15px;
+            height: 30px;
+            width: 20px;
+            background-color: rgba(0, 0, 0, 0.3);
+            /* 文字水平居中 */
+            text-align: center;
+            /* 文字垂直居中 行高等于盒子高度 */
+            line-height: 30px;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .tb-promo .prev {
+            left: 0px;
+            border-radius: 0 15px 15px 0;
+        }
+
+        .tb-promo .next {
+            right: 0px;
+            border-radius: 15px 0 0 15px;
+        }
+
+        .promo-nav {
+            position: absolute;
+            bottom: 12px;
+            /* 绝对定位的盒子水平居中：1.水平方向上先移动到盒子中间，2.往左移动半个盒子距离 */
+            left: 50%;
+            margin-left: -35px;
+            width: 70px;
+            height: 13px;
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 7px;
+        }
+
+        .promo-nav li {
+            float: left;
+            width: 8px;
+            height: 8px;
+            margin: 3px;
+            border-radius: 4px;
+            background-color: #fff;
+        }
+
+        .promo-nav li:hover {
+            background-color: sandybrown;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="tb-promo">
+        <img src="images/tb.jpg" alt="">
+        <!-- 左侧按钮箭头 -->
+        <a href="#" class="prev">&lt;</a>
+        <!-- 右侧按钮箭头 -->
+        <a href="#" class="next">&gt;</a>
+        <!-- 底侧小圆点 -->
+        <ul class="promo-nav">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+</body>
+
+</html>

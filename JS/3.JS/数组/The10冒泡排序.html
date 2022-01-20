@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var temp;
+        var arr = [5, 4, 3, 2, 1];
+        // 数组有5个数，其实确定4个数的位置即可，而每一次循环确定一个数的位置，所以外层循环为4次，计数器i从1开始，以4结束，达到4次。
+        // 一般计算次数的话，计数器从一开始，以多少次结束。
+        for (var i = 1; i < arr.length; i++) {
+            // 每一层都循环遍历交换.
+            for (var j = 0; j < arr.length - i; j++) {
+                // 如果前面的数比后面的数大，则交换
+                if (arr[j] > arr[j + 1]) {
+                    temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
+        }
+        console.log(arr);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

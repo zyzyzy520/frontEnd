@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .record {
+            border-bottom: 1px solid #ccc;
+            width: 300px;
+            margin: 200px auto;
+        }
+
+        .record input {
+            width: 260px;
+            outline: none;
+            border: 0;
+            vertical-align: middle;
+        }
+
+        .record img {
+            height: 24px;
+            width: 24px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="record">
+        <input type="password">
+        <img src="images/close.png" alt="">
+    </div>
+    <script>
+        // 点击获取当前状态，通过当前状态的对比改成另外一种状态
+        var img = document.querySelector('img');
+        var input = document.querySelector('input');
+
+        img.onclick = function () {
+            // 取得的路径是根路径，将其按照/分开，取最后一个close.png或者open.png
+            var nowType = input.type;
+            if (nowType == 'text') {
+                this.src = 'images/close.png';
+                input.type = 'password';
+            } else {
+                this.src = 'images/open.png';
+                input.type = 'text';
+            }
+
+        }
+    </script>
+</body>
+
+</html>

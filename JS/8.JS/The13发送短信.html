@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    手机号码：<input type="number" name="" id="tel"> <button>发送</button>
+    <script>
+        // 点击发送按钮后，禁用button，并且倒计时60s（Interval反复调用更新数字），替代发送，60s结束后停止计时器(timeout)，恢复按钮；
+        //恢复按钮的操作要放在停止计时器里，放在外面失效，因为setTimeOut是调回函数，会导致后面的先执行。不仅要恢复点击功能，还要恢复里面的字
+        var tel = document.querySelector('#tel');
+        var btn = document.querySelector('button');
+        btn.addEventListener('click', function () {
+            this.disabled = true;
+            var time = 4;
+            var timer = setInterval(function () {
+                btn.innerHTML = '还剩' + time + '秒后再次点击';
+                time--;
+            }, 1000)
+            setTimeout(function () {
+                clearInterval(timer);
+                btn.innerHTML = '发送';
+                btn.disabled = false;
+            }, 5000)
+
+        })
+    </script>
+</body>
+
+</html>

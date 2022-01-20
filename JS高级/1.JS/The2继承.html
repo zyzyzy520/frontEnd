@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1.无重构
+        class Father {
+            constructor(surname) {
+                this.surname = surname;
+            }
+            Say() {
+                console.log('My surname is' + this.surname);
+            }
+        }
+        class Son extends Father {
+
+        }
+        var ZY = new Son('ZHOU');
+        console.log(ZY);
+        ZY.Say();
+
+        // 2.有重构
+        class Father1 {
+            constructor(surname) {
+                this.surname = surname;
+            }
+            Say() {
+                console.log('My surname is' + this.surname);
+            }
+        }
+        class Son1 extends Father1 {
+            constructor(surname) {
+                super(surname);//测试的时候删除这行
+                this.surname = surname;
+            }
+        }
+        var ash = new Son1('ash');
+        ash.Say();
+
+        //3. 属性相同，继承并扩展
+        class Father2 {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+            }
+            Sum() {
+                console.log(this.x + this.y);
+            }
+        }
+        class Son2 extends Father2 {
+            constructor(x, y) {
+                super(x, y);
+                this.x = x;
+                this.y = y;
+            }
+            Sub() {
+                console.log(this.x - this.y);
+            }
+        }
+        var vi = new Son2(2, 3);
+        vi.Sum();
+        vi.Sub();
+        console.log(vi);
+
+        // 4.父亲与儿子方法名相同，在儿子的方法里调用父亲的饿方法
+        class Father3 {
+            constructor(surname) {
+                this.surname = surname
+            }
+            Say() {
+                console.log(this.surname);
+            }
+        }
+        class Son3 extends Father3 {
+            constructor(surname, firstname) {
+                super(surname);
+                this.firstname = firstname;
+            }
+            Say() {
+                super.Say();
+                console.log(this.firstname);
+            }
+        }
+        var cai = new Son3('ZHOU', 'YU');
+        cai.Say();
+    </script>
+</body>
+
+</html>

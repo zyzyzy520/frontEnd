@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul {
+            width: 250px;
+            margin: 100px auto;
+        }
+
+        li {
+            float: left;
+            list-style: none;
+            width: 24px;
+            height: 24px;
+            background: url(images/sprite.png) no-repeat;
+            margin: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <script>
+        // 选出所有的小li
+        var li = document.querySelectorAll('li');
+        // 循环遍历每个小li，为每个小li设置背景图片的位置
+        for (var i = 1; i < li.length; i++) {
+            li[i].style.backgroundPositionY = (0 - i * 44) + 'px';
+        }
+    </script>
+</body>
+
+</html>

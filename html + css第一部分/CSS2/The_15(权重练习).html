@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 对于li来说不是继承的权重，使用复合选择器叠加的权重 0011 */
+        .nav li {
+            color: red;
+        }
+
+        /*li {
+            color: sandybrown;
+        }*/
+
+        /*对于li标签来说，此为继承的权重，不是复合选择器，因而为0*/
+        /*body .nav {
+            color: royalblue;
+        }*/
+
+        /* 需求把第一个小li颜色改为粉色加粗 有多种方法*/
+        /*可以选择提高子选择器的优先级，也可选择提高父选择器的优先级*/
+        .nav .col {
+            color: pink;
+            font-weight: 700;
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="nav">
+        <li class="col">人生四大悲</li>
+        <li>A</li>
+        <li>B</li>
+        <li>C</li>
+    </ul>
+</body>
+
+</html>

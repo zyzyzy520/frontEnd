@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box1 {
+            /* hidden:隐藏溢出内容 */
+            /* overflow: hidden; */
+            /* visible:显示溢出内容 */
+            /* overflow: visible; */
+            /* scroll:无论内容溢出与否，都显示滚动条 */
+            /* overflow: scroll; */
+            /* auto:会根据内容是否溢出，选择是否显示滚动条 */
+            overflow: auto;
+            width: 200px;
+            height: 200px;
+            margin: auto;
+            background-color: white;
+            border: 3px solid pink;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box1">
+        在效率方面，基于谱的模型的计算成本随着图的大小而急剧增加，因为它们要么需要执行特征向量计算，要么同时处理整个图，这使得它们很难适用于大型图。基于空间的模型有潜力处理大型图，因为它们通过聚集相邻节点直接在图域中执行卷积。计算可以在一批节点中执行，而不是在整个图中执行。当相邻节点数量增加时，可以引入采样技术来提高效率。
+    </div>
+</body>
+
+</html>

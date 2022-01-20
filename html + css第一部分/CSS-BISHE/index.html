@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./layui/css/layui.css">
+    <style>
+        .login-01 {
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 500px;
+            background: #F7F7F7;
+            padding: 25px 15px 25px 10px;
+            font: 12px Georgia, "Times New Roman", Times, serif;
+            color: #888;
+            text-shadow: 1px 1px 1px #FFF;
+            border: 1px solid #E4E4E4;
+        }
+
+        h1 {
+            font-size: 25px;
+            padding: 0px 0px 10px 40px;
+            display: block;
+            border-bottom: 1px solid #E4E4E4;
+            margin: -10px -15px 30px -10px;
+            color: #888;
+        }
+
+        a {
+            background: #E27575;
+            border: none;
+            padding: 10px 25px 10px 25px;
+            color: #FFF;
+            box-shadow: 1px 1px 5px #B6B6B6;
+            border-radius: 3px;
+            text-shadow: 1px 1px 1px #9E3F3F;
+            cursor: pointer;
+        }
+
+        .search {
+            float: right;
+        }
+
+        .btn {
+            width: 30px;
+            height: 20px;
+            padding: 0 0;
+            border: none;
+            border-radius: 0px;
+        }
+
+        table {
+            margin-bottom: 10px;
+        }
+
+        .nav {
+            width: 100%;
+            height: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 导航栏-->
+    <div class="nav layui-bg-cyan">
+        <a href="#" class="">首页</a>
+    </div>
+    <h1>Board Show <button class="search btn"><img src="search.png" alt=""></button><input type="text" class="search"
+            id="" placeholder="请输入电影名">
+    </h1>
+    <div class="login-01">
+        <div id="main">
+            <div id="rside">
+                <table border="0">
+                    <tr>
+                        <td><img src="poster/1.jpg"></td>
+                        <td>
+                            <span><strong>name：</strong>Toy Story (1995) </span><br>
+                            <span><strong>genre：</strong>Animation,Adventure,Comedy </span><br>
+                            <span><strong>directors：</strong>John Lasseter</span><br>
+                            <span><strong>writers：</strong>John Lasseter,Pete Docter</span><br>
+                            <span><strong>stars：</strong>Tom Hanks,Tim Allen,Don Rickles</span><br>
+                            <span><strong>introduce：</strong>A cowboy doll is profoundly threatened and jealous when a
+                                new spaceman
+                                figure supplants him as top toy in a boy's room.</span><br>
+                            <strong>rating：</strong>
+                            <input type="text">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><img src="poster/2.jpg"></td>
+                        <td>
+                            <span><strong>name：</strong>Jumanji (1995) </span><br>
+                            <span><strong>genre：</strong>Adventure,Comedy,Family</span><br>
+                            <span><strong>directors：</strong>Joe Johnston</span><br>
+                            <span><strong>writers：</strong>Jonathan Hensleigh,Greg Taylor</span><br>
+                            <span><strong>stars：</strong>Robin Williams,Kirsten Dunst,Bonnie Hunt</span><br>
+                            <span><strong>introduce：</strong>When two kids find and play a magical board game, they
+                                release a man trapped in it for decades--and a host of dangers that can only be stopped
+                                by finishing the game.</span><br>
+                            <strong>rating：</strong>
+                            <input type="text">
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><img src="poster/3.jpg"></td>
+                        <td>
+                            <span><strong>name：</strong>Grumpier Old Men (1995) </span><br>
+                            <span><strong>genre：</strong>Comedy,Romance</span><br>
+                            <span><strong>directors：</strong>Howard Deutch</span><br>
+                            <span><strong>writers：</strong>Mark Steven Johnson</span><br>
+                            <span><strong>stars：</strong>Walter Matthau,Jack Lemmon,Ann-Margret</span><br>
+                            <span><strong>introduce：</strong>John and Max resolve to save their beloved bait shop from
+                                turning into an Italian restaurant, just as its new female owner catches Max's
+                                attention.</span><br>
+                            <strong>rating：</strong>
+                            <input type="text">
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><img src="poster/4.jpg"></td>
+                        <td>
+                            <span><strong>name：</strong>Waiting to Exhale (1995) </span><br>
+                            <span><strong>genre：</strong>Comedy,Drama,Romance</span><br>
+                            <span><strong>directors：</strong>Forest Whitaker</span><br>
+                            <span><strong>writers：</strong>Terry McMillan</span><br>
+                            <span><strong>stars：</strong>Whitney Houston,Angela Bassett,Loretta Devine</span><br>
+                            <span><strong>introduce：</strong>Based on Terry McMillan's novel, this film follows four
+                                very different African-American women and their relationships with the male
+                                gender.</span><br>
+                            <strong>rating：</strong>
+                            <input type="text">
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><img src="poster/5.jpg"></td>
+                        <td>
+                            <span><strong>name：</strong>Father of the Bride Part II (1995) </span><br>
+                            <span><strong>genre：</strong>Comedy,Family,Romance</span><br>
+                            <span><strong>directors：</strong>Charles Shyer</span><br>
+                            <span><strong>writers：</strong>Albert Hackett,Frances Goodrich</span><br>
+                            <span><strong>stars：</strong>Steve Martin,Diane Keaton,Martin Short</span><br>
+                            <span><strong>introduce：</strong>George Banks must deal not only with the pregnancy of his
+                                daughter, but also with the unexpected pregnancy of his wife.</span><br>
+                            <strong>rating：</strong>
+                            <input type="text">
+
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <a href="Admin.php">管理者登录</a>
+        <a href="log_in.html">Logout</a>
+        <a href="Message.php">重新推荐</a><br />
+
+    </div>
+</body>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* nth-child会先把所有盒子排序 */
+        /* 执行的时候首先看 :nth-child(1),再去对比E */
+        section div:nth-child(1) {
+            background-color: pink;
+        }
+
+        /* nth-of-type会把指定类型的盒子排序 */
+        /* 执行的时候首先找E，然后再找nth-child */
+        section div:nth-of-type(1) {
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <p>123</p>
+        <div>熊大</div>
+        <div>熊二</div>
+    </section>
+</body>
+
+</html>

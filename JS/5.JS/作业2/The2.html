@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 制作一个函数，getDayNum( 年月日日期 )，可以返回指定日期是当前年的第几天
+        // 例：  getDayNum( “2019-1-2”)    返回值为：2
+        /* 法一*/
+        // 建立一个数组记录每个月有多少天，也可用对象，但数组小标可直接对应月份非常方便。
+        // 首先获取输入年份，判断是不是闰年，决定二月有多少天
+        // 然后获取输入月份，从一月份开始向这个月份遍历，在该月的上一月停止，得到每一月的天数并相加
+        // 最后获取输入天数，将该天数与上一步的天数相加，即是当前年的第N天。
+
+        // 注意
+        // 1.获取月份和天数时，要注意是不是两位数，月份就用str[5],str[6]判断；天数正的顺序不好判断，因为月份位数未知，所以用str[length-1]
+        // ---和str[length-2]判断
+        function isRun(year) {
+            if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) return true;
+            else return false;
+        }
+
+        function getDayNum1(str) {
+            var year = parseFloat(str.slice(0, 4));
+            var month = parseFloat(str[6] == '-' ? str[5] : str[5] + str[6]);
+            var day = parseFloat(str[str.length - 2] == '-' ? str[str.length - 1] : str[str.length - 2] + str[str.length - 1]);
+
+            var monthDays = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+            if (isRun(year)) monthDays[2] = 29;
+            for (var i = 1; i < month; i++) {
+                day += monthDays[i];
+            }
+            console.log(day);
+        }
+
+        getDayNum1('2019-3-22');
+
+
+        /*法二*/
+        // 计算输入日期对应的总毫秒数，计算今年1月1日总毫秒数，
+        // 首先把输入的2019-XX-XX转换为2019：XX:XX
+        // 然后把2019：XX:XX转换为毫秒数
+        // 计算1月1日与输入日期毫秒数差值并转换为秒数
+        // 最后将秒数转换为天数即可，
+        // 因为是从1月1日开始计算，而1月1日是第一天，所以计算后的天数应当+1。比如我们要计算1月2日，其与1月1日计算的差值为1天，但它实际上是第二天
+        function getDayNum2(year) {
+            var start = +new Date('2019-1-1 0:0:0');
+            year = year + ' 0:0:0';
+            var end = +new Date(year);
+            var distance = (end - start) / 1000;
+            var days = Math.floor(distance / 60 / 60 / 24) + 1;
+            console.log(days);
+        }
+        getDayNum2('2019-3-22');
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

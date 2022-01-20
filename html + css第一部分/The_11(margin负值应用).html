@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul li {
+            position: relative;
+            float: left;
+            list-style: none;
+            width: 200px;
+            height: 200px;
+            /* background-color: pink; */
+            border: 2px solid skyblue;
+            margin-left: -1px;
+        }
+
+        /* 1.如果盒子没有定位，则增加相对定位，相对原位置，相对定位会压住其它标准流和浮动的盒子*/
+        /* ul li:hover { */
+        /* position: relative; */
+        /* border-color: plum; */
+        /* } */
+
+        /* 2.如果盒子有定位，则增加z-index */
+        ul li:hover {
+            z-index: 1;
+            border-color: sandybrown;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+</body>
+
+</html>

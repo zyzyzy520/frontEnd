@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var symbol = /[a-z]/; //字符只要包含a~z其中一个即可
+        console.log(symbol.test('aa'));
+        // -----------------------------
+        symbol = /[a-z]{3,}/; //字符要包含连续的3个以上a~z自由组合
+        console.log(symbol.test('123abcsdz123')); //true;
+        // ------------------------------------
+        symbol = /^[a-z]$/; //字符只能是a-z的其中一个
+        console.log(symbol.test('aa'));
+        console.log(symbol.test('z'));
+        // -----------------------------------
+        symbol = /^[a-zA-Z0-9]{3,}$/; //字符只能是方括号内的任意一种，且要自由组合出现3次以上
+        console.log(symbol.test('a09'));
+        console.log(symbol.test('abc9!'));
+        //------------------------------------
+        symbol = /^abc{3,}$/; //字符只能是ab三个以上c
+        console.log(symbol.test('abbcccc'));  //false
+        console.log(symbol.test('abcccccc')) //true
+        // -----------------------------------
+        symbol = /^[ab]c{3,}$/; //字符必须是a或b开头(只能有一个)，然后跟着3个c
+        console.log(symbol.test('accc')); //true
+        console.log(symbol.test('abccc')); //false
+        // -----------------------------------
+        symbol = /^[A-Z](abc){3,}$/; //字符必须是A-Z其中一个开头，然后紧跟3个以上abc
+        console.log(symbol.test('Aabcabcabc'));
+        //------------------------------------
+
+    </script>
+</body>
+
+</html>

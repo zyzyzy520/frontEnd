@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 电脑类
+        function Computer(color, weight, brand, type) {
+            this.color = color;
+            this.weight = weight;
+            this.brand = brand;
+            this.type = type;
+            this.do = function (activity) {
+                console.log(activity);
+            }
+        }
+
+        // 按钮类
+        function Button(width, height, bgc) {
+            this.width = width;
+            this.height = height;
+            this.backGroundColor = bgc;
+            this.click = function (action) {
+                console.log(action);
+            }
+        }
+
+        // 车类
+        function Car(weight, color, brand) {
+            this.weight = weight;
+            this.color = color;
+            this.brand = brand;
+            this.do = function (activity) {
+                return activity + this.brand;
+            }
+        }
+
+        var benz = new Car(45, 'red', 'Benze');
+        console.log(benz.brand);
+        console.log(benz.do('Drive'));
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

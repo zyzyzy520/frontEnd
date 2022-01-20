@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var answer = Math.floor(Math.random() * (10 - 1 + 1)) + 1;
+        while (true) {
+            var guess = parseFloat(prompt('请输入数字'));
+            if (guess > answer) alert('猜大啦');
+            else if (guess < answer) alert('猜小啦');
+            else break;
+        }
+        alert('猜对啦!');
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

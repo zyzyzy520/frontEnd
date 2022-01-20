@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>历史记录</title>
+    <link rel="stylesheet" href="./layui/css/layui.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- 导航栏 -->
+    <div class="nav layui-bg-cyan">
+        <div class="header center">
+            <!-- 首页按钮-->
+            <div class="main-page-btn-box">
+                <a href="main-page.html" class="main-page-btn"><i class="layui-icon layui-icon-home"></i>首页</a>
+            </div>
+            <!-- search搜索框-->
+            <div class="search">
+                <input type="text" class="text-border" placeholder="输入关键词">
+                <button><i class="layui-icon layui-icon-release"></i></button>
+            </div>
+            <!-- 历史记录 -->
+            <div class="history-record">
+                <a href="history-record.html" class="main-page-btn"><i class="layui-icon layui-icon-time"></i>历史评分记录</a>
+            </div>
+            <!-- 用户头像+注销模块-->
+            <div class="log-out">
+                <i class="layui-icon layui-icon-username"> 202</i>
+                <a href="log_in.html" class="main-page-btn">| <i class="layui-icon layui-icon-website"></i>Log Out</a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- 评分电影 -->
+    <div class="rated-movie">
+        <div class="main-movie center">
+            <!--电影信息-->
+            <img src="poster/1.jpg" alt="">
+            <div class="main-movie-info history-movie">
+                <div class="history-movie-info">
+                    <div class="main-movie-info-title">电影标题：Toy Story (1995) </div>
+                    <div class="main-movie-info-intro">简介：A cowboy doll is profoundly threatened and jealous when a new
+                        spaceman figure supplants him as top toy in a boy's room. </div>
+                    <div class="main-movie-info-ratings">你的评分：4.9 </div>
+                </div>
+                <input type="text" value="" hidden>
+                <button class="change-btn layui-btn layui-btn-warm " type="submit">修改评分</button>
+                <button class="delete-btn layui-btn layui-btn-danger" type="submit">删除评分</button>
+            </div>
+        </div>
+        <hr class="layui-border-cyan center">
+    </div>
+    <div class="rated-movie">
+        <div class="main-movie center">
+            <!--电影信息-->
+            <img src="poster/1.jpg" alt="">
+            <div class="main-movie-info history-movie">
+                <div class="history-movie-info">
+                    <div class="main-movie-info-title">电影标题：Toy Story (1995) </div>
+                    <div class="main-movie-info-intro">简介：A cowboy doll is profoundly threatened and jealous when a new
+                        spaceman figure supplants him as top toy in a boy's room. </div>
+                    <div class="main-movie-info-ratings">评分：4.9 </div>
+                </div>
+                <input type="text" value="" hidden>
+                <button class="change-btn layui-btn layui-btn-warm " type="submit">修改评分</button>
+                <button class="delete-btn layui-btn layui-btn-danger" type="submit">删除评分</button>
+            </div>
+        </div>
+        <hr class="layui-border-cyan center">
+    </div>
+    <div class="rated-movie">
+        <div class="main-movie center">
+            <!--电影信息-->
+            <img src="poster/1.jpg" alt="">
+            <div class="main-movie-info history-movie">
+                <div class="history-movie-info">
+                    <div class="main-movie-info-title">电影标题：Toy Story (1995) </div>
+                    <div class="main-movie-info-intro">简介：A cowboy doll is profoundly threatened and jealous when a new
+                        spaceman figure supplants him as top toy in a boy's room. </div>
+                    <div class="main-movie-info-ratings">评分：4.9 </div>
+                </div>
+                <input type="text" value="" hidden>
+                <button class="change-btn layui-btn layui-btn-warm " type="submit">修改评分</button>
+                <button class="delete-btn layui-btn layui-btn-danger" type="submit">删除评分</button>
+            </div>
+        </div>
+        <hr class="layui-border-cyan center">
+    </div>
+    <div class="rated-movie">
+        <div class="main-movie center">
+            <!--电影信息-->
+            <img src="poster/1.jpg" alt="">
+            <div class="main-movie-info history-movie">
+                <div class="history-movie-info">
+                    <div class="main-movie-info-title">电影标题：Toy Story (1995) </div>
+                    <div class="main-movie-info-intro">简介：A cowboy doll is profoundly threatened and jealous when a new
+                        spaceman figure supplants him as top toy in a boy's room. </div>
+                    <div class="main-movie-info-ratings">评分：4.9 </div>
+                </div>
+                <input type="text" value="" hidden>
+                <button class="change-btn layui-btn layui-btn-warm " type="submit">修改评分</button>
+                <button class="delete-btn layui-btn layui-btn-danger" type="submit">删除评分</button>
+            </div>
+        </div>
+        <hr class="layui-border-cyan center">
+    </div>
+
+
+    <div id="test1"></div>
+
+    <script src="./layui/layui.js"></script>
+    <script>
+        layui.use('laypage', function () {
+            var laypage = layui.laypage;
+
+            //执行一个laypage实例
+            laypage.render({
+                elem: 'test1' //注意，这里的 test1 是 ID，不用加 # 号
+                , count: 50 //数据总数，从服务端得到
+            });
+        });
+    </script>
+</body>
+
+</html>

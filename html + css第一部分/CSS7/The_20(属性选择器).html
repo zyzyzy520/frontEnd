@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input[name] {
+            color: pink;
+        }
+
+        /* 这里的[type=text]才是属性选择器，加上input标签选择器，总的权重是11 */
+        input[type=text] {
+            color: powderblue;
+        }
+
+        /* 总权重 10+01=11 */
+        div[class^=icon] {
+            color: rebeccapurple;
+        }
+
+        section[class$=data] {
+            color: red;
+        }
+
+        div[class*=a] {
+            color: red;
+        }
+
+        div.adc {
+            color: royalblue;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 1.选择具有某种属性的标签 -->
+    <!-- <input type="search" name="search" id="" placeholder="1234">
+    <input type="search" id="">-->
+
+    <!-- 2.选择属性等于特定值的标签 必掌握-->
+    <!--<input type="text" id="">
+    <input type="password" id="">-->
+
+    <!-- 3.选择属性值以某几位开头的标签-->
+    <!--<div class="icon1">icon1</div>
+    <div class="icon2">icon2</div>
+    <div class="icon3">icon3</div>
+    <div class="icon4">icon4</div>
+    <div>对比</div>-->
+
+    <!-- 4.选择属性值以某几位结尾的标签 -->
+    <!--<section class="a-ddata">adata</section>
+    <section class="b-data">bdata</section>
+    <section class="c-data">cdata</section>
+    <section class="data1">对比</section>-->
+
+    <!-- 5.选择属性值含有某几位的标签 -->
+    <div class="adc">adc</div>
+    <div class="aaddcc">aaddcc</div>
+    <div class="213">对比</div>
+</body>
+
+</html>

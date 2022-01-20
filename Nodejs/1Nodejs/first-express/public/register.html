@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        label {
+            width: 100px;
+            text-align: right;
+        }
+    </style>
+</head>
+
+<body>
+    <label for="userName">用户名：</label><input type="text" name="" id="userName"><br>
+    <label for="passWord">密码：</label><input type="password" name="" id="passWord"><br>
+    <label for="confirmPw">确认密码：</label><input type="password" name="" id="confirmPw"><br>
+    <button id="register" disabled>注册</button>
+</body>
+<!-- 引入jquery -->
+<script src="javascripts/jquery.min.js"></script>
+<script>
+    $('#userName').blur(function () {
+        const userName = $('#userName').val();
+
+        $.ajax({
+            url: '/users/compare',
+            data: {
+                userName
+            },
+            type: 'post',
+            success(msg) {
+                alert(msg.message);
+                if (!msg.status) {
+                    // 已经有同名用户存在，注册按钮disabled
+                    $('#register').attr('disabled', true);
+                } else {
+                    // 用户名独特，注册按钮可以点击
+                    $('#register').attr('disabled', false);
+                }
+            }
+        })
+    })
+    $('#register').click(function () {
+        const userName = $('#userName').val();
+        const passWord = $('#passWord').val();
+        const confirm = $('#confirmPw').val();
+
+        if (passWord != confirm) {
+            alert('注册失败！两次输入密码不正确');
+        } else {
+            $.ajax({
+                url: '/users/register',
+                data: {
+                    userName,
+                    passWord
+                },
+                type: 'post',
+                success(msg) {
+                    alert(msg.message);
+                }
+            })
+        }
+    })
+</script>
+
+</html>

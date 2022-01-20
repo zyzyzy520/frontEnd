@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>background</title>
+</head>
+<style>
+    .bgc {
+        width: 400px;
+        height: 400px;
+        font-size: 20px;
+        color: white;
+        background-color: pink;
+        line-height: 400px;
+    }
+
+    .bgi {
+        width: 400px;
+        height: 400px;
+        background-image: url(../images/logo.png);
+        /*1. 不重复，图片不会重复至占满盒子*/
+        /*background-repeat: no-repeat;*/
+
+        /*2. 重复图片至占满盒子*/
+        /*background-repeat: repeat;*/
+
+        /*3. 在X轴方向上重复图片*/
+        /*background-repeat: repeat-x;*/
+
+        /*4. 在y轴方向上重复图片*/
+        /*background-repeat: repeat-y;*/
+
+        /*5. 背景颜色和背景图片可以同时存在，只是图片在上方*/
+        background-color: tomato;
+        background-repeat: repeat-y;
+    }
+
+    .bgp {
+        width: 400px;
+        height: 400px;
+        background-image: url(../images/logo.png);
+        background-color: turquoise;
+        background-repeat: no-repeat;
+        /*1.方位名词*/
+        /*测试方位顺序*/
+        /*background-position: top left;*/
+        /*background-position: left top;*/
+        /*测试只设置一个方位*/
+        /* background-position: bottom;*/
+
+        /*2.参数单位*/
+        /*background-position: 20px 12px;*/
+
+        /*3. 混合单位*/
+        background-position: center 40px;
+
+    }
+
+    .bga {
+        width: 400px;
+        height: 400px;
+
+        /*
+        background-image: url(../images/logo.png);
+        background-color: yellow;
+        /* 背景图像是否随着页面其他部分滚动*/
+        /*background-attachment: fixed;*/
+        background: yellow url(../images/logo.png) repeat fixed;
+
+    }
+
+    .rgba {
+        width: 400px;
+        height: 400px;
+        background: rgba(0, 0, 0, 0.5);
+
+    }
+</style>
+
+<body>
+    <!-- 背景固定测试盒子-->
+    <div class="bga"></div>
+
+    <!-- 背景颜色测试盒子-->
+    <div class="bgc">test</div>
+
+    <!-- 背景图片,背景平铺测试盒子-->
+    <div class="bgi"></div>
+
+    <!-- 背景方位测试盒子-->
+    <div class="bgp"></div>
+
+    <!-- 背景颜色半透明测试盒子-->
+    <div class="rgba"></div>
+
+</body>
+
+</html>

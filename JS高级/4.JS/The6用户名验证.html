@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        label {
+            color: rgb(170, 170, 170);
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text"><label>请输入用户名</label>
+    <script>
+        var symbol = /^[a-zA-z0-9_-]{3,16}$/;
+        var text = document.querySelector('input[type=text]');
+        var label = document.querySelector('label');
+        text.addEventListener('blur', function () {
+            // console.log(text.value);
+            // 注意在点击后的事件内部，如果是与点击后的元素本身，使用this
+            var flag = symbol.test(this.value);
+            if (flag) {
+                label.innerHTML = "用户名合法";
+                label.style.color = "green";
+            } else {
+                label.innerHTML = "用户名不符合规范";
+                label.style.color = "red";
+            }
+
+        })
+    </script>
+</body>
+
+</html>

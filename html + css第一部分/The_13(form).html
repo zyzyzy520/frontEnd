@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="XX.php" method="POST" name="form1">
+        <!-- 文本框 value是框内显示的值，name是文本框独一无二的名字用于区分，传到服务器的值是value的值-->
+        用户名：<input type="text" value="请输入用户名" name="text1" maxlength="5"/>  <br />
+        <!-- 密码 value是框内显示的值，name是密码框独一无二的名字用于区分，传到服务器的值是value的值-->
+        密码：&nbsp;&nbsp;&nbsp;<input type="password" value="123" name="password1"/>  <br />
+        <!-- 单选按钮 同一个类型的name需统一才可实现多选一-->
+        性别：女 <input type="radio" name="sex" value="girl" checked="checked"/> 男  <input type="radio" name="sex" value="boy"/>     <br />
+        <!-- 复选框 同一个类型的name需统一-->
+         爱好：
+         篮球 <input type="checkbox" name="hobby" value="basketball" checked="checked"/>  棒球 <input type="checkbox" name="hobby" value="baseball"/>   <br>
+        <!-- 提交按钮 点击后，该表单里的元素提交给服务器-->
+        <input type="submit" name="submit1" value="Submit"/>
+        <!-- 重置按钮 点击后，会重置表单中的所有数据 -->
+        <input type="reset" name="reset1" value="Reset" />      <br>
+         <!-- 普通按钮 与JS搭配使用-->
+        <input type="button" name="button1" value="请输入验证码"/>   <br />
+        <!-- 文件域 上传文件使用-->
+        <input type="file" name="file1" value="上传文件"/>
+
+    </form>
+</body>
+</html>

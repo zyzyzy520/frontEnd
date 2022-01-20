@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var date = new Date();
+        // 从秒开始往后推
+        var setSeconds = 0;
+        var setMinutes = 0;
+        var setHours = 0;
+        var setDays = 1;
+        var setMonths = 9;
+        var seconds = date.getSeconds();
+        var minutes = date.getMinutes();
+        var hours = date.getHours();
+        var days = date.getDate();
+        var months = date.getMonth() + 1;
+        var remain_seconds, remain_minutes, remain_hours, remain_days = 0;
+
+        var months_days = [0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+        // 设定时间减去现在时间，就是倒计时，日期与时间分开算
+        // 日期
+        for (var i = months; i < setMonths; i++) {
+            remain_days += months_days[i];
+        }
+        remain_days = remain_days - days + setDays;
+
+        if (setSeconds < seconds) {
+            setMinutes -= 1;
+            remain_seconds = setSeconds + 60 - seconds;
+        } else {
+            remain_seconds = setSeconds - seconds;
+        }
+        if (setMinutes < minutes) {
+            setHours -= 1;
+            remain_minutes = setMinutes + 60 - minutes;
+        } else {
+            remain_minutes = setMinutes - minutes;
+        }
+        if (setHours < hours) {
+            remain_days -= 1;
+            remain_hours = setHours + 24 - hours;
+        } else {
+            remain_hours = setHours - hours;
+        }
+        console.log('还剩' + remain_days + '天' + remain_hours + '时' + remain_minutes + '分' + remain_seconds + '秒');
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

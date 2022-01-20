@@ -1,0 +1,169 @@
+@import url(common.less);
+body {
+    min-width: 320px;
+    width:15rem;
+    margin: 0 auto;
+    line-height: 1.5;
+    font-family: Arial,Helvetica;
+    background: #F2F2F2;
+    }
+
+// 搜索模块search.box开始
+/*自己方法
+.search-box {
+    position: fixed;
+    display: flex;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 15rem;
+    height: (88 / 50rem);
+    background-color: rgb(255, 192, 1);
+}
+
+.search-box .classify {
+    position: absolute;
+    top: (10 / 50rem);
+    left: (25 / 50rem);
+    width: (44 / 50rem);
+    height: (70 / 50rem);
+}
+.search-box .classify img {
+    width: 100%;
+}
+.search-box .login {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: (10 / 50rem);
+    width: (75 / 50rem);
+    height: (70 / 50rem);
+    line-height: (70 / 50rem);
+    color: white;
+    text-decoration: none;
+    font-size: (25 / 50rem);
+    text-align: center;
+}
+.search-box input {
+    margin-left: (90 / 50rem);
+    padding-left: (70 / 50rem);
+    width: (562 / 50rem);
+    height: (66 / 50rem);
+    border-radius: (66 / 50rem);
+    border-color: transparent;
+    background-color: rgb(255, 242, 204);
+    font-size: (25 / 50rem);
+    box-sizing: border-box;
+}*/
+
+// 老师方法
+.search-box {
+    position: fixed;
+    display: flex;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 15rem;
+    height: (88 / 50rem);
+    background-color: rgb(255, 192, 1);
+    .classify {
+        width: (44 / 50rem);
+        height: (70 / 50rem);
+        margin: (11 / 50rem) (25 / 50rem) (7 / 50rem) (24 / 50rem);        
+        img {
+            width: 100%;
+        }
+    }
+    .login {
+        margin: (10 / 50rem);
+        width: (75 / 50rem);
+        height: (70 / 50rem);
+        line-height: (70 / 50rem);
+        color: white;
+        text-decoration: none;
+        font-size: (25 / 50rem);
+        text-align: center;        
+    }
+    .search {
+        flex: 1;
+        input {
+            // 点击出现轮廓
+            outline: none;
+            margin-top: (11 / 50rem);
+            padding-left: (70 / 50rem);
+            width: 100%;
+            height: (66 / 50rem);
+            border-radius: (33 / 50rem);
+            border: 0;
+            color: #757575;
+            background-color: rgb(255, 242, 204);
+            font-size: (25 / 50rem);
+            box-sizing: border-box;
+        }
+    }
+}
+
+//banner模块制作 
+.banner {
+    img{
+        width: 100%;
+        vertical-align: middle;
+    }
+}
+
+// brand模块制作
+.brand {
+    display: flex;
+    a {
+        flex: 1;
+        img {
+            width: 100%;
+        }
+    }
+}
+
+// nav模块制作
+/* 自己方法
+.nav {
+    display: flex;
+    flex-wrap: wrap;
+    li{
+        flex: 20%;
+        a {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: (25 / 50rem);
+            color: #000;
+            .icon{
+                width: (82 / 50rem);
+                height: (82 / 50rem);
+                margin: (15 /50rem) 0;
+                background: url(../upload/nav1.png) no-repeat;
+                background-size: (82 / 50rem) auto;
+            }
+
+        }
+    }
+}*/
+
+// 老师方法
+nav {
+    a{
+        float: left;
+        width: (150 / 50rem);
+        height: (140 / 50rem);
+        text-align: center;
+        color: black;
+        img{
+            display: block;
+            margin: 10px auto -10px;
+            width: (82 / 50rem);
+            height: (82 / 50rem);
+            // vertical-align: middle;
+        }
+        span {
+            font-size: (25 / 50rem);
+        }
+    }
+}

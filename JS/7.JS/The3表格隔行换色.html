@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            width: 800px;
+            text-align: center;
+            margin: 200px auto;
+            border-collapse: collapse;
+            border: 0;
+        }
+
+        thead tr {
+            height: 30px;
+            background: rgb(135, 206, 235);
+        }
+
+        tbody tr {
+            height: 30px;
+            border-bottom: 1px solid rgb(215, 215, 215);
+            color: blue;
+        }
+
+        .pink {
+            background-color: pink;
+        }
+    </style>
+
+</head>
+
+<body>
+    <table border="0" cellspacing="0">
+        <thead>
+            <tr>
+                <th>代码</th>
+                <th>名称</th>
+                <th>最新公布净值</th>
+                <th>累计净值</th>
+                <th>前单位净值</th>
+                <th>净增长率</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>003526</td>
+                <td>农银金穗3个月定期开放债券</td>
+                <td>1.075</td>
+                <td>1.079</td>
+                <td>1.074</td>
+                <td>+0.047%</td>
+            </tr>
+            <tr>
+                <td>003526</td>
+                <td>农银金穗3个月定期开放债券</td>
+                <td>1.075</td>
+                <td>1.079</td>
+                <td>1.074</td>
+                <td>+0.047%</td>
+            </tr>
+            <tr>
+                <td>003526</td>
+                <td>农银金穗3个月定期开放债券</td>
+                <td>1.075</td>
+                <td>1.079</td>
+                <td>1.074</td>
+                <td>+0.047%</td>
+            </tr>
+            <tr>
+                <td>003526</td>
+                <td>农银金穗3个月定期开放债券</td>
+                <td>1.075</td>
+                <td>1.079</td>
+                <td>1.074</td>
+                <td>+0.047%</td>
+            </tr>
+            <tr>
+                <td>003526</td>
+                <td>农银金穗3个月定期开放债券</td>
+                <td>1.075</td>
+                <td>1.079</td>
+                <td>1.074</td>
+                <td>+0.047%</td>
+            </tr>
+        </tbody>
+    </table>
+    <script>
+        // 获取tbody中的所有tr，为每个tr绑定触发函数。触发事件是鼠标经过，响应函数是对应的tr变背景色;鼠标离开，对应的tr变白色
+        // 但在变之前还需要清空别的tr的样式，比如说第一个变了粉色，第二个变色不清空样式的话就会有两个粉色
+
+        // document.getElementsByTagName即使只有一个元素，返回的也是数组
+        var trs = document.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+        for (var i = 0; i < trs.length; i++) {
+            trs[i].onmouseover = function () {
+                this.className = 'pink';
+            }
+            trs[i].onmouseout = function () {
+                this.className = '';
+            }
+        }
+    </script>
+</body>
+
+</html>

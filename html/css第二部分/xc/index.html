@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, user-scalable = no, maximum-scale = 1.0, minimum-scale =1.0">
+    <title>Document</title>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/index.css">
+    <script src="js/animate.js"></script>
+    <script src="js/index.js"></script>
+</head>
+
+<body>
+    <!-- 搜索模块制作 -->
+    <div class="search-index">
+        <div class="search">
+            搜索:目的地/酒店/景点/航班号
+        </div>
+        <a class="user">
+            我&nbsp;的
+        </a>
+
+    </div>
+
+    <!-- 焦点图模块制作 -->
+    <div class="focus">
+        <!-- 小li全部浮动起来了，所以需要清除浮动，因为focus和ul均未设置高度，高度由内容决定，而内容又全部浮动，所以需要清除浮动 -->
+        <ul class="clearfix slider">
+            <li><img src="upload/focus1.jpg" alt=""></li>
+            <li><img src="upload/focus2.jpg" alt=""></li>
+            <li><img src="upload/focus3.jpg" alt=""></li>
+        </ul>
+        <ol class="circle">
+        </ol>
+    </div>
+
+    <!-- local-nav制作 -->
+    <!-- 自己方法
+    <div class="local-nav">
+        <a href="#">景点·玩乐</a>
+        <a href="#">景点·玩乐</a>
+        <a href="#">景点·玩乐</a>
+        <a href="#">景点·玩乐</a>
+        <a href="#">景点·玩乐</a>
+    </div> -->
+    <!-- 老师方法 -->
+    <ul class="local-nav">
+        <li>
+            <a href="#">
+                <span class="local-nav-icon-1"></span>
+                <span>景点·玩乐</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <span class="local-nav-icon-2"></span>
+                <span>景点·玩乐</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <span class="local-nav-icon-3"></span>
+                <span>景点·玩乐</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <span class="local-nav-icon-4"></span>
+                <span>景点·玩乐</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <span class="local-nav-icon-5"></span>
+                <span>景点·玩乐</span>
+            </a>
+        </li>
+
+    </ul>
+
+    <!-- nav，模块制作 -->
+    <nav>
+        <div class="nav-common">
+            <div class="nav-item">
+                <a href="#">海外酒店</a>
+            </div>
+            <div class="nav-item">
+                <a href="#">海外酒店</a>
+                <a href="#">特价酒店</a>
+            </div>
+            <div class="nav-item">
+                <a href="#">海外酒店</a>
+                <a href="#">特价酒店</a>
+            </div>
+        </div>
+        <div class="nav-common">
+            <div class="nav-item">
+                <a href="#">海外酒店</a>
+            </div>
+            <div class="nav-item">
+                <a href="#">海外酒店</a>
+                <a href="#">特价酒店</a>
+            </div>
+            <div class="nav-item">
+                <a href="#">海外酒店</a>
+                <a href="#">特价酒店</a>
+            </div>
+        </div>
+        <div class="nav-common">
+            <div class="nav-item">
+                <a href="#">海外酒店</a>
+            </div>
+            <div class="nav-item">
+                <a href="#">海外酒店</a>
+                <a href="#">特价酒店</a>
+            </div>
+            <div class="nav-item">
+                <a href="#">海外酒店</a>
+                <a href="#">特价酒店</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- subnav-entry模块制作 -->
+    <ul class="subnav-entry">
+        <li>
+            <a href="#">
+                <span class="icon"></span>
+                <span>WiFi电话卡</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <span class="icon"></span>
+                <span>保险·签证</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <span class="icon"></span>
+                <span>外币兑换</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <span class="icon"></span>
+                <span>购物</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <span class="icon"></span>
+                <span>当地向导</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <span class="icon"></span>
+                <span>自由行</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <span class="icon"></span>
+                <span>境外玩乐</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <span class="icon"></span>
+                <span>礼品卡</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <span class="icon"></span>
+                <span>信用卡</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <span class="icon"></span>
+                <span>更多</span>
+            </a>
+        </li>
+
+    </ul>
+
+    <!-- sales-box模块制作 -->
+    <div class="sales-box">
+        <div class="sales-hd">
+            <h2 class="icon">热门活动</h2>
+            <a class="more" href="#">获取更多福利 </a>
+        </div>
+        <!-- 自己方法 
+        <div class="sales-bd">
+            <ul>
+                <li>
+                    <a href="#">
+                        <img src="upload/pic1.jpg" alt="">
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="upload/pic2.jpg" alt="">
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="upload/pic3.jpg" alt="">
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="upload/pic4.jpg" alt="">
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="upload/pic5.jpg" alt="">
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="upload/pic6.jpg" alt="">
+                    </a>
+                </li>
+            </ul>
+        </div>-->
+        <div class="sales-bd">
+            <div class="row">
+                <a href="#">
+                    <img src="upload/pic1.jpg" alt="">
+                </a>
+                <a href="#">
+                    <img src="upload/pic2.jpg" alt="">
+                </a>
+            </div>
+            <div class="row">
+                <a href="#">
+                    <img src="upload/pic3.jpg" alt="">
+                </a>
+                <a href="#">
+                    <img src="upload/pic4.jpg" alt="">
+                </a>
+            </div>
+            <div class="row">
+                <a href="#">
+                    <img src="upload/pic5.jpg" alt="">
+                </a>
+                <a href="#">
+                    <img src="upload/pic6.jpg" alt="">
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 返回顶部模块 -->
+    <div class="back">
+
+    </div>
+</body>
+
+
+</html>

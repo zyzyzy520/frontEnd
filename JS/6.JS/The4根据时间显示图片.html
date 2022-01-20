@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <img src="images/s.gif" alt="" title="上午好">
+    <script>
+        // 获取对象
+        var img = document.querySelector('img');
+        var date = new Date('2021-08-18 9:00:00');
+        var hour = date.getHours();
+        if (hour >= 6 && hour <= 11) {
+            img.src = 'images/s.gif';
+            img.title = '上午好';
+        } else if (hour > 11 && hour <= 14) {
+            img.src = 'images/z.gif';
+            img.title = '中午好';
+        }
+        else if (hour > 14 && hour <= 18) {
+            img.src = 'images/x.gif';
+            img.title = '下午好';
+        } else {
+            img.src = 'images/w.gif';
+            img.title = '晚上好';
+        }
+        // console.log(hour);
+    </script>
+</body>
+
+</html>

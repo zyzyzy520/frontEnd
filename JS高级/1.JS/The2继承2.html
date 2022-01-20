@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>Click me!</button>
+    <script>
+        var that;
+        class Father {
+            constructor(surname) {
+                this.surname = surname;
+            }
+        }
+        class Son extends Father {
+            constructor(firstname) {
+                super();
+                that = this;
+                this.firstname = firstname;
+                // this.speak();
+                this.btn = document.querySelector('button');
+                /*
+                this.btn.addEventListener('click', function () {
+                    this.speak;
+                })*/
+                this.btn.onclick = this.speak;
+            }
+            speak() {
+                alert('my name is' + that.firstname);
+            }
+        }
+        var zhou = new Son('YU');
+        console.log(zhou);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 打开页面的时候在页面上使用中文显示当天的日期和星期（即“星期几”)
+        // 重点是星期日是0，星期六是6将其转化为中文，需要一个数组
+        var week_arr = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+        var date = new Date();
+        var year = date.getFullYear();
+        var month = date.getMonth() + 1;
+        var day = date.getDate();
+        var week_index = date.getDay();
+        var week = week_arr[week_index];
+        console.log(year + '年' + month + '月' + day + '日' + week);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

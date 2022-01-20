@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @keyframes move {
+            0% {
+                width: 0;
+            }
+
+            100% {
+                width: 200px;
+            }
+        }
+
+        div {
+            /* 不设置宽度，默认占一整行 */
+            height: 30px;
+            overflow: hidden;
+            /* 文字不换行 */
+            white-space: nowrap;
+            font-size: 20px;
+            background-color: pink;
+            animation-name: move;
+            animation-duration: 4s;
+            animation-timing-function: steps(10);
+            animation-fill-mode: forwards;
+        }
+    </style>
+</head>
+
+<body>
+    <div>欢迎来到世纪佳缘网站</div>
+</body>
+
+</html>

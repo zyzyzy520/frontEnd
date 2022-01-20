@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var symbol = /[a-zA-z_-]{3,16}/; //包含小写字母或大写字母或-自由组合连着出现3~16次即可
+        console.log(symbol.test('a1b2c3d4'));  //false
+        console.log(symbol.test('aaa111111')); //true
+        console.log(symbol.test('aA-123')); //true
+        // ---------------------------------
+        symbol = /^[a-zA-z0-9_-]{3,16}$/; // 有了^和$后，就有了限制，只能出现大小写字母或者数字或者-_，总共自由组合出现的次数是3~16次
+        console.log(symbol.test('aA14-_')); //true
+    </script>
+</body>
+
+</html>

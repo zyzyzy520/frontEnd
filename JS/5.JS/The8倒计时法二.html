@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 将倒计时截止日期转化为毫秒
+        var end = +new Date('2021-10-01 0:0:0');
+        // 将今天的日期转化为毫秒
+        var now = +new Date();
+        var distance = end - now;
+        console.log(end);
+        console.log(now);
+
+        // 计算有多少天
+        var remain_days = Math.floor(distance / 86400000);
+        distance = distance % 86400000;
+        console.log(remain_days);
+        console.log(distance);
+
+        // 计算剩下的有多少小时
+        var remain_hours = Math.floor(distance / 3600000);
+        distance %= 3600000;
+        console.log(remain_hours);
+
+        // 计算剩下多少分钟
+        var remain_minutes = Math.floor(distance / 60000);
+        distance %= 60000;
+        console.log(remain_minutes);
+
+        // 计算剩下多少秒
+        var remain_seconds = Math.floor(distance / 1000);
+        distance %= 1000;
+        console.log(remain_seconds);
+
+        console.log('倒计时' + remain_days + '天' + remain_hours + '时' + remain_minutes + '分' + remain_seconds + '秒');
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

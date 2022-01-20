@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>元素模式转换</title>
+</head>
+<style>
+    .block-a {
+        width: 500px;
+        height: 200px;
+        background-color: green;
+        display: block;
+    }
+
+    div {
+        width: 100px;
+        height: 200px;
+        background-color: lavender;
+        display: inline;
+    }
+
+    span {
+        width: 100px;
+        height: 200px;
+        background-color: lightgoldenrodyellow;
+        display: inline-block;
+    }
+</style>
+
+<body>
+    <!-- 需要扩大a标签的点击范围，设置宽度与高度，块内元素一行一个-->
+    <a href="#" class="block-a">行内元素，转化块内元素，从而可以设置宽度与高度</a>
+    <a href="#"> 对比组</a> <a href="#"> 对比组</a>
+
+    <!-- 让一行可以放多个DIV-->
+    <div>第一个div</div>
+    <div>第二个div</div>
+    <br>
+    <!-- 既可以一行放多个标签，并且可以设置宽度和高度-->
+    <span>span1</span>
+    <span>span2</span>
+</body>
+
+
+
+</html>

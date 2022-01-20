@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            list-style: none;
+            margin-bottom: 21px;
+            padding: 0 10px;
+        }
+
+        .box {
+            text-align: center;
+            font-size: 25px;
+
+        }
+
+        span {
+            cursor: pointer;
+        }
+
+        .content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none;
+            width: 644px;
+            height: 353px;
+            background-color: white;
+            /* margin: 248px auto; */
+            padding-top: 15px;
+            font-size: 18px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+        }
+
+        h4 {
+            height: 50px;
+            line-height: 50px;
+            font-size: 21px;
+            font-weight: 300;
+            text-align: center;
+            margin-bottom: 33px;
+        }
+
+        .content input {
+            width: 445px;
+            height: 45px;
+            font-size: 18px;
+            padding-left: 10px;
+            border: 1px solid rgb(240, 240, 240);
+        }
+
+        .content label {
+            display: inline-block;
+            width: 102px;
+            text-align: right;
+            margin-right: 5px;
+        }
+
+        .sub {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        input[type=submit] {
+            width: 320px;
+            height: 51px;
+            border: 1px solid rgb(240, 240, 240);
+            background-color: white;
+            cursor: pointer;
+        }
+
+        .close {
+            position: absolute;
+            right: -25px;
+            top: -25px;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            background-color: white;
+            border-radius: 50%;
+            font-size: 14px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <span>点击,弹出登录框</span>
+    </div>
+    <div class="content">
+        <h4>登录会员</h4>
+        <ul>
+            <form action="#">
+                <li><label for="user">用户名：</label><input type="text" placeholder="请输入用户名" id="user"></li>
+                <li><label for="pw">登录密码：</label><input type="password" placeholder="请输入登录密码" id="pw"></li>
+                <li class="sub"><input type="submit" value="登录会员"></li>
+            </form>
+        </ul>
+        <div class="close">关闭</div>
+
+    </div>
+    <script>
+        // 首先实现，点击后显示灰色半透明遮挡层，显示模态框
+        var span = document.querySelector('span');
+        var content = document.querySelector('.content');
+        var body = document.body;
+        var close = document.querySelector('.close');
+        var h4 = document.querySelector('h4');
+        span.addEventListener('click', function () {
+            content.style.display = 'block';
+            body.style.backgroundColor = "rgba(0,0,0,0.3)";
+        })
+
+        // 点击关闭按钮，关闭模态框和半透明遮挡层
+        close.addEventListener('click', function () {
+            content.style.display = 'none';
+            body.style.backgroundColor = "white";
+        })
+
+        var x, y;
+        // 按下后记录鼠标相对于盒子的的位置，这个值在鼠标的移动过程中是不变的，随着鼠标的移动，通过获得鼠标相对于页面的位置与相对于盒子的值得到盒子相对于页面的值
+        h4.addEventListener('mousedown', function (e) {
+
+            x = e.pageX - content.offsetLeft;
+            y = e.pageY - content.offsetTop;
+            // console.log(x, y);
+            h4.addEventListener('mousemove', fn);
+        })
+        function fn(e) {
+            this.style.cursor = 'move';
+            content.style.left = e.pageX - x + 'px';
+            content.style.top = e.pageY - y + 'px';
+            // console.log(e.pageX - x);
+        }
+        // 鼠标弹起，结束拖拽，鼠标弹起，给新的计算公式。
+        h4.addEventListener('mouseup', function (e) {
+            h4.removeEventListener('mousemove', fn);
+
+        })
+    </script>
+</body>
+
+</html>

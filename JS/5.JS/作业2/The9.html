@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 从以下学员名单中随机选出4个学员：
+        // 选4个学员，所以要循环4次。
+        // 每一次随机生成一个0~length-1整数，访问数组得到名字，判断名字是否在新数组中，在就重复这个过程，不在就跳出循环加入数组
+        // 通过判断是否在记录数组中存在，得到是否重复的判断
+        var arr = ["鹿晗", "王俊凯", "蔡徐坤", "彭于晏", "周杰伦", "刘德华", "赵本山"];
+        var new_arr = [];
+        for (var i = 1; i <= 4; i++) {
+            var index, ch;
+            while (true) {
+                index = Math.floor(Math.random() * (arr.length - 1 - 0 + 1)) + 0;
+                ch = arr[index];
+                // 新数组中不存在
+                if (new_arr.indexOf(ch) == -1) break;
+            }
+            new_arr.push(ch);
+        }
+        console.log(new_arr);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

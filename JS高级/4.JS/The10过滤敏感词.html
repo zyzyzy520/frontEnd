@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <textarea name="" id="" cols="30" rows="10"></textarea>
+    <button>Submit</button>
+    <div></div>
+    <script>
+        var text = document.querySelector('textarea');
+        var btn = document.querySelector('button');
+        var div = document.querySelector('div');
+        // 点击按钮后，将过滤了敏感词的用户输入内容打印在div里
+        btn.addEventListener('click', function () {
+            var str = text.value;
+            str = str.replace(/激情|GAI/g, '**');
+            div.innerHTML = str;
+        })
+    </script>
+</body>
+
+</html>

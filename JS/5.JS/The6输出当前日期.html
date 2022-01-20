@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 使用前一定要实例化对象
+        var date = new Date();
+        var year = date.getFullYear();
+        var month = date.getMonth() + 1;
+        var speci_date = date.getDate();
+        var day = date.getDay();
+        // 得到的星期是数字，需要转换为汉字，可以利用索引在数组中查找。
+        var arr = ['星期日', '星期六', '星期五', '星期四', '星期三', '星期二', '星期一'];
+        console.log(year + '年' + month + '月' + speci_date + '日 ' + arr[day]);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

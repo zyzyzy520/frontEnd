@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            height: 500px;
+            /* width: 600px; */
+            /* margin: 0 auto; */
+            text-align: center;
+        }
+
+        table {
+            margin: 15px auto;
+            border-collapse: collapse;
+        }
+
+        input[type=text] {
+            width: 60px;
+            height: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="row">
+            按照价格查询：<input type="text" id="lowPrice"> - <input type="text" id="highPrice"> <button
+                id="priceSearch">搜索</button>
+            按照商品名称查询：<input type="text" name="" id="goodsName"> <button id="nameSearch">查询</button>
+        </div>
+        <table border="1" height="25px" align="center" width="300px">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>产品名称</th>
+                    <th>价格</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+
+        </table>
+    </div>
+    <script>
+        var data = [{ id: 1, name: '小米', price: 3999 }, { id: 2, name: 'oppo', price: 999 }, { id: 3, name: '荣耀', price: 1299 }, { id: 4, name: '华为', price: 1999 }];
+        var tbody = document.querySelector('tbody');
+        // 对象可以在外面获得，但是值一定得是按下后取得。
+        var priceSearch = document.querySelector('#priceSearch');
+        var low = document.querySelector('#lowPrice');
+        var high = document.querySelector('#highPrice');
+        var nameSearch = document.querySelector('#nameSearch');
+        var goodsName = document.querySelector('#goodsName');
+        // 遍历数组中的每一项，每一组对象
+        // 1.渲染数据
+        function showData(data) {
+            data.forEach(function (value) {
+                /*
+                var tr = document.createElement('tr');
+                // 遍历对象中的每一项
+                for (key in value) {
+                    // 将每一项创建td，直接加入tr中，这是最方便的做法
+                    var td = document.createElement('td');
+                    td.innerHTML = value[key];
+                    tr.appendChild(td);
+                }
+                tbody.appendChild(tr);*/
+                var str = "<tr><td>" + value.id + "</td>" + "<td>" + value.name + "</td>" + "<td>" + value.price + "</td></tr>"
+                tbody.insertAdjacentHTML('beforeend', str);
+            })
+        }
+        // 一开始就调用，使得一开始就有数据显示
+        showData(data);
+        // 2.根据价格查询
+        priceSearch.addEventListener('click', function () {
+            // 获取价格document.querySelector('#lowPrice')只是选到了input框对象，实际要的是里面的value属性值
+            // console.log(low.value, high.value);
+            // 找到在区间范围内的数据
+            var filterData = data.filter(function (value) {
+                return value.price >= low.value && value.price <= high.value;
+                // console.log(low);
+            })
+            // console.log(filterData);
+            tbody.innerHTML = "";
+            showData(filterData);
+        })
+        // 3.按照商品名称查询
+        nameSearch.addEventListener('click', function () {
+            /*var filterData = data.filter(function (value) {
+                // console.log(typeof value.name, typeof goodsName.value);
+                return value.name === goodsName.value;
+            })*/
+            // 一定要事先给个空值, 不给空值，当没有要查询的数据时会出现问题。
+            var arr = [];
+            var flag = data.some(function (value) {
+                if (value.name == goodsName.value) {
+                    arr.push(value);
+                    return true;
+                }
+            })
+            tbody.innerHTML = "";
+            console.log(flag);
+            showData(arr);
+        })
+
+    </script>
+</body>
+
+</html>

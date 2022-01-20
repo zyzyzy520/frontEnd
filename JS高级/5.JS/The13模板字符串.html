@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div></div>
+    <script>
+        // 解析变量
+        let a = 123
+        let str = `I am ${a}`;
+        console.log(str);
+
+        // 换行
+        let ldh = {
+            name: 'ldh',
+            age: 20,
+            sex: 'male',
+            hobby: 'basketball'
+        };
+        let html = `
+            <div>${ldh.name}</div>
+            <div>${ldh.age}</div>
+            <div>${ldh.sex}</div>
+            <div>${ldh.hobby}</div>
+        `;
+        let div1 = document.querySelector('div');
+        div1.insertAdjacentHTML('beforeend', html);
+        // console.log(div1)
+
+        // 调用函数
+        const fn = () => "2134";
+        let ans = `My answer is ${fn()}`;
+        console.log(ans);
+    </script>
+</body>
+
+</html>

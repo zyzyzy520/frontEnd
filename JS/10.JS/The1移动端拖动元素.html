@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+    <script>
+        // 1.获取元素对象
+        var box = document.querySelector('.box');
+        var fingerX = 0, fingerY = 0;//手指的初始位置
+        var boxX = 0, boxY = 0; //盒子的初始位置
+        // 点到DOM元素时，记录手指的初始位置，盒子的初始位置
+        box.addEventListener('touchstart', function (e) {
+            // 第一个手指的初始位置
+            fingerX = e.targetTouches[0].pageX;
+            fingerY = e.targetTouches[0].pageY;
+            // 记录盒子的初始位置
+            boxX = this.offsetLeft;
+            boxY = this.offsetTop;
+            // 触摸后，手指移动
+            box.addEventListener('touchmove', function (e) {
+                // 要用记录的初始位置原理是，鼠标从初始位置移动的距离等于盒子从初始位置移动的距离。
+                this.style.left = boxX + e.targetTouches[0].pageX - fingerX + 'px';
+                this.style.top = boxY + e.targetTouches[0].pageY - fingerY + 'px';
+                e.preventDefault();//阻止屏幕滚动的默认行为
+                // console.log(this.style.left);
+            })
+        })
+
+    </script>
+</body>
+
+</html>

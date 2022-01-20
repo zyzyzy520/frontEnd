@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input {
+            color: rgb(153, 153, 153);
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text" name="" id="" value="phone">
+    <script>
+        // 两部分，
+        // 获取光标时，用户没输入内容，就清空默认文字。改变字体颜色
+        // 失去光标时，用户没输入内容，就显示默认文字，改变字体颜色。
+        var input = document.querySelector('input');
+        var body = document.body;
+        input.onfocus = function () {
+            // 获得光标后，如果用户未输入内容，里面的内容仍是默认文字，清空
+            if (this.value == 'phone') {
+                this.value = '';
+            }
+            // 获得光标后，文字颜色加深
+            this.style.color = 'black';
+
+        }
+
+        input.onblur = function () {
+            // 失去光标后，判断用户有没有输入内容，没有就显示默认文字
+            if (this.value == '') {
+                this.value = 'phone';
+            }
+            // 只要失去光标，文字颜色就变灰
+            this.style.color = 'rgb(153, 153, 153)';
+        }
+    </script>
+</body>
+
+</html>

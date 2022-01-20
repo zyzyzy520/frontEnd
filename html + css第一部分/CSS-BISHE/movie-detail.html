@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./layui/css/layui.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- 导航栏-->
+    <div class="nav layui-bg-cyan">
+        <div class="header center">
+            <!-- 首页按钮-->
+            <div class="main-page-btn-box">
+                <a href="#" class="main-page-btn"><i class="layui-icon layui-icon-home"></i>首页</a>
+            </div>
+            <!-- search搜索框-->
+            <div class="search">
+                <input type="text" class="text-border" placeholder="输入关键词">
+                <button><i class="layui-icon layui-icon-release"></i></button>
+            </div>
+            <!-- 历史记录 -->
+            <div class="history-record">
+                <a href="#" class="main-page-btn"><i class="layui-icon layui-icon-time"></i>历史评分记录</a>
+            </div>
+            <!-- 用户头像+注销模块-->
+            <div class="log-out">
+                <i class="layui-icon layui-icon-username"> 202</i>
+                <a href="#" class="main-page-btn">| <i class="layui-icon layui-icon-website"></i>Log Out</a>
+            </div>
+
+        </div>
+    </div>
+    <!-- 导航栏完成-->
+
+    <!-- 主要电影框架 -->
+    <div class="main-movie center">
+        <!--电影信息-->
+        <img src="poster/1.jpg" alt="">
+        <div class="main-movie-info">
+            <div class="main-movie-info-title">电影标题：Toy Story (1995) </div>
+            <div class="main-movie-info-intro">简介：A cowboy doll is profoundly threatened and jealous when a new spaceman
+                figure supplants him as top toy in a boy's room. </div>
+            <div class="main-movie-info-director">导演：John Lasseter </div>
+            <div class="main-movie-info-writer">编剧：John Lasseter|Pete Docter</div>
+            <div class="main-movie-info-stars">主演：Tom Hanks|Tim Allen|Don Rickles</div>
+            <div class="main-movie-info-genres">类型：Animation|Adventure|Comedy</div>
+            <div class="main-movie-info-time">时长：1h 21min</div>
+            <div class="main-movie-info-release-time">发行时间：22 November 1995 (USA)</div>
+        </div>
+    </div>
+    <!-- 主要电影框架完成 -->
+
+    <!-- 分割线 -->
+    <hr class="layui-border-cyan center">
+
+    <!-- 评分与评论-->
+    <div class="rattag center">
+        <div class="ratings">
+            <i class="layui-icon layui-icon-console"> 进行评分:</i>
+            <div id="rating"></div>
+        </div>
+        <div class="tag">
+            <i class="layui-icon layui-icon-note"> 进行评论:</i><br><br>
+            <textarea rows="8" cols="100">
+            </textarea>
+        </div>
+
+    </div>
+
+    <!-- 提示相似电影 -->
+    <div class="center layui-collapse " style="border:0">
+        <div class="layui-colla-item ">
+            <h2 class="layui-colla-title similar">喜欢这部电影的人也喜欢以下电影</h2>
+            <div class="layui-colla-content layui-show box">
+                <div class="box-bd clearfix">
+                    <ul>
+                        <li>
+                            <button><img src="poster/1.jpg" alt=""></button>
+                            <div class="info">
+                                <button><span class="info-class">Toy Story (1995) </span></button>
+                            </div>
+                        </li>
+                        <li>
+                            <button><img src="poster/2.jpg" alt=""></button>
+                            <div class="info">
+                                <button><span class="info-class">Jumanji (1995) </span></button>
+                            </div>
+                        </li>
+                        <li>
+                            <button><img src="poster/3.jpg" alt=""></button>
+                            <div class="info">
+                                <button><span class="info-class">Grumpier Old Men (1995) </span></button>
+                            </div>
+                        </li>
+                        <li>
+                            <button><img src="poster/4.jpg" alt=""></button>
+                            <div class="info">
+                                <button><span class="info-class">Waiting to Exhale (1995)</span></button>
+                            </div>
+                        </li>
+                        <li>
+                            <button></button><img src="poster/5.jpg" alt="">
+                            <div class="info">
+                                <button></button><span class="info-class">Father of the Bride Part II (1995)</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./layui/layui.js"></script>
+    <script>
+        // 评分部分JS
+        layui.use('rate', function () {
+            var rate = layui.rate;
+
+            //渲染
+            var ins1 = rate.render({
+                elem: '#rating', //绑定元素
+            });
+        });
+    </script>
+</body>
+
+</html>

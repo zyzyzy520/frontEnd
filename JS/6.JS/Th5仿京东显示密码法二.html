@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            position: relative;
+            margin: 100px auto;
+            width: 400px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .box input {
+            outline: none;
+            border: 0;
+            width: 375px;
+            height: 30px;
+        }
+
+        .box label {
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+
+        .box label img {
+            width: 24px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <input type="password" name="" id="pw">
+        <label for="">
+            <img src="images/close.png" alt="" id="sta">
+        </label>
+    </div>
+    <script>
+        var pw = document.getElementById('pw');
+        var sta = document.getElementById('sta');
+        // 记录当前是open还是close
+        var flag = 0;
+        // console.dir(status);
+        sta.onclick = function () {
+            if (flag == 0) {
+                sta.type = 'text';
+                sta.src = 'images/open.png';
+                flag = 1;
+            } else {
+                pw.type = 'password';
+                sta.src = 'images/close.png';
+                flag = 0;
+            }
+            // console.log(flag);
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,231 @@
+.w {
+    width: 1200px;
+    margin: 0 auto
+}
+.message {
+    font-size: 12px;
+}
+.green {
+    color: #40b83f;
+}
+.red {
+    color: #de1111;
+}
+header {
+    height: 83px;
+    padding-top: 16px;
+    border-bottom: 2px solid #b1191a;
+}
+header .logo a {
+    display: block;
+    width: 175px;
+    height: 55px;
+}
+.register_area {
+    margin-top: 20px;
+    height: 522px;
+    border: 1px solid #dfdfdf;
+    /* background-color: pink; */
+}
+/*  
+.register_area .reg_hd {
+    height: 41px;
+    line-height: 41px;
+    padding: 0 10px;
+    border-bottom: 1px solid #dfdfdf;
+    background-color: #ececec;
+}
+.register_area .reg_hd h3 {
+    float: left;
+    font-size: 18px;
+    font-weight: 400;
+}
+.register_area .reg_hd .reg {
+    float: right;
+    font-size: 14px;
+}
+.register_area .reg_hd .reg a{
+    color: #c81623;
+}*/
+.register_area h3 {
+    height: 41px;
+    line-height: 41px;
+    padding: 0 10px;
+    border-bottom: 1px solid #dfdfdf;
+    background-color: #ececec;
+    font-size: 18px;
+    font-weight: 400;
+}
+.register_area h3 .login {
+    float: right;
+    font-size: 14px;
+}
+.register_area h3 .login a{
+    color: #c81623;
+}
+.reg_form {
+    /* 给了宽度之后，盒子才可水平居中*/
+    width: 600px;
+    margin: 55px auto;
+}
+.register_area .reg_form ul li label {
+    /* label盒子高度设置的和input输入框一样高，这样可以垂直居中就比较好看 */
+    /* 注意，label是行内元素 */
+    display: inline-block;
+    /* height: 35px; */
+    width: 85px;
+    /* line-height: 35px; */
+    text-align: right;
+    font-size: 14px;
+}
+.register_area .reg_form ul li {
+    /* position: absolute; */
+    margin-bottom: 22px;
+    /* text-align: center; */
+}
+/* input元素在base.css里是没有边框的，所以在这里设置边框 */
+.register_area .reg_form ul li .inp {
+    width: 238px;
+    height: 35px;
+    /* vertical-align: middle; */
+    padding-left: 4px;
+    border: 1px solid #ccc;
+}
+.register_area .reg_form ul li .icon{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    /* margin top负值，可以理解为向上移动 */
+    margin-top: -2px;
+}
+.error {
+    color: #c81523;
+    font-size: 12px;
+}
+.register_area .reg_form ul li .error .icon{
+    background: url(../images/error.png) no-repeat;
+}
+.success {
+    color: #40b83f;
+    font-size: 12px;
+}
+.register_area .reg_form ul li .success .icon{
+    background: url(../images/success.png) no-repeat;
+}
+
+/* 安全程度  自己方法*/
+.security {
+    width: 162px;
+    height: 13px;
+    line-height: 13px;
+    /* background-color: pink; */
+    margin-left: 163px;
+    margin-top: 11px;
+}
+.security span{
+    /* float: right; */
+    font-size: 12px;
+    color: #b2b2b2;
+}
+.security .box {
+    float: right;
+}
+.security .box div {
+    float: left;
+    width: 34px;
+    height: 13px;
+    font-size: 12px;
+    color: white;
+    text-align: center;
+}
+.security .box .weak {
+    background-color: #de1111;
+}
+.security .box .middle {
+    background-color: #40b83f;
+    margin: 0 1px;
+}
+.security .box .strong {
+    background-color: #f79100;
+}
+/*  
+.register_area .reg_form ul li img {
+    vertical-align: middle;
+    margin-right: 5px;
+}
+*/
+/* 安全程度  老师方法*/
+.safe {
+    padding-left: 165px;
+    font-size: 12px;
+    color: #b2b2b2;
+}
+.safe em {
+    color: white;
+    padding: 0 11px;
+}
+.safe em:first-child{
+    background-color: #de1111;
+    margin-left: 10px;
+}
+.safe em:nth-child(2) {
+    background-color: #40b83f;
+    margin: 0 1px;
+}
+.safe em:nth-child(3){
+    background-color: #f79100;
+}
+
+/* 安全程度模块结束 */
+
+/* 同意模块开始 */
+.reg_form ul .agree {
+    padding-left: 86px;
+}
+.reg_form ul .agree input[type=checkbox] {
+    width: 14px;
+    height: 14px;
+    border-radius: 1px;
+    vertical-align: middle;
+}
+.register_area .reg_form ul .agree label {
+    /* width: 0; */
+    font-size: 12px;
+}
+.register_area .reg_form ul .agree a {
+    color: #1ba1e6;
+    font-size: 12px;
+}
+.register_area .reg_form ul .finish {
+    margin-top: 20px;
+    padding-left: 96px;
+}
+.register_area .reg_form ul .finish input {
+    /* display: block; */
+    width: 200px;
+    height: 34px;
+    line-height: 34px;
+    background-color: #c81623;
+    color: white;
+    font-size: 14px;
+    text-align: center;
+}
+/* 同意模块结束 */
+
+/* 底部模块开始 */
+    /* copyright帮助模块开始 */
+    footer .mod_copyright{
+        text-align: center;
+        font-size: 12px;
+    }
+    footer .mod_copyright .links {
+        height: 49px;
+        line-height: 49px;
+    }
+    footer .mod_copyright .links a{
+        margin: 0 3px;
+    }
+    footer .mod_copyright .copyright{
+        line-height: 21px;
+    }

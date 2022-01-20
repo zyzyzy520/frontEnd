@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        label {
+            display: inline-block;
+            height: 50px;
+            width: 100px;
+            /* background-color: pink; */
+            /* 盒子里的文字右对齐 */
+            text-align: right;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>登陆界面</h1>
+    <label for="userName">用户名：</label><input type="text" id="userName"> <br>
+    <label for="userPw">密码：</label><input type="password" id="userPw"> <br>
+    <input type="button" value="登录" id="btn">
+</body>
+
+<!-- 引入JS文件，中间不要写代码；因为这个JS模块是在前端使用的，所以放入前端文件夹内-->
+<script src="./javascripts/jquery.min.js"></script>
+<script>
+    // 点击后再获取用户名和密码，否则获取到的用户名和密码不是最新的值
+    $('#btn').click(function () {
+
+        let userName = $('#userName').val();
+        let userPw = $('#userPw').val();
+        console.log(userName, userPw);
+        $.ajax({
+            // 这是给后端的接口，方便后端路由处理
+            url: '/users/login',
+            // 传给后端的数据
+            data: {
+                userName,
+                userPw
+            },
+            type: 'post',
+            // 发送请求成功后,从后端接收的数据
+            // 这个成功仅仅指发送请求成功，获取页面的信息发送信息给后端成功
+            success(msg) {
+                alert(msg.message);
+            }
+
+        })
+    })
+</script>
+
+
+
+</html>

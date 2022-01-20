@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+        }
+
+        span {
+            display: block;
+            position: absolute;
+            top: 300px;
+            width: 500px;
+            height: 500px;
+            background-color: purple;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+    </div>
+    <span></span>
+    <button id="btn1">Click me to 500</button>
+    <button id="btn2">Click me to 800</button>
+    <script>
+        var div = document.querySelector('div');
+        var span = document.querySelector('span');
+        // obj：要移动的对象。   target：移动到的目标位置
+        function animate(obj, target, callback) {
+            // clearInterval(obj.timer);
+            var steps;
+            if (!obj.timer) {
+                obj.timer = setInterval(function () {
+                    if (obj.offsetLeft == target) {
+                        clearInterval(obj.timer);
+                        delete obj.timer;
+                        // 要判断是否加了回调函数
+                        if (callback) {
+                            callback();
+                        }
+                    }
+                    // 因为步长是变化的，所以肯定写在定时器内部。
+                    steps = (target - obj.offsetLeft) / 10;
+                    steps = steps > 0 ? Math.ceil(steps) : Math.floor(steps);
+                    obj.style.left = obj.offsetLeft + steps + 'px';
+                }, 15)
+            }
+
+        }
+        var btn1 = document.querySelector('#btn1');
+        var btn2 = document.querySelector('#btn2');
+        btn1.addEventListener('click', function () {
+            // 可以理解为span移动了500后再触发
+            animate(span, 500, function () {
+                alert('停下来了！')
+            });
+        })
+        btn2.addEventListener('click', function () {
+            animate(span, 800);
+        })
+        animate(div, 100);
+
+    </script>
+</body>
+
+</html>

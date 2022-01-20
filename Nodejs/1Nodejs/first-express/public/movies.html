@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="./javascripts/jquery.min.js"></script>
+    <script>
+        // 发送AJAX请求从后端获取电影，因为是页面一刷新就想获取电影列表
+        // 因为是获取数据，所以不需要向服务端发送数据
+        $.ajax({
+            url: '/movies/getMovies',
+            type: 'get',
+            success(msg) {
+                console.log(msg)
+            }
+        })
+    </script>
+</body>
+
+</html>

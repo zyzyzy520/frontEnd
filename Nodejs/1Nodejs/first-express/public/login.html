@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        label {
+            display: inline-block;
+            width: 100px;
+            text-align: right;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>登录界面</h1>
+    <label for="userName">用户名：</label><input type="text" name="" id="userName"><br>
+    <label for="passWord">密码：</label><input type="password" name="" id="passWord">\
+    <button id="login">登录</button>
+</body>
+
+<!-- 引入jquery -->
+<script src="javascripts/jquery.min.js"></script>
+<script>
+    // 
+    $('#login').click(function () {
+        // 获取元素内的数据
+        const userName = $('#userName').val();
+        const passWord = $('#passWord').val();
+
+        $.ajax({
+            // 设置前后端连接的接口
+            // 接口名称通常是，接口对谁操作/接口的功能
+            // 比如这个请求是用于用户登录
+            url: '/users/login',
+            // 设置发送给后端的数据，是一个对象
+            data: {
+                userName,
+                passWord
+            },
+            // 请求的类型,get,post,put,delete
+            // 密码是比较隐私的部分，get会暴露信息
+            type: 'post',
+            // 请求成功后触发success方法，msg用于接收后端回传的数据
+            success(msg) {
+                alert(msg.message);
+            }
+        });
+    })
+</script>
+
+</html>

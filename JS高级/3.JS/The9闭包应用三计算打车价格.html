@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+        var miles = parseInt(prompt('请输入公里数'));
+        var sum = 13;
+        if (miles > 3) {
+            sum += (miles - 3) * 5;
+        }
+        alert(sum);*/
+        function cal(miles, flag) {
+            var total = 13;
+            return {
+                price: function () {
+                    // total是外面的变量，price调用完毕后，并不会被销毁
+                    total = miles > 3 ? total + (miles - 3) * 5 : total;
+                    return total;
+                },
+                traffic: function () {
+                    // total是外面的变量，total调用完毕后，并不会被销毁 
+                    total = flag ? total + 10 : total;
+                    return total;
+                }
+            }
+        }
+        var car = cal(5, true);
+        console.log(car.price());
+        console.log(car.traffic());
+        console.log(car.traffic());
+    </script>
+</body>
+
+</html>

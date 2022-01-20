@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            margin: 100px auto;
+            border-collapse: collapse;
+            border: 1px solid black;
+            text-align: center;
+        }
+
+        thead {
+            background-color: rgb(204, 204, 204);
+        }
+
+        thead tr th {
+            width: 126px;
+            height: 41px;
+            line-height: 41px;
+        }
+    </style>
+</head>
+
+<body>
+    <table border="1" align="center">
+        <thead>
+            <tr>
+                <th>姓名</th>
+                <th>科目</th>
+                <th>成绩</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <script>
+        // 准备数据；
+        var data = [{ name: '魏璎珞', subject: 'JavaScript', grade: '100' }, { name: '弘历', subject: 'JavaScript', grade: '98' }, { name: '傅恒', subject: 'JavaScript', grade: '99' },
+        { name: '明玉', subject: 'JavaScript', grade: '88' }, { name: '大猪蹄子珞', subject: 'JavaScript', grade: '0' }];
+        var tbody = document.querySelector('tbody');
+        // 遍历数据，每一个数据创建一行
+        for (var i = 0; i < data.length; i++) {
+            var tr = document.createElement('tr');
+            // 每一行创建三个td，并赋值，可以通过遍历对象的方法创建，为遍历到的每一个对象创建td，并放入tr中
+            for (key in data[i]) {
+                var td = document.createElement('td');
+                td.innerHTML = data[i][key];
+                tr.appendChild(td);
+            }
+            var a = document.createElement('a');
+            a.innerText = '删除';
+            a.href = '#';
+            // 删除函数在创建时就写好
+            a.onclick = function () {
+                tbody.removeChild(this.parentNode.parentNode);
+            }
+            var td = document.createElement('td');
+            td.appendChild(a);
+            tr.appendChild(td);
+            // 将准备好的一行加入tbody中
+            tbody.appendChild(tr);
+        }
+    </script>
+</body>
+
+</html>

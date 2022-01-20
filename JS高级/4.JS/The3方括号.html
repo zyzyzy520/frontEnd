@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var symbol = /^[a-z]/; //表示以26个英文小写字母其中一个开头
+        console.log(symbol.test('zab'));
+        console.log(symbol.test('1a'));
+        // --------------------------------
+        symbol = /^[a-z]$/;   //表示26个英文小写字母其中一个
+        console.log(symbol.test('a'));
+        console.log(symbol.test('A'));
+        // --------------------------------
+        symbol = /^[^a-zA-Z]/; //开头既不包含小写字母，也不包含大写字母
+        console.log(symbol.test('Abc'));
+        console.log(symbol.test('1AzS'));
+        // ---------------------------------
+        symbol = /[a-z0-9]/; //字符只要包含小写字母或数字都可以
+        console.log(symbol.test('AB'));
+        console.log(symbol.test('ASDF1'));
+        // --------------------------------
+        symbol = /^[a-zA-Z]/; //字符以大写字母或小写字母开头
+        console.log(symbol.test('0Aa'));
+        console.log(symbol.test('aA'));
+    </script>
+</body>
+
+</html>

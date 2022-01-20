@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        li {
+            list-style: none;
+            float: left;
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            color: white;
+            font-size: 50px;
+            text-align: center;
+            background-color: rgb(51, 51, 51);
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <script>
+        function getTime(setTime) {
+            var now = +new Date();
+            var set = +new Date(setTime);
+            // 转化成秒
+            var distance = (set - now) / 1000;
+            // 如果有天数，还要%24
+            var hours = Math.floor(distance / 60 / 60);
+            var min = Math.floor(distance / 60 % 60);
+            var sec = Math.floor(distance % 60);
+            var ul = document.querySelector('ul');
+            ul.children[0].innerHTML = hours > 10 ? hours : '0' + hours;
+            ul.children[1].innerHTML = min > 10 ? min : '0' + min;
+            ul.children[2].innerHTML = sec > 10 ? sec : '0' + sec;
+        }
+        getTime('2021-08-30 23:59:59');
+        setInterval(function () {
+            getTime('2021-08-30 23:59:59');
+        }, 1000)
+    </script>
+</body>
+
+</html>

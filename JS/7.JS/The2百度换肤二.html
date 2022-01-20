@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background: url(images/1.jpg);
+        }
+
+        .box {
+            width: 420px;
+            margin: 200px auto;
+            background-color: white;
+        }
+
+        img {
+            width: 100px;
+            height: 62.5px;
+            cursor: pointer;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="box">
+        <img src="images/1.jpg" alt="">
+        <img src="images/2.jpg" alt="">
+        <img src="images/3.jpg" alt="">
+        <img src="images/4.jpg" alt="">
+    </div>
+    <script>
+        // 获取所有img标签，为每个img标签添加事件
+        // 响应函数，获取img标签里的src属性，赋给body
+        var imgs = document.getElementsByTagName('img');
+        var body = document.body;
+
+        for (var i = 0; i < imgs.length; i++) {
+            imgs[i].onclick = function () {
+                body.style.backgroundImage = 'url(' + this.src + ')';
+            }
+        }
+    </script>
+</body>
+
+</html>

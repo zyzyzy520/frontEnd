@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function bubble(arr) {
+            var temp;
+            // 例如数组有五个数，确定了四个数的位置后，第五个数就可以自动确定了。每一趟确定一个数的位置
+            for (var i = 1; i <= arr.length - 1; i++) {
+                // 从头开始，比较前后两个数，比如在第一趟，1，2对比直到4，5对比。每一趟对比一对。[i] [i+1],i只需要比较到未确定的数的前两个即可
+                for (var j = 0; j < arr.length - i; j++) {
+                    if (arr[j] > arr[j + 1]) {
+                        temp = arr[j];
+                        arr[j] = arr[j + 1];
+                        arr[j + 1] = temp;
+                    }
+                }
+            }
+            return arr;
+        }
+
+        console.log(bubble([100, 2, 7, 13, 24, 5]));
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

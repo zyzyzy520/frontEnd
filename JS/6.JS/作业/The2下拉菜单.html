@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .hd {
+            display: block;
+            width: 41px;
+            padding: 15px;
+            text-align: center;
+            border: 1px solid #ccc;
+            margin: 0 auto;
+            font-size: 12px;
+            font-style: normal;
+            color: #4c4c4c;
+            background-color: rgb(252, 252, 252);
+        }
+
+        .bd {
+            display: none;
+            width: 78px;
+            margin: 0 auto;
+        }
+
+        .bd a {
+            display: block;
+            border: 1px solid rgb(235, 190, 122);
+            border-top: 0;
+            text-decoration: none;
+            color: #4c4c4c;
+            padding: 0 15px;
+            font-size: 12px;
+            height: 31px;
+            line-height: 31px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <i class="hd">微博</i>
+        <div class="bd">
+            <a href="#">私信</a>
+            <a href="#">评论</a>
+            <a href="#">@我</a>
+        </div>
+    </div>
+    <script>
+        var hd = document.querySelector('.hd');
+        var bd = document.querySelector('.bd');
+        hd.onmouseout = function () {
+            bd.style.display = 'none';
+        }
+        hd.onmouseover = function () {
+            bd.style.display = 'block';
+        }
+    </script>
+</body>
+
+</html>

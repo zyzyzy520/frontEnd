@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div></div>
+    <script>
+        function gettime() {
+            var date = new Date();
+            var year = date.getFullYear();
+            var month = date.getMonth() + 1;
+            var day = date.getDate();
+            var week = week_date[date.getDay()];
+            var hours = date.getHours();
+            var min = date.getMinutes();
+            var sec = date.getSeconds()
+            return year + '年' + month + '月' + day + '日' + week + hours + ':' + min + ':' + sec;
+        }
+        var week_date = ['星期天', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六']
+        // 在外面调用一次，克服1s的延迟，一般动态变化都会用到定时器，每隔一秒调用函数读取当前时间，并打印在div里。
+        var div = document.querySelector('div');
+        div.innerHTML = gettime();
+        setInterval(function () {
+            div.innerHTML = gettime();
+        }, 1000)
+    </script>
+</body>
+
+</html>

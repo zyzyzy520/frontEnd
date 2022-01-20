@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input {
+            border: 1px solid #888;
+            outline: none;
+            width: 136px;
+            height: 25px;
+            padding-left: 10px;
+            color: #888;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text" name="" id="text" value="邮箱/ID/手机号">
+    <script>
+        // 光标聚集，判断内容是否为默认内容，是就清除，输入的文字颜色为#888 文本框变为粉色
+        var input = document.getElementById('text');
+        input.onfocus = function () {
+            if (input.value == "邮箱/ID/手机号") {
+                input.value = "";
+            }
+            input.style.borderColor = 'pink';
+            this.style.color = '#888';
+        }
+
+        // 光标离开,判断用户有没有输入内容，内容为空，加入默认文字.文字颜色变为黑色，边框颜色变回灰色
+        input.onblur = function () {
+            if (this.value == "") {
+                this.value = "邮箱/ID/手机号";
+                this.style.color = '#888';
+            } else {
+                this.style.color = 'black';
+            }
+            this.style.borderColor = '#888';
+        }
+    </script>
+</body>
+
+</html>

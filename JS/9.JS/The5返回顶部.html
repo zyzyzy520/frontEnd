@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .w {
+            position: relative;
+            width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            height: 150px;
+            background-color: purple;
+            margin: 10px 0;
+        }
+
+        .banner {
+            height: 250px;
+            background-color: rgb(135, 206, 235);
+            margin: 10px 0;
+        }
+
+        main {
+            height: 1000px;
+            background-color: rgb(154, 205, 50);
+            margin: 10px 0;
+        }
+
+        .box {
+            position: absolute;
+            top: 300px;
+            /* 这样先走父盒子的一半，再走版心的一半，可以保证即使是固定定位也可以到侧边 */
+            left: 50%;
+            transform: translate(600px, 0);
+            width: 46px;
+            height: 130px;
+            background-color: pink;
+        }
+
+        span {
+            display: none;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="w">
+        <header>头部区域</header>
+        <div class="banner">banner区域</div>
+        <main>主体部分</main>
+        <div class="box"><span>返回顶部</span></div>
+    </div>
+    <script>
+        // 1.页面滚动到一定位置，侧边栏改成固定定位。注意滚动事件是和整个页面相关，是给页面绑定
+        // 2.因为header和banner区域高度可能变化，所以最好用表达式来限制滚动高度，同时经实验offsetTop不会根据页面滚动发生变化，就是到页面最顶层的高度但考虑到放里面只要滚动就会计算一次，很浪费，所以放外面
+        var doc = document.documentElement;
+        var box = document.querySelector('.box');
+        var banner = document.querySelector('.banner');
+        var main = document.querySelector('main');
+        var span = document.querySelector('span');
+        // 2.1页面卷去到banner时改为固定定位，所以先计算banner到页面的高度，boxHeight必须提前记录，这样恢复时才可以用top值；返回顶部是在滚动到main时显示，所以记录下main的高度
+        var bannerHeight = banner.offsetTop;
+        var boxHeight = box.offsetTop;
+        var mainHeight = main.offsetTop;
+        // 2.2盒子固定定位的高度等于box.offset-banner.offset。这个必须提前计算，因为随着滚动，box.offset增大
+        var fixHeight = boxHeight - bannerHeight;
+        document.addEventListener('scroll', function () {
+            console.log(banner.offsetTop);
+            // 更改定位
+            if (doc.scrollTop > bannerHeight) {
+                box.style.position = 'fixed';
+                box.style.top = fixHeight + 'px';
+
+            } else {
+                // 滚上去恢复原来的定位和top值
+                box.style.position = 'absolute';
+                box.style.top = boxHeight + 'px';
+            }
+            // 改变字体
+            if (doc.scrollTop > mainHeight) {
+                span.style.display = 'block';
+            } else {
+                span.style.display = 'none';
+            }
+        })
+
+
+    </script>
+</body>
+
+</html>

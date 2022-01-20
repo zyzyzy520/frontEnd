@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>链接伪类选择器</title>
+</head>
+<style>
+    /*a:link 所有未被访问的链接*/
+    a:link {
+        text-decoration: none;
+        color: black;
+    }
+
+    /*a:visited 所有已被访问的链接*/
+    a:visited {
+        color: chartreuse;
+    }
+
+    /*a:hover 鼠标位于其上的链接*/
+    a:hover {
+        text-decoration: underline;
+        color: coral;
+    }
+
+    /*a:active 选择的活动链接，鼠标按下还未弹起,可用右键测试*/
+    a:active {
+        color: darkgrey;
+    }
+</style>
+
+<body>
+    <h1>注意 href不能一样，否则点击第一个就已经访问过了，所以后面都是同一个颜色</h1>
+    <div>
+        <a href="#">text1</a>
+    </div>
+    <div>
+        <a href="#">text2</a>
+    </div>
+    <div>
+        <a href="#">text3</a>
+    </div>
+
+    <h1>正式测试</h1>
+    <div>
+        <a href="http://google.com">answer1</a>
+    </div>
+    <div>
+        <a href="http://baidu.com">answer2</a>
+    </div>
+    <div>
+        <a href="http://bilibli.com">answer3</a>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="animate.js"></script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            background-color: #000;
+        }
+
+        .box {
+            position: relative;
+            width: 900px;
+            height: 42px;
+            background-color: #fff;
+            margin: 100px auto;
+            border-radius: 5px;
+
+        }
+
+        ul {
+            position: absolute;
+        }
+
+        li {
+            position: relative;
+            list-style: none;
+            float: left;
+            width: 83px;
+            height: 42px;
+            line-height: 42px;
+            text-align: center;
+            /* 加了定位才能使用z-index */
+            z-index: 1;
+
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+        }
+
+        a:hover {
+            color: white;
+        }
+
+        .wifi {
+            position: absolute;
+            top: 5px;
+            right: 0;
+        }
+
+        .cloud {
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <ul>
+            <li><a href="#">首页新闻</a></li>
+            <li><a href="#">师资力量</a></li>
+            <li><a href="#">活动策划</a></li>
+            <li><a href="#">企业文化</a></li>
+            <li><a href="#">招聘信息</a></li>
+            <li><a href="#">公司简介</a></li>
+            <li><a href="#">我是佩奇</a></li>
+            <li><a href="#">啥是佩奇</a></li>
+        </ul>
+        <div class="wifi">
+            <img src="images/rss.png" alt="">
+        </div>
+        <div class="cloud">
+            <img src="images/cloud.gif" alt="">
+        </div>
+    </div>
+    <script>
+        // 移动筋斗云
+        var cloud = document.querySelector('.cloud');
+        var lis = document.querySelectorAll('li');
+        var position = 0;//记录cloud在哪个位置
+        console.log(lis.length);
+        // 为每个li添加事件，只要鼠标经过，就调用动画函数，使筋斗云移动到此li
+        // 鼠标离开，回到上一次记录的位置
+        // position鼠标按下才记录
+        for (var i = 0; i < lis.length; i++) {
+            lis[i].addEventListener('mouseenter', function () {
+                animate(cloud, this.offsetLeft);
+            })
+            lis[i].addEventListener('mouseleave', function () {
+                animate(cloud, position);
+            })
+            lis[i].addEventListener('click', function () {
+                position = this.offsetLeft;
+                // 清除其它green的样式
+                for (var j = 0; j < lis.length; j++) {
+                    lis[j].children[0].style.color = 'black';
+                }
+                this.children[0].style.color = 'green';
+            })
+        }
+    </script>
+</body>
+
+</html>

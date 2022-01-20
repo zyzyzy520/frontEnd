@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 主要利用的是translate中的百分比单位是相对于自身元素 -->
+    <style>
+        .out_box {
+            position: relative;
+            width: 800px;
+            height: 500px;
+            background-color: pink;
+        }
+
+        .in_box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 400px;
+            height: 200px;
+            transform: translate(-50%, -50%);
+            background-color: purple;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="out_box">
+        <div class="in_box"></div>
+    </div>
+</body>
+
+</html>

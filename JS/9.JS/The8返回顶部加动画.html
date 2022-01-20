@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .w {
+            position: relative;
+            width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            height: 150px;
+            background-color: purple;
+            margin: 10px 0;
+        }
+
+        .banner {
+            height: 250px;
+            background-color: rgb(135, 206, 235);
+            margin: 10px 0;
+        }
+
+        main {
+            height: 1000px;
+            background-color: rgb(154, 205, 50);
+            margin: 10px 0;
+        }
+
+        .back {
+            /* 一开始固定定位在banner区域的一半 */
+            position: absolute;
+            width: 46px;
+            height: 130px;
+            background-color: pink;
+        }
+
+        .back span {
+            display: none;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="w">
+        <header>头部区域</header>
+        <div class="banner">banner区域</div>
+        <main>主体部分</main>
+        <!-- 一开始是绝对定位随着滚动条滑动，滑动到一定位置后是固定定位 -->
+        <div class="back"><span>返回顶部</span></div>
+    </div>
+    <script>
+        var banner = document.querySelector('.banner');
+        var back = document.querySelector('.back');
+        var span = back.querySelector('span');
+        // /* 一开始固定定位在banner区域的一半 */之所以一开始就放在js里写，是因为不写死数字，自动获取,返回顶部文字定位到底部
+        back.style.top = banner.offsetTop + banner.offsetHeight / 2 + 'px';
+        back.style.left = banner.offsetWidth + 'px';
+        // 文档滑动到banner顶部改为固定定位
+        document.addEventListener('scroll', function () {
+            if (window.pageYOffset >= banner.offsetTop) {
+                span.style.display = 'block';
+                back.style.position = 'fixed';
+                back.style.top = banner.offsetHeight / 2 + 'px';
+                back.style.left = '1360px';
+            } else {
+                // 划回去恢复固定定位
+                span.style.display = 'none';
+                back.style.position = 'absolute';
+                back.style.top = banner.offsetTop + banner.offsetHeight / 2 + 'px';
+                back.style.left = banner.offsetWidth + 'px';
+            }
+        })
+
+        // 点击返回顶部回到最上方
+
+        span.addEventListener('click', function () {
+            animateY(window, 0);
+        })
+        // 垂直方向上的移动动画
+        function animateY(obj, target, callback) {
+            clearInterval(obj.timer);
+            var steps;
+            obj.timer = setInterval(function () {
+                // 这个判断一定要放在Interval里，放在外面的话，只会判断一次。应该是每走一步前判断是否到达目的地了。
+                if (window.pageYOffset == target) {
+                    clearInterval(obj.timer);
+                } else {
+                    // 每15ms滚动1px
+                    // window.scroll(0, window.pageYOffset - 1);
+                    // 加入缓动效果，通过改变步长，随着滚动，window.pageYOffset在逐渐变小，steps变小，形成缓动
+                    // 往上滚动，步长一定是负值
+                    steps = (target - window.pageYOffset) / 10;
+                    window.scroll(0, window.pageYOffset + steps);
+                }
+            }, 15)
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        textarea {
+            resize: none;
+            outline: none;
+            border: 1px solid rgb(255, 192, 203);
+            vertical-align: bottom;
+        }
+
+        .box {
+            margin: 200px 100px;
+        }
+
+        .parent {
+            margin-bottom: 30px;
+        }
+
+        li {
+            width: 200px;
+            background-color: rgb(245, 209, 243);
+            color: red;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="parent">
+            <textarea name="" id="tex" cols="30" rows="10"></textarea>
+            <input type="submit" value="发布" id="sub">
+        </div>
+        <ul></ul>
+    </div>
+    <script>
+        // 事件是点击发布按钮，将文本域里的内容显示在下面，越新的点击在越上面
+        // 获取发布按钮对象，绑定点击事件
+        // 响应函数里先获取textarea里的内容，注意对象可以在点击函数外获取，但内容不行，点击后才是完整内容。textarea的内容在value属性里
+        // 创建Li元素，将内容添加到Li元素里，将Li元素添加到ul对象里的最前面
+        var submit = document.getElementById('sub');
+        var text = document.getElementById('tex');
+        var ul = document.getElementsByTagName('ul')[0];
+        submit.onclick = function () {
+            if (text.value == '') {
+                alert('您输入的内容为空~')
+            } else {
+                var li = document.createElement('li');
+                li.innerHTML = text.value;
+                ul.insertBefore(li, ul.children[0]);
+            }
+
+        }
+    </script>
+</body>
+
+</html>

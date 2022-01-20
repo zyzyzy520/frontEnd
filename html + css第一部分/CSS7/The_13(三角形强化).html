@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 1. 等腰直角三角形 */
+        /* .box {
+            width: 0;
+            height: 0;
+            border-top: 20px solid transparent;
+            border-bottom: 20px solid red;
+            border-left: 20px solid transparent;
+            border-right: 20px solid red;
+        } */
+
+        /* 2. 两边不一致的直角三角形 */
+        /* .box {
+            width: 0;
+            height: 0;
+            border-top: 20px solid sandybrown;
+            border-bottom: 20px solid red;
+            border-left: 20px solid skyblue;
+            border-right: 20px solid gold;
+        } */
+        /* 首先删掉下面边框 */
+        /* .box {
+            width: 0;
+            height: 0;
+            border-top: 20px solid sandybrown;
+            border-left: 20px solid skyblue;
+            border-right: 20px solid gold;
+        } */
+        /* 然后删掉左边框 */
+        /* .box {
+            width: 0;
+            height: 0;
+            border-top: 20px solid sandybrown;
+            border-right: 20px solid gold;
+        } */
+        /* 接着扩大上边框值 */
+        /*.box {
+            width: 0;
+            height: 0;
+            border-top: 40px solid sandybrown;
+            border-right: 20px solid gold;
+        }*/
+        /* 设置上边框为透明色，得到最终的图形 */
+        /* .box { 
+            width: 0;
+            height: 0;
+            border-top: 40px solid transparent;
+            border-right: 20px solid gold;
+        }*/
+
+        /* 3.复合写法如下： */
+        .box {
+            width: 0;
+            height: 0;
+            border-color: transparent gold transparent transparent;
+            border-width: 40px 20px 0 0;
+            border-style: solid;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+</body>
+
+</html>

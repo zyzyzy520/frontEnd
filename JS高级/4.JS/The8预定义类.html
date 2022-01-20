@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var symbol = /^\d{3,}$/;  //验证的都是字符串3个以上0~9数字
+        console.log(symbol.test('a'));
+        console.log(symbol.test('123'));
+        // ----------------------------
+        symbol = /^\D{2}$/; //只能是两个非0-9的字符
+        console.log(symbol.test('1A'));
+        console.log(symbol.test('Ab'));
+        // ----------------------------
+        symbol = /^\w$/; //只能是一个字母或一个数字或一个下划线
+        console.log(symbol.test('aa'));
+        console.log(symbol.test('9'));
+        // ----------------------------
+        symbol = /^\W{3,}$/; //三个以上非数字字母下划线
+        console.log(symbol.test('!!!!'));
+        // ---------------------------------
+        symbol = /^\d\s\d$/; //一个数字一个空格一个数字
+        console.log(symbol.test('1 2'));
+        // ------------------------------
+        symbol = /^\S$/; //不是空格即可,只要一个
+        console.log(symbol.test('1'));
+    </script>
+</body>
+
+</html>

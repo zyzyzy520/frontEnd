@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="btn"></button>
+    <script>
+        let btn = document.querySelector('#btn');
+        btn.addEventListener('click', function () {
+            console.log('该点击事件的this指向' + this);
+        })
+        setTimeout(function () {
+            console.log('定时器的this指向' + this);
+        }, 3000);
+        (function () {
+            console.log('立即执行函数的this指向' + this);
+        })();
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 使用Math对象，制作一个16进制的随机颜色
+        // 因为随机数是数字，没有办法随机A~F。所以准备一个16进制数组
+        // 为了生成一个六位十六进制的数，循环六次
+        // 每次利用Math对象随机生成0~15的整数作为数组索引，去访问数组生成一位
+
+        var color = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F'];
+        var str = '#';
+        for (var i = 1; i <= 6; i++) {
+            var index = Math.floor(Math.random() * (15 - 0 + 1)) + 0;
+            str += color[index];
+        }
+        console.log(str);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

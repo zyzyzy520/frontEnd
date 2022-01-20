@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .che {
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text">
+    <div class="che"><input type="checkbox" id="check"><label for="check">记住用户名</label></div>
+    <button>清除</button>
+    <script>
+        var che = document.querySelector('.che');
+        var checkbox = document.querySelector('#check');
+        var text = document.querySelector('input[type=text]');
+        var btn = document.querySelector('button');
+        // 刷新页面或者重新打开页面，如果有存checked值，显示checked；没有就说明第一次打开还没有存，显示false
+        // 刷新页面或者重新打开页面，如果有存text值，显示text；没有就说明第一次打开还没有存，显示“”
+        // var status = localStorage.getItem('checked') == 'false' ? false : true;
+        // var status = false;
+        checkbox.checked = localStorage.getItem('checked') == null ? false : Boolean(localStorage.getItem('checked'));
+        text.value = localStorage.getItem('text') == null ? "" : localStorage.getItem('text');
+        console.log('checkbox', checkbox.checked);
+        // console.log('local', status);
+        // console.log('local', Boolean(localStorage.getItem('checked')));
+        checkbox.addEventListener('change', function () {
+            // console.log(checkbox.checked);
+            if (checkbox.checked == true) {
+                localStorage.setItem('text', text.value);
+                localStorage.setItem('checked', 1)
+            } else {
+                localStorage.setItem('text', "");
+                localStorage.setItem('checked', '');
+
+            }
+        })
+        btn.addEventListener('click', function () {
+            localStorage.clear();
+        })
+    </script>
+</body>
+
+</html>

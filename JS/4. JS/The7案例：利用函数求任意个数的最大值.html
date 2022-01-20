@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function findMax() {
+            var max = arguments[0];
+            for (var i = 1; i < arguments.length; i++) {
+                if (max < arguments[i]) max = arguments[i];
+            }
+            return max;
+        }
+        /*
+        var arr = [1, 2, 3];
+        arr.push(3);
+        arr.pop();
+        console.log(arr);
+        */
+        console.log(findMax(1, 2, 3, 4, 5));
+        console.log(findMax(1, 199, 99, 100));
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

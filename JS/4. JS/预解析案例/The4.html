@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 案例4
+        f1();
+        console.log(c);
+        console.log(b);
+        console.log(a);
+        function f1() {
+            var a = b = c = 9;
+            console.log(a);
+            console.log(b);
+            console.log(c);
+        }
+
+        // 等价于以下代码，结果是9，9，9，9，9，出错
+        /*function f1() {
+            // var a = b = c = 9;  //这句话实际上是，var a = 9; b = 9; c = 9; 也就是说函数产生了两个全局变量b和c
+            var a;
+            b, c;
+            a = 9; b = 9; c = 9;
+            console.log(a);
+            console.log(b);
+            console.log(c);
+        }
+        f1();
+        console.log(c);
+        console.log(b);
+        console.log(a);*/
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

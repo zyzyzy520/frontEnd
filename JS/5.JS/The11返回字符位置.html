@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 利用indexOf函数，在返回值是-1之前，从每次找到的位置的下一个继续找
+        var str = 'abcoefoxyozzopp';
+        var index = str.indexOf('o'), num = 0;
+        var arr = [];
+        while (index != -1) {
+            num++;
+            arr.push(index);
+            index = str.indexOf('o', index + 1);
+        }
+        console.log(arr);
+        console.log(num);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

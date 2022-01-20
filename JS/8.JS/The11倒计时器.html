@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        li {
+            list-style: none;
+            float: left;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            margin: 10px;
+            background-color: rgb(51, 51, 51);
+            color: white;
+            text-align: center;
+            font-size: 25px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="timer">
+        <ul>
+            <li class="hours"></li>
+            <li class="minutes"></li>
+            <li class="seconds"></li>
+        </ul>
+    </div>
+    <script>
+        // 得到具体的相差时间，然后放入li中，反复调用更新
+        function timer(setDate) {
+            // 现在的时间
+            var now = +new Date();
+            // 设定的时间
+            var set = +new Date(setDate);
+            // 两者的差，单位毫秒，转化为秒
+            var distance = (set - now) / 1000;
+            // 转换为时分秒，如果转换为天的话，还需%24
+            var hour = Math.floor(distance / 60 / 60);
+            var min = Math.floor(distance / 60 % 60);
+            var sec = Math.floor(distance % 60);
+            // console.log(hour, min, sec);
+            var ul = document.querySelector('ul');
+            ul.children[0].innerHTML = hour >= 10 ? hour : '0' + hour;
+            ul.children[1].innerHTML = min >= 10 ? min : '0' + min;
+            ul.children[2].innerHTML = sec >= 10 ? sec : '0' + sec;
+        }
+        timer('2021-08-29 15:00:00');
+        setInterval('timer("2022-08-29 15:00:00")', 1000);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,88 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+li{
+    list-style: none;
+}
+@font-face {font-family: "iconfont";
+    src: url('../iconfont/iconfont.eot?t=1553960438096'); /* IE9 */
+    src: url('../iconfont/iconfont.eot?t=1553960438096#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAK4AAsAAAAABmwAAAJrAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCCcAp4fwE2AiQDCAsGAAQgBYRtBzAbpQXIrrApw71oi3CCOyzEy8RvE4yIN8TD036/zp03qCYRjaJZNBFFS/gREoRGipQKofjuNrb+9XbTqrmXcqWzfTRDqFqWkhAJzYToaE6LQ7Q30CirRqSKMnj58DdIdrNAdhoTQJa5VGfLrtiAy+lPoAcZdUC57UljTR4TMAo4oL0xiqwYG8YueIHPCdTqYajty/t+bUpmrwvEnUK42lQhLMssVy1UNhzN4kmF6vSQVvMY/T5+HEU1SUXBbti7uBBrx++cgqJULp0GhAgBna5AgSkgE0eN6R1NwTitNt0yAI5VG7wr/8AljmoX7K+zq+tBF1Q8k9JTPWp1AjnJDgCzmM3bU0V31dsvV3M2eC6fHjaGfX/qS7U5Gr58vj6uD0bgxudyrV/OtHHyP+NZnpO1txbktjdY+3FB61+7nxeOzq8niGYnRwT3v3aZxeXf6rrNxl5//49WlEtZUUL1Pj3Bv1EO7MuG2namrCkbvcnApLUJtWpRhv2tzlRLx43kQ7WO2/FW6c5QqDZEZnYKFeosoVK1NdSa5E/XaVM1Ra7BhAEQmk0kjV5QaLbIzG5U6HRRqTkK1DqJtivrjMT1zJaNnIsihAiyQE3JdbszcW0Xiadzdl4d8UO0HSUGNDNXzl2hifYSO5pPjrorgdjUAAavoa5TKDZVUXD3kuuOOzh70fShvUiN2owtNsRxIREIIiATUCYpGO2aqXy/CxEeHcfuaKrLDiGbQ5kcEMsNIK8M5qCmR3mn8RFHOpcECBtlAAwWIZ2OAqV5kQoJXHvShORYBzrDZKhhb3uT8QPlrA3bmsKZV6i89DiTV2o1AAAA') format('woff2'),
+    url('../iconfont/iconfont.woff?t=1553960438096') format('woff'),
+    url('../iconfont/iconfont.ttf?t=1553960438096') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+    url('../iconfont/iconfont.svg?t=1553960438096#iconfont') format('svg'); /* iOS 4.1- */
+  }
+  
+main {
+    width: 960px;
+    height: 500px;
+    margin: 50px auto;
+}
+main h4 {
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+}
+.tabbox{
+    height: 400px;
+    width: 900px;
+    margin: 0 auto;
+    border: 1px solid rgb(255, 160, 122);
+}
+.firstnav {
+    height: 50px;
+    border-bottom: 1px solid rgb(204, 204, 204);
+}
+.firstnav .title li {
+    float: left;
+    position: relative;
+    overflow: hidden;
+    width: 100px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    border-right: 1px solid rgb(204, 204, 204);
+}
+/* 伪元素相当于是li的子元素，并且是行内元素，利用content添加字体图标相当于是给这个行内元素里加入字体，可以设置字体大小 */
+.firstnav .title li .icon{
+    position: absolute;
+    top: -18px;
+    right: 0;
+    font-family: "iconfont";
+    font-size: 12px;
+}
+.firstnav .title li .icon::after{
+    content: '\e676';
+}
+.firstnav .tabadd {
+    float: right;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    border: 1px solid rgb(204, 204, 204);
+    margin: 10px;
+}
+.tabscon {
+    padding: 30px;
+}
+section{
+    display: none;
+}
+.firstnav .title .curLi {
+    border-bottom:  1px solid white;
+}
+.curSec {
+    display: block;
+}
+.title input[type=text] {
+    width: 78px;
+    height: 30px;
+    border: 2px solid rgb(16, 16, 16);
+}
+.tabscon input[type=text] {
+    width: 670px;
+    height: 140px;
+    border: 2px solid rgb(16, 16, 16);    
+}

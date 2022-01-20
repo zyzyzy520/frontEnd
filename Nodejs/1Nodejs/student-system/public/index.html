@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        li {
+            /* 去除小圆点 */
+            list-style: none;
+        }
+
+        .system {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .imageBox {
+            border: 1px dashed gray;
+            width: 150px;
+            height: 150px;
+        }
+
+        img {
+            width: 150px;
+            height: 150px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="system">
+        <div class="student_system">
+            <h1>学生管理</h1>
+
+            <ul>
+                <li>
+                    <h3>增加</h3>
+                    <label for="addName">学生姓名：</label><input type="text" name="" id="addName"><br>
+                    <label for="addAge">学生年龄：</label><input type="text" name="" id="addAge"><br>
+                    <label for="addSex">学生性别：</label><input type="radio" name="addSex" value="男">男<input type="radio"
+                        name="addSex" value="女">女<br>
+                    <label for="">所属班级:</label>
+                    <select id="classBelong">
+                    </select><br>
+                    <div class="imageBlock">
+                        <label for="submitImage">上传图片：</label><input type="file" name="" id="previewImage">
+                        <div class="imageBox">
+                            <img id="studentImage" src="" alt="">
+                        </div>
+                    </div>
+
+                    <input type="submit" value="新增" id="addBtn">
+                </li>
+                <li>
+                    <h3>修改</h3>
+                    <label for="upName">姓名：</label><input type="text" name="" id="upName"><br>
+                    <label for="upAge">年龄：</label><input type="text" name="" id="upAge"><br>
+                    <label for="upSex">性别：</label><input type="radio" name="upSex" value="男">男<input type="radio"
+                        name="upSex" value="女">女<br>
+                    <input type="submit" value="确认修改" id="updateBtn">
+                </li>
+                <li>
+                    <h3>查询</h3>
+                    <select id="searchPar">
+                        <option value="name">姓名</option>
+                        <option value="age">年龄</option>
+                        <option value="sex">性别</option>
+                    </select>
+                    <input type="text" name="" id="searchInfo">
+                    <input type="submit" value="搜索" id="searchBtn">
+                </li>
+                <li>
+                    <h3>学生列表</h3>
+                    <table>
+                        <thead align="center">
+                            <th>学生姓名</th>
+                            <th>学生年龄</th>
+                            <th>学生性别</th>
+                            <th>所属班级</th>
+                            <th>负责老师</th>
+                            <th>学生头像</th>
+                            <th>学生操作</th>
+                        </thead>
+                        <tbody id="content">
+                        </tbody>
+                    </table>
+                    <!-- 默认一开始的时候，从第零页开始，点击不同的按钮，修改data-index即可 -->
+                    <div id="page" data-index="0">
+                        <button id="first">首页</button>
+                        <button id="prev" disabled="true">上一页</button>
+                        <button id="next">下一页</button>
+                        <button id="last">尾页</button>
+                        <select name="" id="pageSize">
+                            <option value="5" selected>5</option>
+                            <option value="10">10</option>
+                            <option value="15">15</option>
+                            <option value="20">20</option>
+                        </select>
+                        <span id="curDivTotal"></span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="class_system">
+            <h1>班级系统</h1>
+            <ul>
+                <li>
+                    <h3>新增班级</h3>
+                    <label for="addClassNum">班级名称：</label><input type="text" name="" id="addClassName"><br>
+                    <div id="optionTeacher">
+
+                    </div>
+                    <input type="submit" value="确认新增" id="addClassBtn">
+                </li>
+            </ul>
+        </div>
+        <div class="teacher_system">
+            <h1>老师系统</h1>
+            <ul>
+                <li>
+                    <h3>新增教师</h3>
+                    <label for="addTeaName">班级名称：</label><input type="text" name="" id="addTeaName"><br>
+                    <input type="submit" value="确认新增" id="addTeaBtn">
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+<!-- 复制到前端目录下 -->
+<script src="./javascripts/jquery.min.js"></script>
+<!-- 相当于把代码换了个地方，引入就是完全复制到该页面来 -->
+<!-- 验证是否登录 -->
+<script>
+    $.ajaxSetup({
+        headers: {
+            Authorization: localStorage.token
+        },
+        error(err) {
+            if (err.status == 401) {
+                alert('你还未登录，请先登录');
+                location.href = "login.html";
+            }
+        }
+    })
+    // 请求的四部分
+    // 1.请求头
+    // 2.请求行
+    // 3.空行
+    // 4.请求体(data一般在请求体内)
+    function isLogin() {
+        // 直接向后端发送带token的请求
+        $.ajax({
+            url: '/users/isLogin',
+            type: 'get',
+            success(msg) {
+                console.log(msg);
+                if (msg.status == 1) {
+                    fetchInfo();
+                    fetchTeacher();
+                    getClass();
+                }
+
+            }
+        })
+    }
+    isLogin();
+</script>
+<script src="./javascripts/student.js"></script>
+<script src="./javascripts/class.js"></script>
+<script src="./javascripts/teacher.js"></script>
+<script>
+    // 头像预览
+    $('#previewImage').change(function () {
+        // 1.获取选中图片的相关信息
+        const files = this.files;
+        // 2.将获取到的图片信息添加到表单对象 FormData中
+        // 先new一个FormData对象
+        const formData = new FormData();
+        // 再给对象添加文件信息
+        // 参数是文件名称，获取到的文件信息
+        formData.append('file', files[0]);
+        // 3.通过ajax将表单对象发送到后端服务器
+        $.ajax({
+            url: '/images/preview',
+            type: 'post',
+            data: formData,
+            // 不读取缓存中的结果
+            cache: false,
+            // 数据编码格式不适用jquery的方式
+            contentType: false,
+            // 发送的图片数据不要转换为其他格式
+            processData: false,
+            // 返回的是对象{status:XX, data:XX}
+            success({ status, data }) {
+                if (status) {
+                    $('#studentImage')
+                        .prop('src', `./preview/${data}`)
+                        .data('src', data);
+                }
+            }
+
+        })
+    })
+</script>
+
+</html>

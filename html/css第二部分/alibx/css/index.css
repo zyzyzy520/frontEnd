@@ -1,0 +1,217 @@
+@media screen and (min-width:1280px) {
+    .container {
+        width: 1280px;
+    }
+}
+
+body{
+    background-color: rgb(245, 245, 245);
+}
+.container {
+    background-color: rgb(255, 255, 255);
+}
+ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+a {
+    text-decoration: none;
+}
+
+/* 头部制作开始 */
+/* logo */
+header {
+    padding-left: 0!important;
+}
+header .logo {
+    background-color: rgb(66, 154, 217);
+    text-align: center;
+}
+header .logo a {
+    display: block;
+    width: 100%;
+}
+header .logo img {
+    max-width: 100%;
+}
+/* 进入超小屏幕，logo里的图片隐藏 */
+/* 事先准备好一个盒子，在logo里，平时隐藏，超小屏幕下显示 */
+header .logo span{
+    height: 50px;
+    line-height: 50px;
+    color: white;
+    font-size: 18px;
+}
+/* nav */
+header .nav{
+    background-color: rgb(238, 238, 238);
+    border-bottom: 1px solid rgb(204, 204, 204);
+}
+header .nav a{
+    display: block;
+    padding-left: 30px;
+    height: 50px;
+    line-height: 50px;
+    color: rgb(102, 102, 102);
+    font-size: 16px;
+    text-decoration: none;
+}
+header .nav a::before {
+    vertical-align: middle;
+    margin-right: 8px;
+}
+header .nav a:hover {
+    background-color: rgb(255, 255, 255);
+    color: rgb(51, 51, 51);
+}
+
+/* 头部制作header结束 */
+
+/* articlel制作开始 */
+/* --news开始 */
+article .news{
+    border-bottom: 1px solid rgb(204, 204, 204);
+}
+article .news>ul>li {
+    float: left;
+    padding-right: 8px;
+    margin-bottom: 8px;
+}
+article .news>ul>li>a {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.carousel-caption {
+    width: 100%!important;
+    left: 0!important;
+    bottom: 0!important;
+}
+article .news li p{
+    position: absolute;
+    width: 100%;
+    height: 40px;
+    bottom: 0;
+    left: 0;
+    padding: 5px 7px;
+    margin: 0;
+    background-color: rgba(0,0,0,.5);
+    color: white;
+}
+article .news li a img{
+    width: 100%;
+    height: 100%;
+}
+article .news>ul>li:first-child{
+    width: 50%;
+    height: 266px;
+    font-size: 22px;
+}
+article .news>ul>li:nth-child(n+2){
+    width: 25%;
+    height: 128px;
+    font-size: 13px;
+}
+.carousel,
+.carousel img {
+    width: 100%!important;
+    height: 266px!important;
+}
+/*--news结束 */
+/*--published开始 */
+/* 自己方法 
+article .published li {
+    height: 190px;
+    border-bottom: 1px solid rgb(204, 204, 204);
+    padding: 0 15px;
+}
+article .published li:last-child {
+    border-bottom: 0;
+}
+article .published .content{
+    float: left;
+}
+article .published .img {
+    float: right;
+    margin: 17px 0 7px 0;
+    width: 153px;
+    height: 157px;
+}
+article .published .img img {
+    width: 100%;
+    height: 100%;
+}
+article .published .content h3{
+    margin: 29px 0 13px 0 ;
+    font-size: 24px;
+}
+article .published .content p{
+    margin: 10px 0;
+    font-size: 14px;
+}
+article .published .content span{
+    color: #777;
+}*/
+/* 老师方法 */
+.publish .row {
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgb(204, 204, 204);
+}
+.publish img{
+    margin-top: 15px;
+    width: 100%;
+}
+    /* article结束 */
+
+/*  aside开始*/
+
+aside a {
+    display: block;
+    width: 100%;
+}
+.zgbok img {
+    width: 100%;
+}
+.hot {
+    margin-top: 20px;
+    border: 1px solid rgb(204, 204, 204);
+    padding: 0 19px 22px 18px;
+}
+.hot span{
+    margin-bottom: 20px;
+}
+.hot p{
+    font-size: 12px;
+}
+
+/* header-nav-li当位于小屏和超小屏时，排列成一行，浮动起来 */
+@media screen and (max-width:991px) {
+    header .nav li {
+        float: left;
+        width: 20%;
+    }
+    
+}
+/*  header-nav-li超小屏时，li的左边距没有，这样才能展示完全文字 */
+/* aricle-news超小屏时，第一个li占满宽度，剩下的各占50% */
+/* aricle-publish超小屏时，图片以及部分文字隐藏（用bootstrap类）h3文字大小调整*/
+@media screen and (max-width:767px) {
+    header .nav li a{
+        font-size: 14px;
+        padding-left: 0;
+    }
+    
+    article .news>ul>li:nth-child(n+2) {
+        width: 50%;
+    }
+    article .news>ul>li:first-child {
+        width: 100%;
+    }
+
+    article .publish h3{
+        font-size: 14px;
+    }
+    
+}

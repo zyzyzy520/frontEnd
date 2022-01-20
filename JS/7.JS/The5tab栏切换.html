@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .tab_list {
+            width: 978px;
+            height: 41px;
+            margin: 200px auto 0;
+            background-color: rgb(241, 241, 241);
+        }
+
+        li {
+            list-style: none;
+            float: left;
+
+        }
+
+        .tab_list li {
+            padding: 0 20px;
+            height: 100%;
+            line-height: 41px;
+        }
+
+        .red {
+            background-color: rgb(200, 22, 35);
+            color: white;
+            cursor: pointer;
+        }
+
+        .tab_con {
+            width: 978px;
+            margin: 0 auto;
+        }
+
+        .tab_con li {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="tab">
+        <div class="tab_list">
+            <ul>
+                <li class='red' index=0>商品介绍</li>
+                <li index=1>规格与包装</li>
+                <li index=2>售后保障</li>
+                <li index=3>商品评价（50000）</li>
+                <li index=4>手机评价</li>
+            </ul>
+        </div>
+        <div class="tab_con">
+            <li style="display: block;">商品介绍模块内容</li>
+            <li>规格与包装模块内容</li>
+            <li>售后保障模块内容</li>
+            <li>商品评价（50000）模块内容</li>
+            <li>手机社区模块内容</li>
+        </div>
+    </div>
+
+    <script>
+        // 首先为标题列表中的每个li绑定点击后变红事件，注意这里用到排他思想，点击后，遍历所有按钮，将所有按钮的样式置空，最后再设置current样式
+        // 同时还要绑定显示对应内容的事件，listLi和conLis都是数组。重点是，当我们点击list里的li时，获取它是第几个，然后根据此索引，直接conLis[index]就可以找到对应的内容。此处用的方法是给list设置自定义属性index，点击时获取index值，利用它作为索引，先遍历访问conLis，将所有li都设置为隐藏，再将这个conLis[index]显示，就是排他思想。
+        var listLis = document.querySelector('.tab_list').getElementsByTagName('li');
+        var conLis = document.querySelector('.tab_con').querySelectorAll('li');
+        for (var i = 0; i < listLis.length; i++) {
+            listLis[i].onclick = function () {
+                for (var j = 0; j < listLis.length; j++) {
+                    listLis[j].className = '';
+                }
+                this.className = 'red';
+                var index = this.getAttribute('index');
+                for (var j = 0; j < conLis.length; j++) {
+                    conLis[j].style.display = 'none';
+                }
+                conLis[index].style.display = 'block';
+            }
+        }
+    </script>
+</body>
+
+</html>

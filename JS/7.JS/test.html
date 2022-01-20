@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            margin: 100px 200px;
+        }
+
+        textarea {
+            resize: none;
+            outline: none;
+            border: 1px solid pink;
+        }
+
+        li {
+            width: 200px;
+            height: 50px;
+            line-height: 50px;
+            background-color: pink;
+            color: red;
+            margin-bottom: 20px;
+        }
+
+        a {
+            float: right;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <textarea name="" id="text" cols="30" rows="10"></textarea>
+        <button>发布</button>
+        <ul></ul>
+    </div>
+    <script>
+        // 1.填写内容，点击发布后，将textarea里的内容放在li里，注意获取对象在点击函数外，但是获取内容一定要在点击函数里,
+        // 2.添加删除，点击后消除整个li，这个点击删除事件，在创建a的时候就为它绑定，a是放在li里的
+        var textarea = document.querySelector('#text');
+        var btn = document.querySelector('button');
+        var ul = document.querySelector('ul');
+        btn.onclick = function () {
+            if (textarea.value == '') {
+                alert('输入为空，请重新输入');
+            } else {
+                var li = document.createElement('li');
+                var a = document.createElement('a')
+                a.innerText = '删除';
+                a.href = 'javascript:;';
+                a.onclick = function () {
+                    ul.removeChild(this.parentNode);
+                }
+                li.innerText = textarea.value;
+                li.appendChild(a);
+                ul.insertBefore(li, ul.children[0]);
+
+
+            }
+        }
+    </script>
+</body>
+
+</html>

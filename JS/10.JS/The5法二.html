@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .che {
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text">
+    <div class="che"><input type="checkbox" id="check"><label for="check">记住用户名</label></div>
+    <button>清除</button>
+    <script>
+        // 通过有没有存储text值来判断
+        var text = document.querySelector('input[type=text]');
+        var checkbox = document.querySelector('#check');
+        if (localStorage.getItem('text')) {
+            // 有存储text，未存储是NULL值
+            text.value = localStorage.getItem('text');
+            checkbox.checked = true;
+        }
+        checkbox.addEventListener('change', function () {
+            if (checkbox.checked) {
+                // 如果按下后，是勾选状态
+                localStorage.setItem('text', text.value);
+            } else {
+                // 如果按下后，是取消勾选
+                localStorage.removeItem('text');
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 两个新数组，一个记录已经访问过的字符，一个记录字符对应的出现次数
+        // 遍历字符串，如果字符没有被访问，就计算出现次数，分别加入两个数组中。
+        // 
+        var str = 'abcoefoxyozzopp';
+        // 至少有一个字符,从头开始
+        var visited = [], count = [], maxcount = 1, maxindex = 0;
+        for (var i = 0; i < str.length; i++) {
+            var index = visited.indexOf(str[i])
+            if (index == -1) { //未被访问过,次数加一
+                visited.push(str[i]);
+                count.push(1);
+            } else {
+                count[index]++; //访问过,++
+                if (maxcount < count[index]) {  //比较次数
+                    maxcount = count[index];
+                    maxchar = str[i];
+                }
+            }
+        }
+        console.log(maxchar, maxcount);
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

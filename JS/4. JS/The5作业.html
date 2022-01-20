@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 1.用户输入任意两个数字的任意算术运算（简单的计算器小功能），并能弹出运算后的结果。
+        function cal(num1, num2, sym) {
+            switch (sym) {
+                case '+':
+                    return num1 + num2;
+                case '-':
+                    return num1 - num2;
+                case '*':
+                    return num1 * num2;
+                default:
+                    return num1 / num2;
+            }
+        }
+
+        /* var num1 = parseFloat(prompt('请输入第一个数字'));
+         var num2 = parseFloat(prompt('请输入第二个数字'));
+         var sym = prompt('请输入运算符');
+         var res = cal(num1, num2, sym);
+         alert('输出的结果为' + res);*/
+
+        // 2.用户输入任意两个数字的最大值，并能出弹运算后的结果。
+        function twoMax(num1, num2) {
+            return num1 >= num2 ? num1 : num2;
+        }
+        /* var num1 = parseFloat(prompt('请输入第一个数字'));
+         var num2 = parseFloat(prompt('请输入第二个数字'));
+         var res = twoMax(num1, num2);
+         alert('输出的结果为' + res);*/
+
+        // 3.用户输入任意三个不同数字的最大值，并能弹出运算后的结果。
+        function threeMax(num1, num2, num3) {
+            var max = num1 > num2 ? num1 : num2;
+            max = max > num3 ? max : num3;
+            return max;
+        }
+        /*var num1 = parseFloat(prompt('请输入第一个数字'));
+        var num2 = parseFloat(prompt('请输入第二个数字'));
+        var num3 = parseFloat(prompt('请输入第三个数字'))
+        var res = threeMax(num1, num2, num3);
+        alert('输出的结果为' + res);*/
+
+        // 4.用户输入一个数判断是否是素数，并返弹出回值(又叫质数，只能被1和自身整数的数)
+        function isPrime(num) {
+            for (var i = 2; i < num; i++) {
+                // 可以被2~num之间的数除
+                if (num % i == 0) return '不是质数';
+            }
+            return '是质数'
+        }
+        /*var num = parseFloat(prompt('请输入第一个数字'));
+        var res = isPrime(num);
+        alert(res);*/
+
+        // 5.写一个函数，能翻转数组，通过返回值返回。
+        function reverseArr(arr) {
+            var newArr = [];
+            for (var i = arr.length - 1; i >= 0; i--) {
+                newArr[newArr.length] = arr[i];
+            }
+            return newArr;
+        }
+        console.log(reverseArr([1, 2, 3, 4, 5]));
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .tab_list {
+            width: 978px;
+            height: 41px;
+            margin: 200px auto 0;
+            background-color: rgb(241, 241, 241);
+        }
+
+        li {
+            list-style: none;
+            float: left;
+
+        }
+
+        .tab_list li {
+            padding: 0 20px;
+            height: 100%;
+            line-height: 41px;
+        }
+
+        .current {
+            background-color: rgb(200, 22, 35);
+            color: white;
+            cursor: pointer;
+        }
+
+        .tab_con {
+            width: 978px;
+            margin: 0 auto;
+        }
+
+        .tab_con li {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="tab_list">
+            <ul>
+                <li class='current' index=0>商品介绍</li>
+                <li index=1>规格与包装</li>
+                <li index=2>售后保障</li>
+                <li index=3>商品评价（50000）</li>
+                <li index=4>手机评价</li>
+            </ul>
+        </div>
+        <div class="tab_con">
+            <ul>
+                <li style="display: block;">商品介绍内容</li>
+                <li>规格与包装内容</li>
+                <li>售后保障内容</li>
+                <li>商品评价（50000）内容</li>
+                <li>手机评价内容</li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        // 对于默认选中的单独设置样式
+        // 点击li后，展示con对应的内容。思路就是给list里的li一个index自定义属性，值与获取的con的li对象数组索引下标对应，即从0开始
+        // 点击li后，展示con对应的内容，同时要先遍历所有con的li，将所有li的display：none。这样可以实现只展示对应的li
+        // 1.首先为listLi里的每一个li绑定事件实现，点击后，背景颜色变红，字体变白的效果。因为样式较多，所以写成一个类，点击后更改类名即可。同时在这之前要遍历所有li清除样式
+        var listLi = document.querySelector('.tab_list').querySelectorAll('li');
+        var conLi = document.querySelector('.tab_con').querySelectorAll('li');
+        for (var i = 0; i < listLi.length; i++) {
+            listLi[i].onclick = function () {
+                for (var j = 0; j < listLi.length; j++) {
+                    listLi[j].className = '';
+                }
+                this.className = 'current';
+                var index = this.getAttribute('index');
+                for (var j = 0; j < conLi.length; j++) {
+                    conLi[j].style.display = 'none';
+                }
+                conLi[index].style.display = 'block';
+            }
+        }
+
+        // 2.点击后，不仅会变样式，同时要显示对应内容，所以这个也要写在每个list点击后的函数里。首先获取点击list的index然后根据这个索引，在con的list数组里访问得到对应的conLi。注意自定义属性的获得需要通过getAttribute。同时在展示对应conLi之前，要将其他li隐藏
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 自己思路小熊 */
+        /* 
+        @keyframes move {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            100% {
+                transform: translateX(-1600px);
+            }
+        }
+
+        div {
+            overflow: hidden;
+            width: 200px;
+            height: 100px;
+
+        }
+
+        img {
+            animation: move 1s steps(8) forwards infinite;
+        } */
+
+        /* 老师思路小熊 */
+        .bear_m {
+            position: absolute;
+            top: 400px;
+            width: 200px;
+            height: 100px;
+            background: url('media/bear.png') no-repeat;
+            animation: bear 1s steps(7) infinite, move_bear 2s forwards;
+
+        }
+
+        @keyframes bear {
+            0% {}
+
+            100% {
+                background-position: -1400px, 0;
+            }
+
+        }
+
+        @keyframes move_bear {
+            0% {
+                left: 0;
+                transform: translate(0, 0);
+                /* margin: 0 0; */
+            }
+
+            100% {
+                left: 50%;
+                transform: translate(-50%, 0);
+                /* margin: 0 auto; */
+            }
+        }
+
+        /* 背景 */
+        .bg1 {
+            position: relative;
+            top: 200px;
+            width: 3840px;
+            height: 336px;
+            background: url('media/bg1.png') no-repeat;
+            animation: move_bg1 10s linear infinite alternate;
+        }
+
+        @keyframes move_bg1 {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            100% {
+                transform: translate(-50%, 0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 自己思路小熊 -->
+    <!-- 
+    <div> <img src="media/bear.png" alt=""></div>
+     -->
+    <div class="bg1"></div>
+    <div class="bear_m"></div>
+</body>
+
+</html>

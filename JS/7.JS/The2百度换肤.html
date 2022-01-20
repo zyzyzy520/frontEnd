@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background: url(images/1.jpg);
+        }
+
+        .box {
+            width: 420px;
+            margin: 200px auto;
+            background-color: white;
+        }
+
+        a img {
+            width: 100px;
+            height: 62.5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <a href="#">
+            <img src="images/1.jpg" alt="">
+        </a>
+        <a href="#">
+            <img src="images/2.jpg" alt="">
+        </a>
+        <a href="#">
+            <img src="images/3.jpg" alt="">
+        </a>
+        <a href="#">
+            <img src="images/4.jpg" alt="">
+        </a>
+    </div>
+    <script>
+        // 首先设置好初始样式
+        // 然后获取所有a标签，遍历a标签，为其设置操作：点击a标签，将a标签里的图片给body
+        var as = document.querySelectorAll('a');
+        var img = document.getElementsByTagName('img');
+        var body = document.body;
+        for (var i = 0; i < as.length; i++) {
+            as[i].onclick = function () {
+                var img = this.getElementsByTagName('img')[0];
+                body.style.backgroundImage = 'url(' + img.src + ')';
+
+            }
+        }
+    </script>
+</body>
+
+</html>

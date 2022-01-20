@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .out_box {
+            overflow: hidden;
+            width: 200px;
+            height: 200px;
+            border: 1px solid sandybrown;
+        }
+
+        /*  
+        .in_box {
+            /* display: none; */
+        /* width: 200px;
+            height: 200px;
+            background-color: sandybrown;
+            transform-origin: left bottom;
+            transform: rotate(90deg);
+            transition: all 3s;
+        }
+
+        .out_box:hover .in_box {
+            /* display: block; */
+        /* transform: rotate(0deg);
+        }*/
+        .out_box::after {
+            content: '123';
+            display: block;
+            width: 100%;
+            height: 100%;
+            background-color: sandybrown;
+            transform-origin: left bottom;
+            transform: rotate(90deg);
+            transition: all 3s;
+        }
+
+        .out_box:hover::after {
+            transform: rotate(0deg);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="out_box">
+        <!-- <div class="in_box">123</div> -->
+    </div>
+
+</body>
+
+</html>

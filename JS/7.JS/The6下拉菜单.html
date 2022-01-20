@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style: none;
+            float: left;
+        }
+
+        a {
+            text-decoration: none;
+            color: #000;
+            display: block;
+            width: 80px;
+            height: 100%;
+            line-height: 41px;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        .box {
+            height: 41px;
+            width: 500px;
+            margin: 200px auto;
+        }
+
+        .tab_title {
+            height: 41px;
+        }
+
+        .tab_title a:hover {
+            background-color: rgb(238, 238, 238);
+        }
+
+        .tab_con a {
+            border: 1px solid rgb(254, 204, 91);
+            border-top: 0;
+        }
+
+        .tab_con a:hover {
+            background-color: rgb(255, 245, 218);
+        }
+
+        .tab_con li {
+            visibility: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="tab_title">
+            <ul>
+                <li index=0>
+                    <a href="#">微博</a>
+                </li>
+                <li index=1>
+                    <a href="#">微博</a>
+                </li>
+                <li index=2>
+                    <a href="#">微博</a>
+                </li>
+                <li index=3>
+                    <a href="#">微博</a>
+                </li>
+            </ul>
+        </div>
+        <div class="tab_con">
+            <ul>
+                <li>
+                    <a href="#">私信</a>
+                    <a href="#">评论</a>
+                    <a href="#">@我</a>
+                </li>
+                <li>
+                    <a href="#">私信</a>
+                    <a href="#">评论</a>
+                    <a href="#">@我</a>
+                </li>
+                <li> <a href="#">私信</a>
+                    <a href="#">评论</a>
+                    <a href="#">@我</a>
+                </li>
+                <li>
+                    <a href="#">私信</a>
+                    <a href="#">评论</a>
+                    <a href="#">@我</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        // 1.首先解决下拉可选项，鼠标经过，背景颜色变色效果，直接用a:hover
+        // 2. 设置好con里a的样式后，添加鼠标经过变色效果
+        // 3. 为每个title里的li绑定点击函数，点击的效果就是使con中对应的部分显示，同时在这之前需要遍历所有con中的li，将它们隐藏获取元素对象可以通过先获取其父亲结点，在获取子节点得到
+        // children只会选择儿子元素，自定义属性要用getAttribute
+        var title_lis = document.querySelector('.tab_title').children[0].children;
+        var con_lis = document.querySelector('.tab_con').children[0].children;
+        for (var i = 0; i < title_lis.length; i++) {
+            title_lis[i].onmouseover = function () {
+                var index = this.getAttribute('index');
+                // console.log(index);
+                for (var j = 0; j < con_lis.length; j++) {
+                    con_lis[j].style.visibility = 'hidden';
+                }
+                con_lis[index].style.visibility = 'visible';
+            }
+        }
+    </script>
+</body>
+
+</html>

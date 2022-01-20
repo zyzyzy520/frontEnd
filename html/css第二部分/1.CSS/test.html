@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @keyframes move {
+            0% {}
+
+            75% {
+                width: 40px;
+                height: 40px;
+                opacity: 1;
+            }
+
+            100% {
+                width: 70px;
+                height: 70px;
+                opacity: 0;
+            }
+
+        }
+
+        body>div {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+        }
+
+        .center-box {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: blue;
+
+        }
+
+        /* 11 */
+        div[class^=pulse] {
+            /* 盒子水平垂直居中 */
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            box-shadow: 0 0 12px blue;
+            animation: move 1.2s linear infinite;
+        }
+
+        /* 优先级 */
+        div .pulse2 {
+            animation-delay: 0.4s;
+        }
+
+        div .pulse3 {
+            animation-delay: 0.8s;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div class="center-box"></div>
+        <div class="pulse1"></div>
+        <div class="pulse2"></div>
+        <div class="pulse3"></div>
+    </div>
+</body>
+
+</html>

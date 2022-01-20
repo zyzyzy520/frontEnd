@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .date {
+            width: 400px;
+            height: 100px;
+            background-color: pink;
+        }
+
+        .date {
+            margin-top: 20px;
+            width: 400px;
+            height: 100px;
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="btn">请按钮</button>
+    <div class="date"></div>
+    <div class="autoDate"></div>
+    <script>
+        function getDate() {
+            var week_arr = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+            var date = new Date();
+            var year = date.getFullYear();
+            var month = date.getMonth() + 1;
+            var day = date.getDate();
+            var week_index = date.getDay();
+            var week = week_arr[week_index];
+            return year + '年' + month + '月' + day + '日' + week;
+        }
+        var btn = document.getElementById('btn');
+        var date = document.querySelector('.date');
+        btn.onclick = function () {
+            date.innerHTML = getDate();
+        }
+        var autoDate = document.querySelector('.autoDate');
+        autoDate.innerHTML = getDate();
+        console.log(autoDate.innerHTML);
+    </script>
+</body>
+
+</html>

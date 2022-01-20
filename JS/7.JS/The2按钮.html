@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>按钮</button>
+    <button>按钮</button>
+    <button>按钮</button>
+    <button>按钮</button>
+    <script>
+        // 首先获取全部button，触发事件是点击，响应函数是背景颜色变粉色；离开，背景颜色置空;
+        // 不行，因为触发粉色消失的不是鼠标离开，而是点击了别的元素。
+        var btns = document.getElementsByTagName('button');
+        for (var i = 0; i < btns.length; i++) {
+            btns[i].onclick = function () {
+                this.style.backgroundColor = 'pink';
+            }
+            btns[i].onmouseout = function () {
+                this.style.backgroundColor = '';
+            }
+        }
+    </script>
+</body>
+
+</html>
