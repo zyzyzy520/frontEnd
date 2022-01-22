@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Person {
+            // 构造方法
+            constructor(name, age) {
+                this.name = name;
+                this.age = age;
+            }
+            // 一般方法
+            speak() {
+                console.log(`My name is ${this.name}, I am ${this.age} years old`);
+            }
+        }
+        class Student extends Person {
+            constructor(name, age, grade) {
+                super(name, age);
+                this.grade = grade;
+            }
+            speak() {
+                console.log(`My name is ${this.name}, I am ${this.age} years old, I study in ${this.grade}`);
+            }
+        }
+        let ZHOU = new Student('ZHOU', 22, 14);
+        ZHOU.speak();
+    </script>
+</body>
+
+</html>

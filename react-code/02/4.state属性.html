@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="test"></div>
+    <script type="text/babel">
+        // 定义类式组件
+        class Weather extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { weather: '炎热', isHot: false };
+            }
+            render() {
+                let { isHot } = this.state; //通过结构赋值匹配上state的isHot属性，并把属性值给isHot变量
+                return <h1>今天天气{isHot ? '炎热' : '凉爽'}</h1>;
+            }
+        }
+        // 调用组件生成实例，将实例渲染到页面上
+        ReactDOM.render(<Weather />, document.querySelector('#test'));
+    </script>
+</body>
+
+</html>
