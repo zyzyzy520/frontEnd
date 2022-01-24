@@ -16,11 +16,7 @@
     <script type="text/babel">
         // 创建类式组件
         class Demo extends React.Component {
-            // 构造器函数
-            constructor(props) {
-                super(props);
-                this.state = { isHot: true };
-            }
+            state = { isHot: false }
             // 返回虚拟节点函数
             render() {
                 // console.log(this);
@@ -29,16 +25,14 @@
                 return <h1 id="h1" onClick={this.show}>今天天气很{isHot ? '炎热' : '凉爽'}</h1>
             }
             //一般函数
-            show() {
-                console.log(this);
+            show = () => {
+                console.log(this) //undefined
+                this.setState({ isHot: !this.state.isHot });
             }
         }
 
         // 渲染
         ReactDOM.render(<Demo />, document.getElementById('test'));
-        function show() {
-            alert(1);
-        }
     </script>
 </body>
 
