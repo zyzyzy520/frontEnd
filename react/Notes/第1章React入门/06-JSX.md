@@ -122,8 +122,9 @@ ReactDOM.render(virtualDOM, containerDOM)
 3. demo(1)
 4. `arr.map()`//arr
 5. function test(){}返回值是一个函数
+5. isTrue? xx:xx;
 
-简单判断方法：`在表达式左边放一个变量`，看能否有返回值
+简单判断方法：`在表达式左边放一个变量`，看能否有返回值。`js会执行代码并将得到的值放在那个位置`，比如c=a+b其实是有两步，计算a+b，然后把值给c；但是在jsx向标签中插入JS代码时，就只需要写a+b，React会计算a+b，然后把计算结果放在对应位置；**`简单理解就是c=a+b少了赋值`**，不熟练之前都可以模拟一个变量，这个变量的值就是最终会显示在页面上的值
 
 ![image-20220120111942632](C:\Users\zayn\AppData\Roaming\Typora\typora-user-images\image-20220120111942632.png)
 
