@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input,
+        button {
+            margin-right: 10px;
+        }
+    </style>
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="test"></div>
+    <script type="text/babel">
+        class Demo extends React.Component {
+            render() {
+                return (
+                    <div>
+                        <input type="text" ref={node => this.text1 = node} />
+                        <button onClick={this.alertText1}>提示输入数据</button>
+                        <input type="text" placeholder="失去焦点提示数据" ref={node => this.text2 = node} onBlur={this.alertText2} />
+                    </div>
+                )
+            }
+            alertText1 = () => {
+                const { text1 } = this
+                alert(text1.value);
+            }
+            alertText2 = () => {
+                const { text2 } = this
+                alert(text2.value);
+            }
+        }
+
+        ReactDOM.render(<Demo />, document.getElementById('test'));
+    </script>
+</body>
+
+</html>

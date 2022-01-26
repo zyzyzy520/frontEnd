@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input,
+        button {
+            margin-right: 10px;
+        }
+    </style>
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="test"></div>
+    <script type="text/babel">
+
+        // 1.定义一个类式组件
+        class Demo extends React.Component {
+            render() {
+                return (
+                    <div>
+                        <input type="text" ref="text1" />
+                        <button onClick={this.alertText1}>提示输入数据</button>
+                        <input type="text" placeholder="失去焦点提示数据" ref="text2" onBlur={this.alertText2} />
+                    </div>
+                )
+            }
+            alertText1 = () => {
+                let { text1 } = this.refs // {text1:结点信息, text2:节点信息}，用text1匹配对象属性名称，然后将获取到的节点信息给 text1变量
+                alert(text1.value);
+            }
+            alertText2 = () => {
+                let { text2 } = this.refs // {text1:结点信息, text2:节点信息}，用text2匹配对象属性名称，然后将获取到的节点信息给 text2变量
+                alert(text2.value);
+            }
+        }
+        // 2.渲染组件
+        ReactDOM.render(<Demo />, document.getElementById('test'));
+    </script>
+</body>
+
+</html>

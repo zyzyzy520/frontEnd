@@ -20,29 +20,30 @@
 <body>
     <div id="test"></div>
     <script type="text/babel">
-
-        // 1.定义一个类式组件
         class Demo extends React.Component {
+            container1 = React.createRef();
+            container2 = React.createRef();
             render() {
                 return (
                     <div>
-                        <input type="text" id="text1" />
+                        <input type="text" ref={this.container1} />
                         <button onClick={this.alertText1}>提示输入数据</button>
-                        <input type="text" placeholder="失去焦点提示数据" onBlur={this.alertText2} />
+                        <input type="text" placeholder="失去焦点提示数据" ref={this.container2} onBlur={this.alertText2} />
                     </div>
                 )
             }
             alertText1 = () => {
-                console.log(Demo);
-                let text1 = document.getElementById('text1').value;
-                alert(text1);
+
+                const { container1 } = this
+                console.log(container1);
+                alert(container1.current.value);
             }
             alertText2 = () => {
-                let text2 = document.getElementById('text2').value;
-                alert(text2);
+                const { container2 } = this
+                alert(container2.current.value);
             }
         }
-        // 2.渲染组件
+
         ReactDOM.render(<Demo />, document.getElementById('test'));
     </script>
 </body>
