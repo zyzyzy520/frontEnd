@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./1.css">
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="test"></div>
+    <script type="text/babel">
+        class Demo extends React.Component {
+            render() {
+                return (
+                    <div className="container" onClick={this.isVisit}>
+                        <button onClick={this.stop}>按钮1</button>
+                        <button>按钮2</button>
+                        <div>显示框</div>
+                    </div>
+                )
+            }
+            isVisit = (e) => {
+                e.stopPropagation();//在父元素的回调函数里写没有用
+                console.log(1);
+            }
+            stop = (e) => {
+                e.stopPropagation(); //在子元素的回调函数里，阻止事件冒泡
+            }
+        }
+        ReactDOM.render(<Demo />, document.getElementById('test'));
+    </script>
+</body>
+
+</html>

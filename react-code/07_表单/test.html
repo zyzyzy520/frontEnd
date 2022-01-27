@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./1.css">
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="test"></div>
+    <script type="text/babel">
+        class Demo extends React.Component {
+            render() {
+                return (
+                    //因为如果只是show，函数就必须定义在全局上下文里，就不在类组件里了。要怎么放在组件里呢
+                    //而因为render里的this指向实例，所以我们可以选择把回调函数挂在实例上
+                    // 然后在组件类写赋值+箭头函数给实例挂载函数
+                    <button onClick={this.show}>点击我显示时间</button>
+                )
+            }
+            show = () => {
+                alert(1);
+            }
+
+        }
+        ReactDOM.render(<Demo />, document.getElementById('test'));
+    </script>
+</body>
+
+</html>

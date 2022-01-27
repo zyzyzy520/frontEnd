@@ -16,13 +16,25 @@
     <script type="text/babel">
         // 定义类式组件
         class Weather extends React.Component {
-            constructor(props) {
-                super(props);
-                this.state = { weather: '炎热', isHot: false };
-            }
+            // constructor(props) {
+            //     super(props);
+            //     this.state = { weather: '炎热', isHot: false };
+            // }
+            state = { weather: '炎热' }
             render() {
-                let { isHot } = this.state; //通过结构赋值匹配上state的isHot属性，并把属性值给isHot变量
-                return <h1>今天天气{isHot ? '炎热' : '凉爽'}</h1>;
+                let { weather } = this.state; //通过结构赋值匹配上state的isHot属性，并把属性值给isHot变量
+                return <h1 onClick={this.changeWeather}>今天天气{weather}</h1>;
+            }
+            changeWeather = () => {
+                let { weather } = this.state;
+
+                if (weather == '炎热') {
+                    // 这个方法在React.Component上，通过原型链找到它
+                    this.setState({ weather: '凉爽' })
+                } else {
+                    this.setState({ weather: '炎热' })
+                }
+                console.log(this.state);
             }
         }
         // 调用组件生成实例，将实例渲染到页面上
