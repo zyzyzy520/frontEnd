@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="test"></div>
+    <script type="text/babel">
+        class Life extends React.Component {
+            render() {
+                let opacity = 1
+                console.log('render')
+                return (
+                    <div>
+                        <h1 style={{ opacity: 1 }} ref="h1">加油呀!!!!</h1>
+                        <button onClick={this.ummount}>点击我</button>
+                    </div>
+
+                )
+            }
+            componentDidMount() {
+                this.timer = setInterval(() => {
+                    let opacity = this.refs.h1.style.opacity;
+                    opacity = opacity <= 0 ? 1 : opacity - 0.1;
+                    this.refs.h1.style.opacity = opacity;
+                    // console.log(this.refs.h1.style.opacity)
+                }, 1000)
+            }
+            ummount = () => {
+                clearInterval(this.timer);
+                ReactDOM.unmountComponentAtNode(document.getElementById('test'))
+            }
+        }
+        // 将虚拟DOM渲染到真实DOM
+        ReactDOM.render(<Life />, document.getElementById('test'));
+    </script>
+</body>
+
+</html>

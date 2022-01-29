@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1 style="opacity: 1;" id="h1">CLICK</h1>
+    <button id="btn">Click me!</button>
+    <script>
+        let btn = document.getElementById('btn');
+        let time = 60;
+        let h1 = document.getElementById('h1');
+        setInterval(() => {
+            btn.innerHTML = time;
+            time--;
+        }, 1000);
+        setInterval(() => {
+            h1.style.opacity -= 0.1;
+        }, 1000);
+    </script>
+</body>
+
+</html>

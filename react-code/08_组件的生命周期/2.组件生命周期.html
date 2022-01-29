@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="test"></div>
+    <script type="text/babel">
+        class Life extends React.Component {
+            // 构造器
+            constructor() {
+                super();
+                this.state = { count: 0 };
+                console.log('constructor')
+            }
+
+            //点击按钮的回调函数
+            add = () => {
+                this.setState({ count: this.state.count + 1 });
+            }
+
+            // 强制更新按钮的回调函数
+            force = () => {
+                this.forceUpdate();
+            }
+            //组件将要挂载
+            componentWillMount() {
+                console.log('componentWillMount');
+            }
+
+            // 组件挂载中
+            render() {
+                console.log('render');
+                return (
+                    <div>
+                        {/* 只要有数据是动态改变的，我们都可以将其放到state里。进行动态改变渲染*/}
+                        <h1 >当前求和为：{this.state.count}</h1>
+                        <button onClick={this.add}>点击我</button>
+                        <button onClick={this.force}>这是强制更新按钮</button>
+                    </div>
+
+                )
+            }
+
+            //组件挂载完毕
+            componentDidMount() {
+                console.log('componentDidMount');
+            }
+
+            // 是否允许组件更新
+            shouldComponentUpdate() {
+                console.log(' shouldComponentUpdate');
+                return false;
+            }
+
+            // 组件将要更新
+            componentWillUpdate() {
+                console.log('componentWillUpdate');
+            }
+
+            // 组件更新完毕
+            componentDidUpdate() {
+                console.log('componentDidUpdate');
+            }
+        }
+        // 将虚拟DOM渲染到真实DOM
+        ReactDOM.render(<Life />, document.getElementById('test'));
+    </script>
+</body>
+
+</html>
