@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="test"></div>
+    <script type="text/babel">
+        class Father extends React.Component {
+            //因为这个变量会改变，所以我们放在state里 
+            state = {
+                car: '奔驰'
+            }
+            change = () => {
+                // setState是React.Component提供的方法，实例虽然没有，但是通过实例利用原型链先找Father再找React.Component可以找到该方法
+                let { car } = this.state;
+                if (car == "奔驰") {
+                    this.setState({ car: '玛莎拉蒂' });
+                } else {
+                    this.setState({ car: '奔驰' });
+                }
+
+            }
+            render() {
+                // 只要state里数据改变，React就会重新调用render渲染页面
+                let { car } = this.state;
+                return (
+                    <div>
+                        <h1>我的汽车是：{car} </h1>
+                        <button onClick={this.change}>Click me, 换车</button>
+                        <Son car={car} />
+                    </div>
+                )
+            }
+        }
+
+        class Son extends React.Component {
+            render() {
+                return (
+                    <h1>我是儿子，我的汽车是: {this.props.car}</h1>
+                )
+            }
+        }
+        // 将虚拟DOM渲染到真实DOM
+        ReactDOM.render(<Father />, document.getElementById('test'));
+    </script>
+</body>
+
+</html>

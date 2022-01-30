@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        ul {
+            width: 300px;
+            height: 150px;
+            background-color: orange;
+            overflow: auto;
+        }
+
+        li {
+            width: 100%;
+            height: 30px;
+            border-bottom: 1px solid gray;
+        }
+    </style>
+    <script src="../jsnew/react.development.js"></script>
+    <script src="../jsnew/react-dom.development.js"></script>
+    <script src="../jsnew/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="test"></div>
+    <script type="text/babel">
+        class Life extends React.Component {
+            state = { newsArr: [] }
+            // 组件挂载中
+            render() {
+                console.log('render');
+                return (
+                    <ul ref="list">
+                        {this.state.newsArr.map((element, index) => {
+                            return <li key={index}>{element}</li>
+                        })}
+                    </ul>
+
+                )
+            }
+            // 组件挂载完毕，开启定时器，每隔一秒钟给盒子添加一个新闻，要重新渲染页面，把新闻放在state里
+            componentDidMount() {
+                setInterval(() => {
+                    // 拿到新闻数组
+                    let { newsArr } = this.state;
+                    // let news = <li>新闻{newsArr.length}</li>
+                    let news = `新闻${newsArr.length}`;
+                    // newsArr.unshift(<li>新闻{newsArr.length}</li>)
+                    // 在setState里面进行给数组添加元素的操作不好处理，所以先在外面准备好newsArr，然后再设置
+                    this.setState({ newsArr: [news, ...newsArr] })
+                }, 2000)
+            }
+            // 每次新增新闻，调整scrollTop
+            componentDidUpdate() {
+                // 拿到节点
+                let { list } = this.refs;
+                list.scrollTop += 30;
+                console.log(list.scrollTop);
+            }
+        }
+        // 将虚拟DOM渲染到真实DOM
+        ReactDOM.render(<Life sum={9} />, document.getElementById('test'));
+    </script>
+</body>
+
+</html>
