@@ -41,7 +41,7 @@
             state = { newsArr: [] }
             // 组件挂载中
             render() {
-                console.log('render');
+                // console.log('render');`
                 return (
                     <ul ref="list">
                         {this.state.newsArr.map((element, index) => {
@@ -53,22 +53,30 @@
             }
             // 组件挂载完毕，开启定时器，每隔一秒钟给盒子添加一个新闻，要重新渲染页面，把新闻放在state里
             componentDidMount() {
-                setInterval(() => {
+                this.timer = setInterval(() => {
                     // 拿到新闻数组
                     let { newsArr } = this.state;
                     // let news = <li>新闻{newsArr.length}</li>
                     let news = `新闻${newsArr.length}`;
                     // newsArr.unshift(<li>新闻{newsArr.length}</li>)
-                    // 在setState里面进行给数组添加元素的操作不好处理，所以先在外面准备好newsArr，然后再设置
+                    // 这里用到了展开组合
                     this.setState({ newsArr: [news, ...newsArr] })
                 }, 2000)
             }
+            getSnapshotBeforeUpdate() {
+                // console.log(this.refs.list.scrollHeight);
+                return this.refs.list.scrollHeight;
+
+            }
             // 每次新增新闻，调整scrollTop
-            componentDidUpdate() {
-                // 拿到节点
-                let { list } = this.refs;
-                list.scrollTop += 30;
-                console.log(list.scrollTop);
+            componentDidUpdate(_, __, snapShotValue) {
+                // 得到新增新闻的高度，添加新闻之后的高度-添加新闻之前的高度
+                let newsHeight = this.refs.list.scrollHeight - snapShotValue;
+                // 设置盒子顶部和内容顶部之间的距离scrollTop，注意是+，不是直接赋值，否则scrollTop会不变
+                this.refs.list.scrollTop += newsHeight;
+            }
+            componentWillUnmount() {
+                clearInterval(this.timer);
             }
         }
         // 将虚拟DOM渲染到真实DOM
