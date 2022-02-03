@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    </style>
+    <script src="../jsnew/react.development.js"></script>
+    <script src="../jsnew/react-dom.development.js"></script>
+    <script src="../jsnew/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="test"></div>
+    <script type="text/babel">
+        class Person extends React.Component {
+            state = {
+                persons: [
+                    { id: '001', name: '小张', age: 18 },
+                    { id: '002', name: '小李', age: 19 }
+                ]
+            }
+
+            add = () => {
+                let wang = { id: '003', name: '小王', age: 20 };
+                let { persons } = this.state;
+                persons = [wang, ...persons]
+                this.setState({ persons: persons });
+            }
+            // 组件挂载中
+            render() {
+                let { persons } = this.state;
+                return (
+                    <div>
+                        <button onClick={this.add}>新增一个小王</button>
+                        <h4>如下的列表，使用index(索引值)作为key</h4>
+                        <ul>
+                            {persons.map((element, index) => {
+                                return <li key={index}>{element.name}-{element.age}</li>
+                            })}
+                        </ul>
+                        <hr />
+                        <h4>如下的列表，使用id(数据的唯一标识)作为key</h4>
+                        <ul>
+                            {persons.map(element => {
+                                return <li key={element.id}>{element.name}-{element.age}</li>
+                            })}
+                        </ul>
+                    </div>
+
+                )
+            }
+
+        }
+        // 将虚拟DOM渲染到真实DOM
+        ReactDOM.render(<Person />, document.getElementById('test'));
+    </script>
+</body>
+
+</html>
