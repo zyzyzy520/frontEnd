@@ -39,7 +39,7 @@
                         <h4>如下的列表，使用index(索引值)作为key</h4>
                         <ul>
                             {persons.map((element, index) => {
-                                return <li key={index}>{element.name}-{element.age}</li>
+                                return <li key={index}>{element.name}-{element.age} <input type="text" /></li>
                             })}
                         </ul>
                         <hr />
