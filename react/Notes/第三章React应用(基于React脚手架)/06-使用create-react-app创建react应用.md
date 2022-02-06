@@ -26,6 +26,24 @@
 
 ## 3.react脚手架项目结构
 
+除public和src文件夹以外的其它文件不要动
+
+### 3.1 	public ---- 静态资源文件夹
+
+1. ​		favicon.icon ------ 网站页签图标
+
+2. ​		**`index.html--------主页面`**
+
+   ![image-20220205095318979](C:\Users\zayn\AppData\Roaming\Typora\typora-user-images\image-20220205095318979.png)
+
+3. ​		logo192.png ------- logo图
+
+4. ​		logo512.png ------- logo图
+
+5. ​		manifest.json ----- 应用加壳的配置文件
+
+6. ​		robots.txt -------- 爬虫协议文件
+
 ### 3.2 src ---- 源码文件夹
 
 ![image-20220203132142877](C:\Users\zayn\AppData\Roaming\Typora\typora-user-images\image-20220203132142877.png)
@@ -61,3 +79,13 @@
 1. setupTests.js
 
 ​			---- 组件单元测试的文件(需要jest-dom库的支持)
+
+### 3.3 补充
+
+在index.js里，底层会帮我们获取index.html里的真实容器标签`root`可以修改名称，最好别改
+
+App.js也可以修改名称，最好不改
+
+App.js里的根组件也可也修改名称，最好不改。
+
+![image-20220205095720136](C:\Users\zayn\AppData\Roaming\Typora\typora-user-images\image-20220205095720136.png)

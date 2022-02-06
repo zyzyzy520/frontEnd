@@ -10,15 +10,14 @@
 
 <body>
     <script>
-        const obj = { name: '张三' }
-        function fn() {
-            console.log(this);
-            return () => {
-                console.log(this);
-            }
+        async function main() {
+            const data = await Promise.resolve('hello');
+            console.log('in', data);
+            return data;
         }
-        const resFn = fn.call(obj);
-        resFn();
+
+        const data = main();
+        console.log('out', data);
     </script>
 </body>
 
