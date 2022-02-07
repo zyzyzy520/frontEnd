@@ -32,4 +32,6 @@ li {
   li:last-child {
     border-bottom: none;
   }
-  
+  .active {
+    background-color: #ddd;
+  }
