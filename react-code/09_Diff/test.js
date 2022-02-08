@@ -32,15 +32,14 @@ const parse = (str) => {
             let arr = stackArr.pop();
             // 因为有可能正好是最外层的数组,最后一个].,所以需要先判断栈里面是否还有数组
             if (stackArr.length != 0) {
-                // 然后将该数组压入当前栈顶的数组，因为是其一个元素
+                // 当前数组是里层，压入最近的外层数组中
                 stackArr[stackArr.length - 1].push(arr);
             } else {
+                // 是最外层，字符串也遍历到了最后一个，将结果返回
                 return arr;
             }
-            // [ 1, 2, [ 3, 4 ], 0, 5 ] 处理逗号在]后面的情况
-
         } else if (str[i] == ',' && str[i - 1] != ']') {
-            // console.log(sum);
+            // 逗号如果在]后面无需处理[ 1, 2, [ 3, 4 ], 0, 5 ]
             // 说明计算出了一个完整的数字，压入栈顶数组中，并且将sum 清0，进行下一轮计算
             stackArr[stackArr.length - 1].push(sum), sum = 0;
         } else if (str[i] >= '0' && str[i] <= '9') {

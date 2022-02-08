@@ -6,27 +6,39 @@ export default class Item extends React.Component {
     state = {
         mouseIsEnter: false,
     }
-    handle = (flag) => {
+
+    // 鼠标移入移出
+    handleMouse = (flag) => {
         return () => {
             this.setState({ mouseIsEnter: flag })
         }
     }
-    delete = (id) => {
+
+    // 删除按钮
+    handleDelete = (id) => {
         return () => {
             this.props.deleteTodo(id);
         }
     }
+
+    // 勾选OR取消勾选
+    handleChecked = (id) => {
+        return (event) => {
+            this.props.changeChecked(id, event.target.checked);
+        }
+    }
+
     render() {
-        const { id, name, done, deleteTodo } = this.props;
+        const { id, name, done } = this.props;
         const { mouseIsEnter } = this.state;
         return (
 
-            <li className={mouseIsEnter ? 'active' : ''} onMouseOver={this.handle(true)} onMouseOut={this.handle(false)}>
+            <li className={mouseIsEnter ? 'active' : ''} onMouseOver={this.handleMouse(true)} onMouseOut={this.handleMouse(false)}>
                 <label>
-                    <input type="checkbox" defaultChecked={done} />
+                    <input type="checkbox" checked={done} onChange={this.handleChecked(id)} />
                     <span>{name}</span>
                 </label>
-                <button className="btn btn-danger" style={{ display: mouseIsEnter ? 'inline-block' : 'none' }} onClick={this.delete(id)} >删除</button>
+                <button className="btn btn-danger" style={{ display: mouseIsEnter ? 'inline-block' : 'none' }} onClick={this.handleDelete(id)} >删除</button>
             </li>
 
         )

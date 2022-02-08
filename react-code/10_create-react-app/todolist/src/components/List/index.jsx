@@ -10,7 +10,7 @@ export default class List extends React.Component {
             <ul className="todo-main">
                 {todos.map((element) => {
                     return (
-                        <Item key={element.id} {...element} deleteTodo={deleteTodo} ></Item>
+                        <Item key={element.id} {...element} deleteTodo={deleteTodo} changeChecked={this.props.changeChecked}></Item>
                     )
                 })
                 }

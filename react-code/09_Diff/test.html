@@ -10,14 +10,12 @@
 
 <body>
     <script>
-        async function main() {
-            const data = await Promise.resolve('hello');
-            console.log('in', data);
-            return data;
-        }
+        let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-        const data = main();
-        console.log('out', data);
+        const result = arr.reduce((preValue, current, index, arr) => {
+            return Math.max(preValue, current);
+        })
+        console.log(result);
     </script>
 </body>
 
