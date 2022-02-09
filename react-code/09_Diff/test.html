@@ -10,12 +10,13 @@
 
 <body>
     <script>
-        let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
-        const result = arr.reduce((preValue, current, index, arr) => {
-            return Math.max(preValue, current);
-        })
-        console.log(result);
+        function Person(name) {
+            this.name = name
+        }
+        // 重写原型
+        var p = new Person('jack')
+        console.log(Person.prototype) // true
+        // console.log(p.constructor == Person) // false
     </script>
 </body>
 
