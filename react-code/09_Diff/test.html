@@ -10,13 +10,7 @@
 
 <body>
     <script>
-        function Person(name) {
-            this.name = name
-        }
-        // 重写原型
-        var p = new Person('jack')
-        console.log(Person.prototype) // true
-        // console.log(p.constructor == Person) // false
+        console.log(this);
     </script>
 </body>
 
