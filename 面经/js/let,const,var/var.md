@@ -60,3 +60,28 @@ alert(a);
 */
 ```
 
+
+
+请问以下JS代码输出的结果是什么？
+
+``` javascript
+function f(x) {
+  console.log(x);
+  var x = 200;
+  console.log(x);
+  }
+f(a = 100);
+console.log(a);
+
+/*
+	function f(x){  //2.形参x复制实参a的值，为100
+		var x;		//3.函数内变量与形参同名，被形参覆盖
+		console.log(x); //4.打印形参x，打印100
+		x = 200;    //4.形参x = 200
+		console.log(x); // 5.打印形参x，打印200；
+	}
+	f(a = 100) //1.定义了一个全局变量a并赋值a =100,然后将实参a传给函数f，调用f函数
+	console.log(a) //6.打印全局变量a，打印100
+*/
+```
+

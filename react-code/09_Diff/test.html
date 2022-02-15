@@ -6,12 +6,49 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .red {
+            color: red;
+        }
+
+        .blue {
+            color: blue;
+        }
+    </style>
 </head>
 
 <body>
+    <div id="box" class="red"> 123</div>
     <script>
-        let a = 1;
-        alert(a);
+        // 1.首先函数要绑定到Function.prototype上，这样任何函数都可以使用，因为任意函数都是Function的实例
+        Function.prototype.myCall = function (thisArg, ...args) {
+            // 2. 指定this为null，也指向window
+            // if (thisArg == null) thisArg = window
+            thisArg = thisArg || window
+            // 3.将调用call的函数设置为this对象的属性，这样通过thisArg.XX调用函数，因为函数中的this指向调用者，从而可以使得函数的this指向thisArg
+            // myCall函数的this指向调用者，也就是想要改变this指向的函数foo。我们把foo绑定在thisArg的属性上
+            thisArg.fn = this;
+            // 5.args是获取剩余的参数，值是一个数组，args=[1,2,3]，通过thisArg调用函数，并传递参数。这里对数组进行解构
+            let result = thisArg.fn(...args);
+            // 6.删除函数，返回调用结果
+            delete thisArg.fn;
+            return result
+        }
+
+
+        function foo(a, b, c) {
+            console.log(this);
+            console.log(this.name, a, b, c);
+            return a + b + c
+        }
+        const obj = {
+            name: 'litterStar'
+        }
+        const bar = function () {
+            console.log(foo.myCall(obj, 1, 2, 3));
+        }
+        bar();
+        foo(1, 2, 3);
     </script>
 </body>
 
