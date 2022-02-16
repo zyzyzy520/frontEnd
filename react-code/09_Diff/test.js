@@ -1,1 +1,3 @@
-// 1.方法一定要放在Function.prototype
+let arr = [1, 2, 3];
+console.log(arr.reverse(), arr);
+console.log(arr);

@@ -98,6 +98,26 @@ luckyStar.name;
 3. `新创建的对象绑定到当前this`上
 4. 如果没有返回其他对象，就返回 obj，否则返回其他对象
 
+``` javascript
+function myNew(constructor, ...args) {
+    // 1.创建一个空的对象
+    let obj = {};
+    // 2.让对象的proto指针和构造器的prototype指针指向同一个对象。将构造器的prototype中存储的地址给proto，使得可以指向同一个对象
+    obj._proto_ = constructor.prototype;
+    // 3. 调用构造函数，改变this，绑定对象的属性
+    let result = constructor.apply(obj, args);
+    // 4. 如果构造函数没有返回其它对象，就返回构造好的对象
+    return result == undefined ? obj : result;
+}
+// 首先设置好测试构造函数和对象
+function Person(name, age) {
+    this.name = name;
+    this.age = age;
+}
+let Ash = myNew(Person, 'Ash', 23);
+console.log(Ash.name, Ash.age);
+```
+
 
 
 #### 1.1.5 箭头函数调用
@@ -171,9 +191,26 @@ fn.bind(thisArg, arg1, arg2,...)
 -  `thisArg`：在 fun 函数运行时`指定的 this 值`
 - 🧶`arg1，arg2`：传递的其他参数。如果**`只是想在原函数的基础上改变this指向，这个不用传`**。
   - ![img](https://api2.mubu.com/v3/document_image/d316f084-91f2-4d66-8bb0-9e8af5f4b05c-10071129.jpg)
-
 - 返回`由指定的 this 值和初始化参数改造的原函数拷贝`
 - 因此当我们`只是想改变 this 指向，并且不想调用这个函数的时候`，可以使用 bind
+
+
+
+> 调用bind，就会返回一个**`新的函数`**。这个函数里面的`this就指向bind的第一个参数`，同时**`this后面的参数是预置的参数`**。调用该新的函数时，再传递的参数会放到**`预置的参数后`**一起传递进新函数。
+
+``` javascript
+this.value = 2
+var foo = {
+    value: 1
+};
+var bar = function(name, age, school) {
+  console.log(name) // 'An'
+  console.log(age) // 22
+  console.log(school) // '家里蹲大学'
+}
+var result = bar.bind(foo, 'An') //预置了第一个参数为'An'
+result(22, '家里蹲大学') //这个参数会和预置的参数合并到一起放入bar中
+```
 
 
 
@@ -209,37 +246,127 @@ call，apply，bind 这三个方法的`第一个参数(必选)，都是this`。�
 关键代码：**`thisArg.fn = this;`**myCall函数里的this指向myCall的调用者(想改变this的函数foo)，因此把foo函数绑定在了想要修改的this(obj)属性上，这样通过thisArg.fn = this 就意味着obj.fn = foo，所以obj.fn = function(a, b, c){console.log(this.name,a,b,c)}。这样obj.fn和foo都指向了同一个函数，thisArg.fn()等价于obj.fn()，`函数体的this指向调用者obj`，这样就能成功改变this了。
 
 ``` javascript
-        // 1.首先函数要绑定到Function.prototype上，这样任何函数都可以使用，因为任意函数都是Function的实例
-        Function.prototype.myCall = function (thisArg, ...args) {
-            // 2. 指定this为null，也指向window
-            // if (thisArg == null) thisArg = window
-            thisArg = thisArg || window
-            // 3.将调用call的函数设置为this对象的属性，这样通过thisArg.XX调用函数，因为函数中的this指向调用者，从而可以使得函数的this指向thisArg
-            // myCall函数的this指向调用者，也就是想要改变this指向的函数foo。我们把foo绑定在thisArg的属性上
-            thisArg.fn = this;
-            // 5.args是获取剩余的参数，值是一个数组，args=[1,2,3]，通过thisArg调用函数，并传递参数。这里对数组进行解构
-            let result = thisArg.fn(...args);
-            // 6.删除函数，返回调用结果
-            delete thisArg.fn;
-            return result
-        }
+// 1.首先函数要绑定到Function.prototype上，这样任何函数都可以使用，因为任意函数都是Function的实例
+Function.prototype.myCall = function (thisArg, ...args) {
+    // 2. 指定this为null，也指向window
+    // if (thisArg == null) thisArg = window
+    thisArg = thisArg || window
+    // 3.将调用call的函数设置为this对象的属性，这样通过thisArg.XX调用函数，因为函数中的this指向调用者，从而可以使得函数的this指向thisArg
+    // myCall函数的this指向调用者，也就是想要改变this指向的函数foo。我们把foo绑定在thisArg的属性上
+    thisArg.fn = this;
+    // 5.args是获取剩余的参数，值是一个数组。注意要分情况，可能没有参数，可能有参数;args=[1,2,3]，通过thisArg调用函数，并传递参数。这里对数组进行解构
+    let result;
+    if (args.length != 0) {
+        result = thisArg.fn(...args);
+    } else {
+        result = thisArg.fn();
+    }
+
+    // 6.删除函数，返回调用结果
+    delete thisArg.fn;
+    return result
+}
 
 
-        function foo(a, b, c) {
-            console.log(this.name, a, b, c);
-            return a + b + c
-        }
-        const obj = {
-            name: 'litterStar'
-        }
-        const bar = function () {
-            console.log(foo.myCall(obj, 1, 2, 3));
-        }
-        bar();
+function foo(a, b, c) {
+    console.log(this.name, a, b, c);
+    return a + b + c
+}
+const obj = {
+    name: 'litterStar'
+}
+const bar = function () {
+    console.log(foo.myCall(obj, 1, 2, 3));
+}
+bar();
 ```
 
 
 
 ### 3.2 apply
 
+ ``` javascript
+ // 1.方法一定要放在Function.prototype，这样所有函数都可以调用
+ // 在定义函数时...arg表示剩余参数，形成一个伪数组，相当于是[arg1, arg2,...]。但是不具有伪数组的方法
+ Function.prototype.myApply = function (thisArg, ...arg) {
+     // 2.如果传递过来的thisArg是null，让其指向window
+     thisArg = thisArg || window
+     // 3.myApply的调用者是函数foo，所以myApply函数里的this指向调用者函数foo，给thisArg里面的一个属性指针也指向这个函数，这样thisArg就可以通过.运算符调用foo函数，从而改变foo函数里的this指针
+     thisArg.fn = this;
+     // 4.拿到数组参数，函数有可能有参数，有可能没有参数，要进行判断
+     // 5.调用函数，传递参数，注意result的声明不要放里面，形成块级作用域，结束就没有了
+     let result;
+     if (arg.length != 0) {
+         // 将伪数组进行解构,arg = [[1,2,3]], arg[0]拿到参数数组，再解构
+         result = thisArg.fn(...arg[0]);
+     } else {
+         // arg = []
+         result = thisArg.fn();
+     }
  
+     // 6.删除属性，因为thisArg本来是没有这个属性的
+     delete thisArg.fn;
+     // 7.返回函数执行值
+     return result;
+ }
+ 
+ 
+ 
+ // 首先写验证函数
+ function foo(a, b, c) {
+     console.log(this.name);
+     return a + b + c;
+ }
+ // 想要绑定的this对象
+ let obj = {
+     name: 'Hello'
+ }
+ // 调用自己写的apply，注意参数得是数组
+ // foo函数自身时没有myApply这个属性的，其通过proto找到其构造函数Function.prototype指向的对象，里面有
+ console.log(foo.myApply(obj, [1, 2, 3]));
+ ```
+
+
+
+### 3.3 bind
+
+bind() 方法创建一个新的函数，在 bind() 被调用时，这个新函数的 this 被指定为 bind() 的第一个参数，而其余参数将作为新函数的参数，供调用时使用。
+
+``` javascript
+// 1. 首先要绑定到Fucntion.prototype上，这样所有函数都可以调用\
+// 2. 在函数参数里的...args表示剩余参数，是一个伪数组，args = [arg1, arg2, ...]
+Function.prototype.myBind = function (thisArg, ...args) {
+    // 2. 不能再通过绑定到thisArg属性上了，因为后面会删除，这样再次调用就没了，所以用一个变量来存储this，形成闭包。这样thisArg会一直保存，使得后面直接调用返回的函数的时候，仍能够找到新的this-thisArg和预置的参数args
+    // foo函数通过.运算符调用myBind，所以myBind里的this指向foo函数
+    const fn = this;
+
+    return function () {
+        // 3.通过apply，改变this指向并调用函数
+        let result = fn.apply(thisArg, [...args, ...arguments]);
+        return result;
+    }
+}
+
+// 写验证函数
+function foo(a, b, c) {
+    console.log(this.name);
+    return a + b + c;
+}
+
+let obj = {
+    name: 'Hello'
+}
+
+let fn = foo.myBind(obj, 1);
+console.log(fn(2, 3));
+console.log(fn(2, 4));
+```
+
+
+
+### 3.4 总结
+
+本质上，call和apply都是通过给传入对象设定一个属性即指针，让这个指针指向函数，从而`通过thisArg.fn调用，让thisArg通过.运算符调用了函数，使得函数里的this指向了thisArg`
+
+bind利用了`闭包和js模块内的apply`
+

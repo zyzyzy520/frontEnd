@@ -2,7 +2,9 @@
 
 > **`用来删除一个对象的属性。实际上是将属性值置为undefined`**
 >
-> **`换句话说如果前面没有.，就是找window；有.就找.前面的对象`**
+> **`换句话说如果变量前面没有.且变量不在该作用域内就往上找，直到最外层window；有.就找.前面的对象`**
+>
+> **`对于挂载在windows上的对象，只有通过直接赋值方式挂载在windows上的才能用delete删除`**
 
 
 
@@ -68,7 +70,7 @@ var obj1 = {
 }
 
 delete Math.PI; // false
-delte obj.h; //true
+delete obj.h; //true
 delete obj; //ture ,obj 是全局变量的属性，而不是变量。
 
 delete obj1.h;//true
