@@ -2,6 +2,8 @@
 
 ## 1.作用域
 
+### 1.1 
+
 以下代码执行的结果
 
 ``` javascript
@@ -17,6 +19,37 @@ for(var i=0;i<3;++i){
 而要执行的函数内部没有变量i，所以要去外层找，var 定义的变量i，位于全局作用域只有一个，循环结束后值为3，所以打印三次3
 
 
+
+### 1.2 
+
+现有如下html结构
+
+``` html
+<ul>
+ <li>click me</li>
+ <li>click me</li>
+ <li>click me</li>
+ <li>click me</li>
+</ul>
+```
+
+运行如下代码：
+
+``` javascript
+var elements=document.getElementsByTagName('li');
+var length=elements.length;
+for(var i=0;i<length;i++){
+    elements[i].onclick=function() {
+        alert(i);
+    }
+}
+```
+
+依次点击4个li标签，哪一个选项是正确的运行结果?
+
+每一次for循环的时候，就给一个小li绑定回调函数，for循环了4次，就给所有小li绑定了回调函数。当点击小li时，调用回调函数
+
+`回调函数内部没有变量i，所以要去外层找，var 定义的变量i，位于全局作用域只有一个，循环结束后值为4`，所以打印4次4
 
 ## 2.声明
 
@@ -42,6 +75,8 @@ console.log(a);...②
 
 ## 3.变量提升
 
+### 3.1
+
 执行以下代码，输出的a值为（）
 
 ``` javascript
@@ -61,6 +96,8 @@ alert(a);
 ```
 
 
+
+### 3.2
 
 请问以下JS代码输出的结果是什么？
 
@@ -82,6 +119,40 @@ console.log(a);
 	}
 	f(a = 100) //1.定义了一个全局变量a并赋值a =100,然后将实参a传给函数f，调用f函数
 	console.log(a) //6.打印全局变量a，打印100
+*/
+```
+
+
+
+### 3.3
+
+请问函数test最终输出的值是多少？
+
+``` javascript
+var a = 1;
+function test() {
+    console.log(a);
+    if(false) {
+        var a = 2;
+    }
+}
+test();
+
+/*
+	var a;
+	function test(){}
+	a = 1;
+	test(); /// 1.执行test函数
+	
+	函数体如下
+	{
+		var a; //2.变量提升，var声明的变量只有全局作用域和函数作用域，所以var a 声明被提升到函数作用域顶部
+		console.log(a);  //3.输出 undefined，声明了，但未赋值
+		if(false){
+			a = 2
+		}
+	}
+
 */
 ```
 

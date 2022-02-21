@@ -1,3 +1,3 @@
 let arr = [1, 2, 3];
-console.log(arr.reverse(), arr);
+arr.shift();
 console.log(arr);

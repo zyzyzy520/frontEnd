@@ -96,7 +96,7 @@ luckyStar.name;
 1. 创建一个新的`空对象 obj`
 2. `将新对象的的原型指向当前函数的原型`
 3. `新创建的对象绑定到当前this`上
-4. 如果没有返回其他对象，就返回 obj，否则返回其他对象
+4. 如果`构造函数内没有返回其他对象，就返回 obj，否则返回其他对象`
 
 ``` javascript
 function myNew(constructor, ...args) {
@@ -107,7 +107,7 @@ function myNew(constructor, ...args) {
     // 3. 调用构造函数，改变this，绑定对象的属性
     let result = constructor.apply(obj, args);
     // 4. 如果构造函数没有返回其它对象，就返回构造好的对象
-    return result == undefined ? obj : result;
+    return typeof result === 'object' ? result : obj;
 }
 // 首先设置好测试构造函数和对象
 function Person(name, age) {
@@ -246,39 +246,30 @@ call，apply，bind 这三个方法的`第一个参数(必选)，都是this`。�
 关键代码：**`thisArg.fn = this;`**myCall函数里的this指向myCall的调用者(想改变this的函数foo)，因此把foo函数绑定在了想要修改的this(obj)属性上，这样通过thisArg.fn = this 就意味着obj.fn = foo，所以obj.fn = function(a, b, c){console.log(this.name,a,b,c)}。这样obj.fn和foo都指向了同一个函数，thisArg.fn()等价于obj.fn()，`函数体的this指向调用者obj`，这样就能成功改变this了。
 
 ``` javascript
-// 1.首先函数要绑定到Function.prototype上，这样任何函数都可以使用，因为任意函数都是Function的实例
-Function.prototype.myCall = function (thisArg, ...args) {
-    // 2. 指定this为null，也指向window
-    // if (thisArg == null) thisArg = window
-    thisArg = thisArg || window
-    // 3.将调用call的函数设置为this对象的属性，这样通过thisArg.XX调用函数，因为函数中的this指向调用者，从而可以使得函数的this指向thisArg
-    // myCall函数的this指向调用者，也就是想要改变this指向的函数foo。我们把foo绑定在thisArg的属性上
+// 首先要把自己写的call方法放在Function.prototype上，这样其它函数才可以调用
+// args = [arg1, arg2,  arg3.....]
+Function.prototype.mycall = function (thisArg, ...args) {
+    // 1.判断传入的this是否为空，为空就让this指向window
+    thisArg = thisArg || window;
+    // 2.将fn绑定在thisArg上，注意fn调用了mycall函数，所以fn里的this指向fn
     thisArg.fn = this;
-    // 5.args是获取剩余的参数，值是一个数组。注意要分情况，可能没有参数，可能有参数;args=[1,2,3]，通过thisArg调用函数，并传递参数。这里对数组进行解构
-    let result;
-    if (args.length != 0) {
-        result = thisArg.fn(...args);
-    } else {
-        result = thisArg.fn();
-    }
-
-    // 6.删除函数，返回调用结果
+    // 3.通过thisArg调用fn，使得fn里的this指向thisArg
+    const result = thisArg.fn(...args);
+    // 4.将fn从thisArg上删除
     delete thisArg.fn;
-    return result
+    // 5.返回结果
+    return result;
 }
 
-
-function foo(a, b, c) {
-    console.log(this.name, a, b, c);
-    return a + b + c
+// 创造对象
+let obj = {
+    name: '123'
 }
-const obj = {
-    name: 'litterStar'
+// 测试函数
+function fn() {
+    console.log(this.name);
 }
-const bar = function () {
-    console.log(foo.myCall(obj, 1, 2, 3));
-}
-bar();
+fn.mycall(obj)
 ```
 
 

@@ -7,24 +7,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        .red {
-            color: red;
+        .container {
+            width: 900px;
+            height: 500px;
+            border: 1px solid pink;
         }
 
-        .blue {
-            color: blue;
+        .left {
+            float: left;
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+            margin: 0 20px;
+            padding-left: 40px;
         }
     </style>
 </head>
 
 <body>
-    <div id="box" class="red"> 123</div>
+    <div class="container">
+        <div class="left">123</div>
+        <div class="right"></div>
+    </div>
     <script>
-        a = '213'
-        console.log(window['1'])
-        let num = (function (x) { delete x; return x; })('a');
-        console.log(window['1'])
-        // console.log(num);
+        let obj = {
+            name: 123
+        }
+
+        var name = 456;
+
+        function fn() {
+            console.log(this.name);
+        }
+
+        fn.bind(obj)();
+        fn();
     </script>
 </body>
 
