@@ -1,4 +1,4 @@
-# 基本使用
+# 8基本使用
 
 ## 1.相关JS库
 
@@ -19,7 +19,7 @@
         let VDOM = <h1> Hello ,</h1>;
 
         // 2. React将虚拟DOM转化为真实DOM，渲染到页面
-        // ReactDom.render(虚拟DOM，容器)
+        // ReactDom.render(虚拟DOM，真实容器)
         ReactDOM.render(VDOM, document.getElementById('test'));
 
     </script>
@@ -57,7 +57,7 @@
 1. React提供了一些API来创建一种 “特别” 的一般js对象
 
    ``` javascript
-   const VDOM = React.createElement('xx', {id:'xx'}, 'xx')
+   const VDOM = React.createElement('标签名', {id:'xx'}, '子元素')
    ```
 
 2. **`虚拟DOM对象`**最终都会被React转换为真实的DOM

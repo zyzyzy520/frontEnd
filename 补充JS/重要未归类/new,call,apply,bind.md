@@ -178,6 +178,18 @@ arguments = [name, age]。利用apply调用Person类后，传过去的是name,ag
 
 ![img](https://api2.mubu.com/v3/document_image/b43a7504-3337-4f74-b0c1-3b842fec7000-10071129.jpg)
 
+#### 2.2.1 apply的妙用
+
+找数组的最大值
+
+``` javascript
+let arr = [1,2,44,5,6];
+
+Math.max.apply(null, arr);
+```
+
+
+
 
 
 ### 2.3 bind
