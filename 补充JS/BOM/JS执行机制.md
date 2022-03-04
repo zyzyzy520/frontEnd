@@ -146,3 +146,130 @@
 ![img](https://api2.mubu.com/v3/document_image/ca49b68a-4ba1-46c3-9c25-a32eccd15e15-10071129.jpg)
 
 `打印2`后，`将计时器交给异步进程处理`，`一旦3秒时间到`，就`把fn放入任务队列`中
+
+
+
+## 6.微任务(Microtasks)、宏任务(task)
+
+##### `微任务和宏任务皆为异步任务`，它们都属于一个队列，主要区别在于他们的执行顺序，Event Loop的走向和取值
+
+面对一段代码，`整体script作为第一个宏任务进入主线程,执行完同步任务后，清空微任务队列；然后再执行一个宏任务，看微任务队列是否为空`，如果不为空，清空微任务队列，再执行一个宏任务如此循环
+
+<img src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2018/7/14/164974fa4b42e4af~tplv-t2oaga2asx-watermark.awebp" alt="cmd-markdown-logo" style="zoom: 50%;" />
+
+
+
+### 6.1 微任务(Microtasks)
+
+- 发起者: `JS引擎`      
+- 事件：`Promise`、MutaionObserver、`process.nextTick（Node.js）`      
+- 运行：**`先运行`**
+
+
+
+###  6.2 宏任务(task)
+
+- 发起者：`宿主（Node、浏览器）`
+- 事件：`script(整体代码)`、`setTimeout`、`setInterval`、setImmediate(Node.js 环境)、UI事件、I/O（Node.js）
+- 运行：**`后运行`**
+
+
+
+### 6.3 例子
+
+``` javascript
+Promise.resolve().then(()=>{
+  console.log('Promise1')  
+  setTimeout(()=>{
+    console.log('setTimeout2')
+  },0)
+})
+
+setTimeout(()=>{
+  console.log('setTimeout1')
+  Promise.resolve().then(()=>{
+    console.log('Promise2')    
+  })
+},0)
+
+
+/*
+Promise和setTimeout1会先分别被放入微任务队列和宏任务队列中。
+执行栈(宏任务)的同步任务执行完毕，会去 microtasks queues 找 清空 microtasks queues ，输出Promise1，同时会生成一个异步任务 setTimeout2，放入宏任务队列中
+去宏任务队列查看此时队列是 setTimeout1 在 setTimeout2 之前，所以输出 setTimeout1。同时会生成Promise2的一个 microtasks ，放入 microtasks queues 中，接着又是一个循环，去清空 microtasks queues ，输出 Promise2
+清空完 microtasks queues ，就又会去宏任务队列取一个，这回取的是 setTimeout2
+
+*/
+```
+
+``` javascript
+console.log('1');
+
+setTimeout(function () {    //setTimeout1
+    console.log('2');
+    process.nextTick(function () { //process2
+        console.log('3');
+    })
+    new Promise(function (resolve) { //promise2
+        console.log('4');
+        resolve();
+    }).then(function () {
+        console.log('5')
+    })
+})
+process.nextTick(function () {   //process1
+    console.log('6');
+})
+new Promise(function (resolve) {  //promise1
+    console.log('7');
+    resolve();
+}).then(function () {
+    console.log('8')
+})
+
+setTimeout(function () {    //setTimeout2
+    console.log('9');
+    process.nextTick(function () { //process3
+        console.log('10');
+    })
+    new Promise(function (resolve) {    //promise3
+        console.log('11');
+        resolve();
+    }).then(function () {
+        console.log('12')
+    })
+})
+
+
+/*
+1.执行同步代码，输出1（promise.then才是异步）
+2.将setTimeout1放入宏任务队列中tasks=[setTimeout1]
+3.将process1放入微任务队列中microtasks=[process1]
+4.执行同步代码，输出7（promise.then才是异步）
+5.将promise1放入微任务队列中microtasks=[process1, promise1]
+6.将setTimeout2放入宏任务队列中tasks=[setTimeout1, setTimeout2]
+7. 先将当前的微任务队列microtasks=[process1, promise1]清空
+    --7.1 执行process1，输出6
+    --7.2 执行promise1，输出8
+8. 执行一个宏任务setTimeout1
+    --8.1执行同步代码输出2
+    --8.2将process2放入微任务队列中，此时microtasks=[process2]
+    --8.3执行同步代码输出4
+    --8.4将promise2放入微任务队列中，此时microtasks=[process2, promise2]
+9. 此时微任务队列不为空，清空微任务队列microtasks=[process2, promise2]
+    --9.1 执行process2，输出3
+    --9.2 执行promise2，输出5
+10. 执行下一个宏任务setTimeout2
+    --10.1执行同步代码，输出9
+    --10.2将process3放入微任务队列中，此时microtasks=[process3]
+    --10.3执行同步代码，输出11
+    --10.4将promise3放入为任务队列中，此时microtasks=[process3, promise3]
+11. 此时微任务队列不为空，清空微任务队列microtasks=[process3, promise3]
+    --11.1 执行process3，输出10
+    --11.2 执行promise3，输出12
+
+
+1 7 6 8 2 4 3 5 9 11 10 12
+*/
+```
+

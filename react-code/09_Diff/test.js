@@ -1,1 +1,4 @@
-console.log(2.toString());
+let sum = (a, b) => {
+    return a + b;
+}
+console.log(sum(1, 2));
