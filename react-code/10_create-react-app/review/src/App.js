@@ -21,7 +21,7 @@ export default class App extends React.Component {
         <div className="todo-wrap">
           <Add add={this.addTodos} />
           <List todos={todos} deleteTodo={this.deleteTodos} changeChecked={this.changeChecked} />
-          <Footer todos={todos} />
+          <Footer todos={todos} deleteDone={this.deleteDone} />
         </div>
       </div>
     )
@@ -50,5 +50,16 @@ export default class App extends React.Component {
         break;
       }
     }
+    this.setState({ todos: todos })
+  }
+  //4.删除所有已完成任务
+  deleteDone = () => {
+    let { todos } = this.state;
+    // 过滤掉所有已完成的任务
+    todos = todos.filter((element) => {
+      return element.done == false;
+    })
+    console.log(todos)
+    this.setState({ todos: todos });
   }
 }
