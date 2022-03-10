@@ -28,6 +28,8 @@ console.log(fn());
 
 **`await会阻止async函数后面语句的执行。`**
 
+await一定要放在async函数里
+
 ``` javascript
 const p = new Promise(function (resolve, reject) {
     resolve(100);
@@ -40,6 +42,23 @@ async function getp() {
 }
 
 getp();
+
+//返回值也是Promise对象，要拿也得等
+const p = new Promise(function (resolve, reject) {
+    resolve(100);
+})
+
+async function getp() {
+    const result = await p;
+    console.log(result);
+    return result;
+}
+
+async function getN() {
+    let res = await getp();
+    console.log(res);  //100
+}
+getN();
 ```
 
 ### 2.1 await 其它
