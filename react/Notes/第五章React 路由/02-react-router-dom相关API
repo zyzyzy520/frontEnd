@@ -1,0 +1,84 @@
+## 1. 内置组件
+
+1. <BrowserRouter>
+
+   - 路由器，一个完整的组件一个，一般写在渲染App组件那部分
+
+     ``` javascript
+     import React from 'react';
+     import ReactDOM from 'react-dom';
+     import { BrowserRouter } from 'react-router-dom'
+     import App from './App';
+     
+     ReactDOM.render(
+         // 一个组件用一个路由器
+         <BrowserRouter>
+             <App />
+         </BrowserRouter>
+         , document.getElementById('root'));
+     
+     ```
+
+     
+
+2. <Link>
+
+   - 用于编写路由连接
+
+   - 属性to代表要修改的路径，点击后就会修改浏览器的路径最后一部分
+
+     ``` html
+     {/* 在React中靠路由链接实现切换组件---编写路由连接 */}
+     <Link className="list-group-item active" to='/about'>About</Link>
+     <Link className="list-group-item" to='/home'>Home</Link>
+     ```
+
+     
+
+3. <Route>
+
+   - 注册路由
+
+   - path对应浏览器路径，component表示浏览器路径对应的组件
+
+     ``` html
+     <Route path="/about" component={About} />
+     <Route path="/home" component={Home} />
+     ```
+
+     
+
+逻辑路线：点击Link标签，改变浏览器路径；路由器侦测到浏览器路径改变，去Route标签看哪个能匹配上路径，渲染对应的组件
+
+
+
+4. <NavLink> 与封装<NavLink>(<MyNavLink)
+
+   - NavLink可以实现路由连接的`点击高亮效果`，通过activeClassName指定样式名即可
+
+   - 标签体内容<NavLink>213123</NavLink>是一个特殊的标签属性
+
+   - 通过`this.props.children可以获取组件标签里的标签体内容`（标签和标签闭合之间的内容）
+
+     ``` javascript
+     <NavLink className="list-group-item" activeClassName="active" {...this.props}></NavLink>
+     ```
+
+     
+
+5. <switch>
+
+   - 通常情况下，path和component是一一对应的关系。
+
+   - 所以`当浏览器路径改变，路由器在寻找哪个Route的path能和路径对应时，找到一个就可以停止了，无需再往下找了`
+
+   - switch就是这样的功能，`找到一个就让路由器停止寻找了`。提高了路由匹配效率
+
+     ``` javascript
+     <switch>
+         <Route path="/about" component={About} />
+         <Route path="/home" component={Home} />
+     </switch>
+     ```
+
+     

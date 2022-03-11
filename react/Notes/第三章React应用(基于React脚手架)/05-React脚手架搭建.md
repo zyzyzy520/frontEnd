@@ -110,3 +110,17 @@ npm/yarn eject：在react中 react-scripts 是 create-react-app 的一个核心�
 - src放操作代码
 
 ![image-20220115112741873](C:\Users\zayn\AppData\Roaming\Typora\typora-user-images\image-20220115112741873.png)
+
+
+
+## 4. 脚手架的服务器
+
+脚手架底层会通过devServer开启本地服务器
+
+![image-20220310165054560](C:\Users\zayn\AppData\Roaming\Typora\typora-user-images\image-20220310165054560.png)
+
+而`向本地服务器请求文件，都是从public文件夹下寻找`
+
+![image-20220310165135772](C:\Users\zayn\AppData\Roaming\Typora\typora-user-images\image-20220310165135772.png)
+
+`请求的资源找不到时，会将public/index.html作为响应`。
