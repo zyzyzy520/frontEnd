@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { Link, Route } from 'react-router-dom'
+import { Link, Redirect, Route, Switch } from 'react-router-dom'
 import Home from './pages/Home'
 import About from './pages/About'
 import Header from './Components/Header'
@@ -28,10 +28,12 @@ export default class App extends React.Component {
           <div className="col-xs-6">
             <div className="panel">
               <div className="panel-body">
-                <switch>
-                  <Route path="/about/a" component={About} />
+                {/* 注册路由 */}
+                <Switch>
+                  <Route path="/about" component={About} />
                   <Route path="/home" component={Home} />
-                </switch>
+                  <Redirect to="/home"></Redirect>
+                </Switch>
               </div>
             </div>
           </div>
