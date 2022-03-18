@@ -7,45 +7,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        .container {
-            display: flex;
-            width: 500px;
-            height: 200px;
-            border: 1px solid pink;
-            margin: 20px auto;
-            justify-content: flex-start;
-        }
 
-        .box1 {
-            flex-basis: 25%;
-            width: 50px;
-            height: 50px;
-            background-color: red;
-        }
-
-        .box2 {
-            flex-basis: 25%;
-            width: 100px;
-            height: 50px;
-            background-color: blue;
-        }
-
-        .box3 {
-            flex-basis: 25%;
-            flex-grow: 1;
-            width: 200px;
-            height: 50px;
-            background-color: orange;
-        }
     </style>
 </head>
 
 <body>
-    <div class="container">
-        <div class="box1"></div>
-        <div class="box2"></div>
-        <div class="box3"></div>
-    </div>
+    <button id="btn">发送请求</button>
 </body>
+
+<script>
+    let btn = document.querySelector('#btn');
+    let timer = null;
+    btn.addEventListener('click', throttle(fn, 3000))
+    function fn(thisArg, a, b) {
+        console.log(this);
+    }
+    function throttle(fn, delay) {
+        let timer = null;
+        return function (...args) {
+            // 没有定时器，才开启。有定时器，要等上一个事件处理完毕，才能触发
+            if (timer == null) {
+                timer = setTimeout(() => {
+                    fn.apply(this, args);
+                    // 该定时器执行完毕后，清除
+                    timer = null;
+                }, delay)
+            }
+        }
+    }
+
+</script>
 
 </html>

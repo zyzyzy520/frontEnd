@@ -111,3 +111,84 @@ console.log("4");
 ```
 
 可以看到，结果输出顺序总是：`1 -> 4 -> 3 -> 2`。1与4的顺序不必再说(**`先执行同步任务，再执行异步任务`**)，而2与3`先输出Promise的then，而后输出定时器任务`。原因则是**`Promise属于JavaScript引擎内部任务`**，而**`setTimeout则是浏览器API`**，而**`引擎内部任务优先级高于浏览器API任务`**，所以有此结果。
+
+
+
+## 5.Promise.all()
+
+- **Promise.all可以`将多个Promise实例包装成一个新的Promise实例`。同时，成功和失败的返回值是不同的，`成功的时候返回的是一个结果数组`，而`失败的时候则返回最先被reject失败状态的值`。**
+- 需要特别注意的是，**`Promise.all获得的成功结果的数组里面的数据顺序和Promise.all接收到的数组顺序是一致的`**，即p1的结果在前，即便p1的结果获取的比p2要晚。这带来了一个绝大的好处：在前端开发请求数据的过程中，偶尔会遇到发送多个请求并根据请求顺序获取和使用数据的场景，使用Promise.all毫无疑问可以解决这个问题。
+- 参数：Promise实例组成的数组
+- 返回值：新的Promise实例
+
+``` javascript
+let p1 = new Promise((resolve, reject) => {
+    resolve('成功了')
+})
+
+let p2 = new Promise((resolve, reject) => {
+    resolve('success')
+})
+
+let p3 = Promise.reject('失败')
+
+Promise.all([p1, p2]).then((result) => {
+    console.log(result)               //['成功了', 'success']
+}).catch((error) => {
+    console.log(error)
+})
+
+Promise.all([p1, p3, p2]).then((result) => {
+    console.log(result)
+}).catch((error) => {
+    console.log(error)      // 失败了，打出 '失败'
+})
+
+Promise.all([p1, p3, p2]).then((result) => {
+    console.log(result)
+}, (error) => {
+    console.log(error);
+})     // 失败了，打出 '失败'
+
+```
+
+
+
+## 6.Promise.race()
+
+- Promse.race就是赛跑的意思，意思就是说，**`Promise.race([p1, p2, p3])里面哪个结果获得的快，就返回那个结果，不管结果本身是成功状态还是失败状态`**。
+- 参数：Promise实例组成的数组
+- 返回值：新的Promise实例
+
+``` javascript
+let p1 = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve('success1')
+    }, 1000)
+})
+
+let p2 = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        reject('failed')
+    }, 500)
+})
+
+let p3 = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve('success3')
+    }, 500)
+})
+
+Promise.race([p1, p2]).then((result) => {
+    console.log(result)
+}).catch((error) => {
+    console.log(error)  // 打开的是 'failed'
+})
+
+Promise.race([p1, p3]).then((result) => {
+    console.log(result)  //打开的是'success3'
+}, (error) => {
+    console.log(error);
+})
+```
+

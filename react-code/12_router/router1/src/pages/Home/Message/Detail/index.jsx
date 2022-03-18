@@ -21,12 +21,12 @@ export default class Detail extends Component {
         const { id, title } = searchObj*/
 
         // state参数处理
-        // console.log(this.props.location.state)
         const { id, title } = this.props.location.state;
+
         const { content } = detailData.find(Element => {
             return Element.id == id;
         })
-        // console.log(1);
+
         return (
             <ul>
                 <li>ID: {id}</li>
