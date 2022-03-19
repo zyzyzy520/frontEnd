@@ -23,8 +23,6 @@ let p1 = new Promise((resolve, reject) => {
 console.dir(p1); // 状态为 fulfilled，值为 100 
 ```
 
-
-
 ## 2. 创建实例的语法格式
 
 ``` javascript
@@ -48,6 +46,16 @@ Promise实例生成后，可用`then`方法分别**`指定两种状态回调参�
 
 1. **`Promise对象状态改为Resolved时调用 （必选）`**
 2. Promise对象状态改为Rejected时调用 （可选，可省略）
+
+``` javascript
+promise.then(onFulfilled, onRejected)
+```
+
+
+
+- onFulfilled方法表示状态从pending ---> fullfilled所执行的方法
+- onRejected表示状态从pending ---->  rejected所执行的方法
+- 为了实现`链式调用`，`then方法必须返回一个promise`
 
 ### 3.1 使用格式
 

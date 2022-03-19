@@ -49,6 +49,7 @@ const p = new Promise(function (resolve, reject) {
 })
 
 async function getp() {
+    //result接收Promise对象p丢出的结果100
     const result = await p;
     console.log(result);
     return result;
@@ -115,3 +116,32 @@ console.log("6");
 - 同步代码执行完毕后，执行异步代码
 - `const v1 = await foo()`接收到了返回值2，`console.log(v1)`，所以**`第四个输出2`**。
 - `const v2 = await bar()`**，`尽管bar是async异步函数，但仍然会先执行bar函数`**，bar函数体内`console.log(3)`，**`所以第五个输出3`**。然后await等待bar函数的返回结果Promise对象，因为没有其它同步代码了，所以执行该异步代码，V2接收到promise对象丢出的4，所以最后`console.log(v2)`，**`最后输出4`**
+
+ 
+
+## 4.本质
+
+- async/await是语法糖，`用async标记的函数，在其内部遇到await标记的逻辑时，会暂时返回，不执行后续的逻辑`，`等await内部的逻辑处理完毕后，再继续走await后面的逻辑`，这个方式，其实就是es6定义的`generator`函数。即`async与await将标记的函数转换成了生成器`。
+- async/await是通过`将函数变为一个生成器函数`，并`使用自动执行函数来执行他`，`在执行过程中，有意地让生成的迭代器放到promise的then中`，即异步完成后才执行，从而达到的同步效果。
+
+### 
+
+## 5.注意事项
+
+### 5.1 await其它
+
+如果await后面不是promise对象是函数，则必须是`await otherTest()`，不能是`await otherTest`
+
+``` javascript
+async function test() {
+    console.log('test start');
+    await otherTest();
+    console.log('test end');
+}
+function otherTest() {
+    console.log('otherTest');
+}
+test();
+console.log('after test');
+```
+

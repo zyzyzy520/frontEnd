@@ -1,45 +1,36 @@
-// 用于计算scoreArr内比m小的和比m大的各有多少
-function cal(m) {
+let goodsValue = 65;
+let value = [4, 50, 30, 20, 5];
+getMin(goodsValue, value);
+function getMin(goodsValue, value) {
+    let dp = new Array(value.length + 1).fill(0).map(Element => {
+        return new Array(goodsValue + 1).fill(0);
+    })
 
-}
-let n = 6, x = 2, y = 3;
-let str = '1 2 3 4 5 6';
+    //dp[i][j]表示前i张代金券凑够商品价值j的最少张数
+    // 初始化，当没有代金券时，无论如何也凑不齐所以是false
+    for (let j = 0; j <= goodsValue; j++) dp[0][j] = 'impossible';
+    // 当要凑的商品价格为0时，无论有多少种代金券，不取就好
+    for (let i = 0; i <= value.length; i++) dp[i][0] = 0;
 
+    // 针对第i -1张代金券，需要做goodsvalue个决策来保证最佳
+    for (i = 1; i <= value.length; i++) {
+        for (j = 1; j <= goodsValue; j++) {
+            if (value[i - 1] > goodsValue) {
+                // 该代金券价值比物品价值大，肯定不能取，凑够该商品代金券的数量由前面决定
+                dp[i][j] = dp[i - 1][j]
+            } else {
+                // 可以将代金券放入，但是放几张不确定，所以针对每一种情况进行讨论
+                dp[i][j] = dp[i - 1][j]  //先是不放入
+                for (k = 1; k <= parseInt(j / value[i - 1]); k++) {
+                    if (dp[i][j] != 'impossible' && dp[i - 1][j - k * value[i - 1]] != 'impossible') {
+                        dp[i][j] = Math.min(dp[i][j], dp[i - 1][j - k * value[i - 1]] + k);
+                    } else if (dp[i][j] == 'impossible' && dp[i - 1][j - k * value[i - 1]] != 'impossible') {
+                        dp[i][j] = dp[i - 1][j - k * value[i - 1]] + k
+                    }
 
-scoreArr = str.split(' ').map(Element => parseInt(Element));
-
-// 1.对scoreArr进行排序
-scoreArr.sort(function (a, b) {
-    if (a - b > 0) return 1;
-    else if (a - b < 0) return -1;
-    else return 0;
-})
-
-// 2.m肯定为scoreArr的最小值和最大值之间
-let min = scoreArr[0], max = scoreArr[scoreArr.length - 1];
-var reverseBetween = function (head, left, right) {
-    if (head == null || head.next == null) return head;
-    let leftNode = new ListNode(), rightNode = head, ansL = head, ansR = head;
-    leftNode.next = head;
-    // 记录反转链表的前一个结点，有可能反转链表从第一个结点开始
-    for (let i = 1; i <= left - 1; i++) leftNode = leftNode.next;
-    // 反转链表的第一个结点
-    ansL = leftNode.next;
-    // 结束条件是left = right
-    function reverse(node, left) {
-        if (left == right) {
-            ansR = node;
-            rightNode = node.next;
-            return;
+                }
+            }
         }
-        left++;
-        reverse(node.next, left);
-        node.next.next = node;
-        node.next = null;
     }
-    reverse(leftNode.next, left);
-    leftNode.next = ansR;
-    ansL.next = rightNode;
-    if (left == 1) return leftNode.next;
-    return head;
-};
+    console.log(dp[value.length][goodsValue]);
+}
