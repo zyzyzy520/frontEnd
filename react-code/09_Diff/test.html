@@ -36,39 +36,44 @@
             background-color: yellow;
             margin-top: 100px;
         }
+
+        div {
+            width: 200px;
+            height: 200px;
+            border: 1px solid salmon;
+        }
     </style>
 </head>
 
 <body>
-    <!-- <button id="btn">发送请求</button> -->
-    <div class="container">
-        <div class="box2"></div>
-        <div class="box3"></div>
-    </div>
-    <div class="bigBox"></div>
+    <div id="a">a</div>
+    <div id="b">b</div>
+    <div id="c">c</div>
+    <a href="#abc">abc</a>
 </body>
 
 <script>
-    let btn = document.querySelector('#btn');
-    let timer = null;
-    btn.addEventListener('click', throttle(fn, 3000))
-    function fn(thisArg, a, b) {
-        console.log(this);
-    }
-    function throttle(fn, delay) {
-        let timer = null;
-        return function (...args) {
-            // 没有定时器，才开启。有定时器，要等上一个事件处理完毕，才能触发
-            if (timer == null) {
-                timer = setTimeout(() => {
-                    fn.apply(this, args);
-                    // 该定时器执行完毕后，清除
-                    timer = null;
-                }, delay)
-            }
-        }
-    }
+    let a = document.querySelector('#a');
+    a.addEventListener('click', function () {
+        history.pushState({ a: 1 }, 'no', 'a.html');
+        // alert(1)
+    })
 
+    let b = document.querySelector('#b');
+    b.addEventListener('click', function () {
+        history.pushState({ b: 1 }, 'no', 'b.html');
+        // alert(1)
+    })
+
+    let c = document.querySelector('#c');
+    c.addEventListener('click', function () {
+        history.pushState({ c: 1 }, 'no', 'c.html');
+        // alert(1)
+    })
+    window.addEventListener('popstate', function (e) {
+        // console.log(e.state);
+        alert(1)
+    })
 </script>
 
 </html>
