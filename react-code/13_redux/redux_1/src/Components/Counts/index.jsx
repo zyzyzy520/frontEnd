@@ -1,54 +1,64 @@
 import React from "react";
-
+import store from "../../redux/store";
+import { createIncrementAction, createDecrementAction, createIncrementAsyncAction } from "../../redux/count_action";
 export default class Count extends React.Component {
     container = React.createRef()
-    state = { sum: 0 }
+    state = { wind: '台风' }
+
     increment = () => {
-        // 获取原状态
-        let { sum } = this.state;
         //获取用户选择的数字
         let { container } = this;
-        let value = parseInt(container.current.value);
-        //更新状态
-        this.setState({ sum: sum + value });
+        const value = parseInt(container.current.value);
+        //创建action
+        const action = createIncrementAction(value);
+        //通知redux分发这个action
+        store.dispatch(action);
     }
+
     decrement = () => {
-        // 获取原状态
-        let { sum } = this.state;
         //获取用户选择的数字
         let { container } = this;
-        let value = parseInt(container.current.value);
-        //更新状态
-        this.setState({ sum: sum - value });
+        const value = parseInt(container.current.value);
+        //创建action
+        const action = createDecrementAction(value);
+        //通知redux分发这个action
+        store.dispatch(action);
     }
+
     incrementIfOdd = () => {
-        // 获取原状态
-        let { sum } = this.state;
-        if (sum % 2 != 0) {
+        if (store.getState() % 2 != 0) {
             // 奇数才进行后面的操作
             //获取用户选择的数字
             let { container } = this;
             let value = parseInt(container.current.value);
-            //更新状态
-            this.setState({ sum: sum + value });
+            //创建action
+            const action = createIncrementAction(value);
+            //通知redux分发这个action
+            store.dispatch(action);
         }
-
     }
+
     incrementAsync = () => {
-        // 获取原状态
-        let { sum } = this.state;
         //获取用户选择的数字
         let { container } = this;
         let value = parseInt(container.current.value);
         //更新状态
-        setTimeout(() => {
-            this.setState({ sum: sum + value });
-        }, 2000)
+        // setTimeout(() => {
+        //     //创建action
+        //     const action = createIncrementAction(value);
+        //     //通知redux分发这个action
+        //     store.dispatch(action);
+        // }, 2000
+        // 得到action函数
+        const action = createIncrementAsyncAction(value, 3000);
+        // 分发action
+        store.dispatch(action)
     }
     render() {
         return (
             <div>
-                <h3>当前求和为：{this.state.sum}</h3>
+                <h3>当前求和为：{store.getState()}</h3>
+                <h4>今天：{this.state.wind}</h4>
                 <select ref={this.container}>
                     <option value='1'>1</option>
                     <option value='2'>2</option>
