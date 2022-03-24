@@ -24,7 +24,7 @@
 
 Action Creators：分析出组件做什么事情，将action类型和数据组装成action对象交给Store
 
-Store：将之前的状态和action传递给Reducers
+Store：将之前的状态和action传递给Reducers。Store存储的数据类型取决于Reducers返回的数据类型
 
 Reducers：完成action后，将新的状态传递给Store。`只进行最基本的操作`，一些复杂的业务逻辑，在利用redux分发前就处理好
 
