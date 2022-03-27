@@ -50,29 +50,15 @@
     <div id="b">b</div>
     <div id="c">c</div>
     <a href="#abc">abc</a>
+    <input type="text" id="t">
+    <button id="cl">点击我</button>
 </body>
 
 <script>
-    let a = document.querySelector('#a');
-    a.addEventListener('click', function () {
-        history.pushState({ a: 1 }, 'no', 'a.html');
-        // alert(1)
-    })
-
-    let b = document.querySelector('#b');
-    b.addEventListener('click', function () {
-        history.pushState({ b: 1 }, 'no', 'b.html');
-        // alert(1)
-    })
-
-    let c = document.querySelector('#c');
-    c.addEventListener('click', function () {
-        history.pushState({ c: 1 }, 'no', 'c.html');
-        // alert(1)
-    })
-    window.addEventListener('popstate', function (e) {
-        // console.log(e.state);
-        alert(1)
+    let btn = document.querySelector('#cl');
+    btn.addEventListener('click', () => {
+        let text = document.querySelector('#t');
+        alert(text.value);
     })
 </script>
 
