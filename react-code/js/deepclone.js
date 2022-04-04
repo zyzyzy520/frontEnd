@@ -8,6 +8,45 @@ let oriObj = {
     }
 }
 
+function deepClone(obj) {
+    // 判断是不是引用类型
+    if (typeof obj == 'object') {
+        let copy = Array.isArray(obj) ? [] : {};
+        for (key in obj) {
+            copy[key] = deepClone(obj[key])
+        }
+        return copy
+    } else {
+        return obj
+    }
+}
+
+
+
+
+
+for (let i = 1; i <= 6; i++) {
+    for (let j = 1; j <= 6; j++) {
+        console.log(i, j);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function deepClone(oriObj) {
     // 1.首先判断是不是引用类型
     if (typeof oriObj == 'object') {

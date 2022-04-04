@@ -35,3 +35,22 @@ function throttle(fn, delay) {
         }
     }
 }
+
+
+// 判断L是不是R的实例，通过L的原型链看能不能指到R.prototype
+function instanceOf(L, R) {
+    // 如果到顶层了或者不是对象直接返回false
+    if (L == null || typeof L != 'object') return false;
+    // 如果相等返回true
+    if (L.__proto__ == R.prototype) return true;
+    // 否则递归查找
+    return instanceOf(L.__proto__, R);
+}
+
+// console.log(instanceOf([1, 2, 3], Object));
+
+// let number = 1
+// console.log(Object.prototype.toString.call(number))
+
+let number = 1
+console.log(number.constructor == Number)

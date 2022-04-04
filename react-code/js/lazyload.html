@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        .img {
+            width: 200px;
+            height: 200px;
+            background-color: gray;
+            margin-bottom: 20px;
+        }
+
+        .pic {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<!-- 图片来自网络，侵删。 -->
+
+<body>
+    <div class="container">
+        <div class="img">
+            <!-- 注意我们并没有为它引入真实的src -->
+            <img class="pic" alt="加载中"
+                data-src="https://tse1-mm.cn.bing.net/th/id/OIP.8OrEFn_rKe82kqAWFjTuMwHaEo?pid=Api&rs=1" />
+        </div>
+        <div class="img">
+            <img class="pic" alt="加载中"
+                data-src="https://ssl.tzoo-img.com/images/tzoo.94911.0.910013.seoul-nami.jpg?width=1080" />
+        </div>
+        <div class="img">
+            <img class="pic" alt="加载中"
+                data-src="https://tse4-mm.cn.bing.net/th/id/OIP.ZitgAuABnwkrGn4lid2ZmQHaEK?pid=Api&rs=1" />
+        </div>
+        <div class="img">
+            <img class="pic" alt="加载中" data-src="http://pic34.photophoto.cn/20150315/0034034862056002_b.jpg" />
+        </div>
+        <div class="img">
+            <img class="pic" alt="加载中"
+                data-src="http://img.mp.sohu.com/upload/20170724/32d4409f34194b029ed287abf1c99b70_th.png" />
+        </div>
+        <div class="img">
+            <img class="pic" alt="加载中" data-src="https://pic6.wed114.cn/20180829/2018082910075991913520.jpg" />
+        </div>
+        <div class="img">
+            <img class="pic" alt="加载中"
+                data-src="https://tse4-mm.cn.bing.net/th/id/OIP.PZdPKj3sXEX2jLrepx3MUwHaEo?pid=Api&rs=1" />
+        </div>
+        <div class="img">
+            <img class="pic" alt="加载中" data-src="https://pic6.wed114.cn/20180829/2018082910075831439349.jpg" />
+        </div>
+        <div class="img">
+            <img class="pic" alt="加载中" data-src="https://pic6.wed114.cn/20180829/2018082910075468043336.jpg" />
+        </div>
+        <div class="img">
+            <img class="pic" alt="加载中"
+                data-src="https://tse2-mm.cn.bing.net/th/id/OIP.CRYz5Bv4vylsMh83G4CsLgHaFj?pid=Api&rs=1" />
+        </div>
+    </div>
+</body>
+<script>
+    // 初始化观察期，entries是观察节点中可视性发生变化的节点对象，要通过target拿到具体节点。self是指观察器本身。因为只要改变了照片的src就无需再观察了
+    let io = new IntersectionObserver((entries, self) => {
+        entries.forEach((obj) => {
+            // 判断是否可见
+            if (obj.isIntersecting) {
+                let image = obj.target;
+                image.src = image.getAttribute('data-src');
+                self.unobserve(image);
+            }
+
+        })
+    })
+
+    let images = document.querySelectorAll('.pic');
+    images.forEach((image) => {
+        io.observe(image);
+    })
+</script>
+
+</html>

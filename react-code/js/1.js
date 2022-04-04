@@ -15,37 +15,86 @@ const tree = [
     }
 ];
 
-//对每一个树进行DFS找到想要寻找的id
-let target = 10, targetPath = [];
-
-let treeCount = tree.length
-for (let i = 0; i < treeCount; i++) {
-    let res = DFS(tree[i], targetPath);
-    if (res == true) {
-        console.log(targetPath);
-        break
-    }
-}
-
+let goal = 10;
 function DFS(node, path) {
-    // 看当前节点是就是目标节点
-    if (node.id == target) {
-        path.push(node.id);
+    // 找到目标，返回
+    if (node.id == goal) {
+        path.push(node.id)
         return true;
     }
-    // 不是，看是否有孩子，继续向下查找
-    // 如果没有。说明该条路径走到尽头了但还是没有找到，返回false
+    // 如果该节点没有子节点，而该节点又不是目标
     if (node.children == undefined) return false;
+    path.push(node.id);
+    // 遍历children，进行递归查找
+    let flag = false;
+    for (let i = 0; i < node.children.length; i++) {
+        flag = DFS(node.children[i], path);
+        // 只要有一条路径找到了返回true
+        if (flag) break;
+    }
+    if (flag) return true;
     else {
-        // 有孩子，将当前节点压入路径
-        path.push(node.id);
-        let flag;
-        // 遍历所有孩子，对每个孩子进行DFS
-        for (let i = 0; i < node.children.length; i++) {
-            flag = DFS(node.children[i], path)
-            if (flag) break;
-        }
-        if (flag) return true;
-        else path.pop();
+        // 遍历了节点的所有儿子都找不到，说明这个节点肯定不在路径上
+        path.pop();
+        return false;
     }
 }
+
+// 遍历树，对每一个树节点进行DFS
+for (let i = 0; i < tree.length; i++) {
+    let path = []
+    if (DFS(tree[i], path)) {
+        console.log(path);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// //对每一个树进行DFS找到想要寻找的id
+// let target = 10, targetPath = [];
+
+// let treeCount = tree.length
+// for (let i = 0; i < treeCount; i++) {
+//     let res = DFS(tree[i], targetPath);
+//     if (res == true) {
+//         console.log(targetPath);
+//         break
+//     }
+// }
+
+// function DFS(node, path) {
+//     // 看当前节点是就是目标节点
+//     if (node.id == target) {
+//         path.push(node.id);
+//         return true;
+//     }
+//     // 不是，看是否有孩子，继续向下查找
+//     // 如果没有。说明该条路径走到尽头了但还是没有找到，返回false
+//     if (node.children == undefined) return false;
+//     else {
+//         // 有孩子，将当前节点压入路径
+//         path.push(node.id);
+//         let flag;
+//         // 遍历所有孩子，对每个孩子进行DFS
+//         for (let i = 0; i < node.children.length; i++) {
+//             flag = DFS(node.children[i], path)
+//             if (flag) break;
+//         }
+//         if (flag) return true;
+//         else path.pop();
+//     }
+// }
