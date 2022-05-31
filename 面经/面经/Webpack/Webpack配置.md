@@ -23,17 +23,17 @@
 然后撰写配置规则
 
 - 所有 loaders 的配置规则，都写在 `module.rules`中，module.rules`是一个数组`，里面的`数组元素对应一个loaders的配置`
--  `每一个loader的配置规则是一个对象`。有`两个属性test和rules`，`test`是一个字符串，配置`当前打包规则要匹配的文件名`，`rules`是一个数组，描述`用到的loaders`。
+- `每一个loader的配置规则是一个对象`。有`两个属性test和rules`，`test`是一个字符串，配置`当前打包规则要匹配的文件名`，`rules`是一个数组，描述`用到的loaders`。
 
-
+`css-loader` 来处理 css，但是单靠 css-loader 是没有办法将样式加载到页面上。这个时候，我们需要再安装一个 `style-loader` 来完成这个功能style-loader 就是将处理好的 css 通过 style 标签的形式添加到页面上
 
 ## 4. plugins 插件
 
-插件都配置在plugins属性里，属性值是一个数组，每一个数组元素对应一个plugin
+插件都配置在plugins属性里，属性值是一个数组，每一个数组元素对应一个plugin.**插件（Plugin）可以贯穿 Webpack 打包的生命周期，执行不同的任务**
 
 比如clean-webpack-plugin。我们修改了出口文件的名称，原本的文件就得删除，这个插件的作用就是删除`出口文件所在目录下`，`未被引用的文件`
 
-
+mini-css-extract-plugin，将CSS文件分离
 
 ## 5.devServer
 

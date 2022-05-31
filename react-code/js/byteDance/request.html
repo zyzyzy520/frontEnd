@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="sea">
+    <script>
+        /*
+
+有一个input表单，每输入停顿200ms就发送网络请求获取suggestList，网络请求的函数给出来了，需要传入keyword和callback，然后将获取到的suggestList在ul里面展示（代码只给了ul，要自己创建li），可以原生实现，也可以用框架，防抖就可以直接用库。大概就这些吧，具体的我也忘了。
+        */
+        //检测键盘按下的动作
+        window.addEventListener('keydown', debounce(fetchSearch, 200))
+        //读取搜索框数据
+        function fetchSearch() {
+            let node = document.querySelector('#sea');
+            let p = new Promise((resolve, reject) => {
+                resolve(sendRequest(node.value))
+            }).then((suggesetList) => {
+                let ul = document.getElementById('#ul');
+                let li = ``
+                for (let i = 0; i < suggesetList.length; i++) {
+                    li += `<li>` + suggesetList[i] + `</li>`
+                }
+                ul.innerHTML = li;
+            })
+        }
+        //防抖，只要输入就重新计时，直到停顿200ms
+        function debounce(fn, delay) {
+            let timer = null;
+            return function (...args) {
+                //清除之前的timer
+                if (timer) clearTimeout(timer);
+                //开启新的timer
+                timer = setTimeout(() => {
+                    fn.apply(this, args)
+                }, delay)
+            }
+        }
+    </script>
+</body>
+
+</html>

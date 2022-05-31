@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <div>
+            <h1></h1>
+            <h2></h2>
+        </div>
+    </div>
+
+    <div>
+        <h3></h3>
+        <p></p>
+        <div>
+            <section> </section>
+        </div>
+    </div>
+</body>
+<script>
+    let body = document.querySelector('body');
+    let ans = new Set();
+    dfs(body);
+    console.log(ans);
+    function dfs(node) {
+        //将标签加入
+        ans.add(node.nodeName)
+        let children = node.children;
+        //判断是否到了最里层节点
+        if (children.length == 0) return;
+        //还有子节点，继续遍历
+        for (let i = 0; i < children.length; i++) {
+            dfs(children[i]);
+        }
+    }
+    let path = []
+    getPath(body);
+    console.log(path);
+    function getPath(node) {
+        // 将节点加入路径中。
+        path.push(node.nodeName);
+        //判断是否到了叶子节点
+        let children = node.children;
+        //到了叶子节点返回
+        if (children.length == 0) return;
+        //对儿子节点进行dfs
+        for (let i = 0; i < children.length; i++) {
+            getPath(children[i]);
+        }
+    }
+</script>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 每隔3秒alert一次helloWorld，总共输出4次
+
+        // 用一个全局变量记录弹出次数
+        // let times = 4;
+        // let timer = setInterval(() => {
+        //     alert('helloWorld')
+        //     times--;
+        //     if (times == 0) {
+        //         clearInterval(timer);
+        //     }
+        // }, 3000)
+
+        function fn(cur, times, delay, timer) {
+            if (cur == times) return;
+            if (timer) clearTimeout(timer);
+            timer = setTimeout(() => {
+                alert('helloWorld');
+                fn(cur + 1, times, delay, timer);
+            }, delay)
+        }
+        fn(0, 4, 3000, null)
+    </script>
+</body>
+
+</html>

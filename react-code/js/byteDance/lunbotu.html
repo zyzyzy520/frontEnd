@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            position: relative;
+            margin: 0 auto;
+            width: 400px;
+            height: 700px;
+            border: 1px solid red;
+            overflow: hidden;
+        }
+
+        img {
+            width: 400px;
+            height: 700px;
+        }
+
+        ul {
+            /* transform: translateX(-400px); */
+            position: absolute;
+            left: -400px;
+            width: 2000px;
+            transition: all 2s;
+            overflow: hidden;
+        }
+
+        li {
+            float: left;
+            list-style: none;
+        }
+
+        .left-arrow {
+            position: absolute;
+            z-index: 11;
+            width: 30px;
+            height: 30px;
+            top: 50%;
+            left: 20px;
+            transform: translateY(-50%);
+            border-left: 10px solid orange;
+            border-bottom: 10px solid orange;
+            transform: rotate(45deg);
+        }
+
+        .right-arrow {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            border-right: 10px solid orange;
+            border-top: 10px solid orange;
+            transform: rotate(45deg);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="left-arrow"></div>
+        <ul>
+            <li>
+                <img src="./images/3.jpg" alt="">
+            </li>
+            <li>
+                <img src="./images/1.jpg" alt="">
+            </li>
+            <li>
+                <img src="./images/2.jpg" alt="">
+            </li>
+            <li>
+                <img src="./images/3.jpg" alt="">
+            </li>
+            <li>
+                <img src="./images/1.jpg" alt="">
+            </li>
+        </ul>
+        <div class="right-arrow"></div>
+    </div>
+</body>
+
+<script>
+    let left = document.querySelector('.left-arrow');
+    let right = document.querySelector('.right-arrow');
+    let ul = document.querySelector('ul');
+    let num = 1;
+    right.addEventListener('click', function () {
+        if (num == 4) {
+            ul.style.transition = null;
+            ul.style.left = '0px';
+            num = 0;
+        } else {
+            num += 1;
+            ul.style.left = '-' + num * 400 + 'px';
+        }
+
+    })
+</script>
+
+</html>

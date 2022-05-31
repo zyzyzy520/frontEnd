@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .big {
+            position: absolute;
+            left: 0;
+            width: 200px;
+            height: 200px;
+            background-color: red;
+        }
+
+        .move {
+            left: -200px;
+            transition: all 3s;
+        }
+
+        #btn {
+            float: right;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="big" id="big"> </div>
+    <button id="btn">Click me</button>
+    <script>
+        const btn = document.querySelector('#btn')
+        btn.addEventListener('click', function () {
+            const big = document.querySelector('#big');
+            big.className += ' move'
+        })
+    </script>
+</body>
+
+</html>

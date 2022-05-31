@@ -27,3 +27,4 @@ function divide(nums, left, right) {
         nums[i] = arr.pop();
     }
 }
+return nums;

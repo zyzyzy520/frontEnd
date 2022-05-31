@@ -1,0 +1,43 @@
+<!-- 3个盒子，中间盒子定长等宽，左右两个盒子自动填充宽度 -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .main {
+            display: flex;
+        }
+
+        .box1 {
+            flex: 1;
+            background-color: blue;
+        }
+
+        .box2 {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+        }
+
+        .box3 {
+            flex: 1;
+            background-color: yellow;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="box1"></div>
+        <div class="box2"></div>
+        <div class="box3"></div>
+    </div>
+</body>
+
+</html>

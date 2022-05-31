@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //set方法：写入一个localstorage，写入时同时实现类似cookie maxage的功能
+        // get方法：读取localstorage，如果已经过期，删除这个存储并返回null，如果未过期，返回这个存储
+        localStorage.__proto__.set = function (key, value, maxAge) {
+            //不仅要存值，还要存储过期时间
+            let obj = {
+                value: value,
+                expires: Date.now() + maxAge
+            }
+            localStorage.setItem(key, JSON.stringify(obj));
+        }
+
+        localStorage.__proto__.get = function (key) {
+            let obj = localStorage.getItem(key);
+            if (obj == null) return null;
+            obj = JSON.parse(obj)
+            if (Date.now() > obj.expires) {
+                // 过期了
+                localStorage.removeItem(key);
+                return null;
+            } else {
+                return obj.value;
+            }
+        }
+        //单位是毫秒
+        localStorage.set('a', 123, 5000);
+        console.log(localStorage.get('a'))
+        setTimeout(() => {
+            console.log(localStorage.get('a'));
+        }, 10000)
+    </script>
+</body>
+
+</html>

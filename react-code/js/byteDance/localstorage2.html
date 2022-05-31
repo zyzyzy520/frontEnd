@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        localStorage.__proto__.setter = function (key, value, maxAge) {
+            //不仅要存储值，还要存储过期时间，所以要用到对象
+            let obj = {
+                val: value,
+                expires: Date.now() + maxAge
+            }
+
+            //因为localStorage.setItem的参数是key和value，且value必须是字符串否则无效，所以必须用JSON
+            localStorage.setItem(key, JSON.stringify(obj));
+        }
+
+        localStorage.__proto__.getter = function (key) {
+            let str = localStorage.getItem(key);
+            if (str) {
+                //先从字符串拿到对象
+                let { val, expires } = JSON.parse(str);
+                if (Date.now() > expires) {
+                    console.log('时间已经过期了')
+                    localStorage.removeItem(key);
+                    return false;
+                } else {
+                    return val;
+                }
+            } else {
+                //没有，直接返回false
+                return false;
+            }
+        }
+
+        localStorage.setter('a', 1, 3000);
+        console.log(localStorage.getter('a'));
+        setTimeout(() => {
+            console.log(localStorage.getter('a'));
+        }, 4000);
+    </script>
+</body>
+
+</html>
