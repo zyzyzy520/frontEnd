@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+        //编译后代码使用的模块化系统
+        "module": "ES2015",
+        //ts代码编译成的js目标版本
+        "target": "ES2015",
+        // 开启严格模式
+        "strict": true,
+        // 编译成的js文件目录
+        "outDir": "./dist",
+        // 一旦有语法错误，就不编译
+        "noEmitOnError": true
+    },
+    //编译哪些ts文件，src文件夹下的所有ts文件
+    "include": [
+        "./src/**/*"
+    ]
+}
