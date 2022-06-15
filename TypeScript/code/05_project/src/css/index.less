@@ -1,0 +1,49 @@
+// 设置变量
+@bg-color: #b7d4a8;
+
+// 清除默认样式
+* {
+    padding: 0;
+    margin: 0;
+    // 改变盒子模型的计算方式，不会撑大盒子
+    box-sizing: border-box;
+}
+
+// 设置主界面样式
+#main_container {
+    width: 360px;
+    height: 420px;
+    //设置边框
+    border: 10px solid #000;
+    // 设置圆角
+    border-radius: 20px;
+    // 设置居中
+    margin: 100px auto;
+    background-color: @bg-color;
+    // 压出游戏界面
+    padding: 20px;
+
+    // 设置游戏主舞台样式
+    #stage {
+        width: 304px;
+        height: 304px;
+        border: 3px solid #000;
+    }
+
+    // 设置积分牌样式
+    #score_panel {
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 20px;
+        font-weight: 800;
+        margin-top: 20px;
+
+        // 设置浮动
+        #score {
+            float: left;
+        }
+
+        #level {
+            float: right;
+        }
+    }
+}
