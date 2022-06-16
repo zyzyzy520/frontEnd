@@ -12,11 +12,28 @@
     <!-- 创建主界面 -->
     <div id="main_container">
         <!-- 设置游戏主舞台 -->
-        <div id="stage"></div>
+        <div id="stage">
+            <!-- 设置蛇 -->
+            <div id="snake">
+                <!-- 蛇是一节一节的，表示蛇的一部分-->
+                <div></div>
+            </div>
+            <!-- 设置食物 -->
+            <div id="food">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
         <!-- 设置游戏记分牌 -->
         <div id="score_panel">
-            <span id="score">SCORE:3</span>
-            <span id="level">LEVEL:1</span>
+            <div>
+                SCORE:<span id="score">3</span>
+            </div>
+            <div>
+                LEVEL:<span id="level">1</span>
+            </div>
         </div>
     </div>
 </body>

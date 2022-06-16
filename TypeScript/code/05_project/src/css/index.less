@@ -9,6 +9,11 @@
     box-sizing: border-box;
 }
 
+//设置字体
+body {
+    font: bold 20px "Courier"
+}
+
 // 设置主界面样式
 #main_container {
     width: 360px;
@@ -21,29 +26,61 @@
     margin: 100px auto;
     background-color: @bg-color;
     // 压出游戏界面
-    padding: 20px;
+    // padding: 20px;
+    // 开启弹性盒模型
+    display: flex;
+    // 设置主轴的方向，将垂直方向设为主轴
+    flex-direction: column;
+    // 两个盒子在垂直方向上进行排列
+    justify-content: space-around;
+    // 两个盒子在水平方向上的排列 
+    align-items: center;
+
 
     // 设置游戏主舞台样式
     #stage {
         width: 304px;
         height: 304px;
         border: 3px solid #000;
+        // 开启定位，方便蛇的移动
+        position: relative;
+
+        // 对蛇进行设置
+        #snake {
+
+            //选中id为snake的亲儿子节点。
+            &>div {
+                width: 10px;
+                height: 10px;
+                background-color: #000;
+                // 设置border，看起来就有间隙了，color设置和背景色一样
+                border: 1px solid @bg-color;
+            }
+        }
+
+        // 对食物进行设置
+        #food {
+            width: 10px;
+            height: 10px;
+
+            &>div {
+                float: left;
+                width: 5px;
+                height: 5px;
+                border-radius: 50%;
+                background-color: #000;
+            }
+        }
     }
 
     // 设置积分牌样式
     #score_panel {
-        font-family: 'Courier New', Courier, monospace;
-        font-size: 20px;
-        font-weight: 800;
-        margin-top: 20px;
+        width: 304px;
+        // margin-top: 20px;
+        // 开启盒子模型，实现两边贴边的效果
+        display: flex;
+        // 设置默认主轴水平方向上的排列方式
+        justify-content: space-between;
 
-        // 设置浮动
-        #score {
-            float: left;
-        }
-
-        #level {
-            float: right;
-        }
     }
 }
