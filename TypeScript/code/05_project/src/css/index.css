@@ -17,6 +17,7 @@ body {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  position: relative;
 }
 #main_container #stage {
   width: 304px;
@@ -33,9 +34,16 @@ body {
 #main_container #stage #food {
   width: 10px;
   height: 10px;
+  position: absolute;
+  top: 40px;
+  left: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: space-between;
 }
 #main_container #stage #food > div {
-  float: left;
   width: 5px;
   height: 5px;
   border-radius: 50%;

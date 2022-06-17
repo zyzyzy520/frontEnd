@@ -35,7 +35,8 @@ body {
     justify-content: space-around;
     // 两个盒子在水平方向上的排列 
     align-items: center;
-
+    // 定位，方便食物和蛇改变位置
+    position: relative;
 
     // 设置游戏主舞台样式
     #stage {
@@ -62,13 +63,30 @@ body {
         #food {
             width: 10px;
             height: 10px;
+            //改变食物位置
+            position: absolute;
+            top: 40px;
+            left: 20px;
+
+            // 开启弹性布局
+            display: flex;
+            // 设置主轴
+            flex-direction: row;
+            // 设置超出部分要换行
+            flex-wrap: wrap;
+            // 设置主轴上的-排列：先贴边，再让元素之间的距离平分剩余空间
+            justify-content: space-between;
+            // 设置侧轴上的-排列：先贴边，再让元素之间的距离平分剩余空间。注意侧轴上有两列，所以要用多列的那个属性
+            align-content: space-between;
 
             &>div {
-                float: left;
+                // float: left;
                 width: 5px;
                 height: 5px;
+                // 设置圆角边框，让食物看起来更好看
                 border-radius: 50%;
                 background-color: #000;
+
             }
         }
     }
