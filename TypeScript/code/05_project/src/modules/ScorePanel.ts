@@ -9,7 +9,8 @@ class ScorePanel {
     // 设置一个变量作为升级的阈值。例如每十分升一级
     threshold: number;
 
-    constructor(max_level: number, threshold: number) {
+    // 设置默认值
+    constructor(max_level: number = 100, threshold: number = 10) {
         this.score = 0;
         this.level = 1;
         // 感叹号表示肯定不为空
@@ -35,7 +36,6 @@ class ScorePanel {
             // 超出最高等级，就不能升级了
             this.level_element.innerHTML = ++this.level + '';
         }
-
     }
 }
 
