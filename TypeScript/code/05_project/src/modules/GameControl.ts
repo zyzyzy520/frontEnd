@@ -12,13 +12,16 @@ class GameControl {
     score_panel: ScorePanel;
     // 贪吃蛇方向
     direction: string;
+    // 贪吃蛇之前的方向
+    last_direction: string;
     // 记录游戏是否结束
     is_live: boolean;
     constructor() {
         this.snake = new Snake();
         this.food = new Food();
         this.score_panel = new ScorePanel();
-        this.direction = ""
+        this.direction = "";
+        this.last_direction = "";
         this.is_live = true;
 
         // 马上初始化开启游戏
@@ -32,7 +35,8 @@ class GameControl {
         // 再通过bind方法改变了keydownHandler的this指向，不再指向调用者而是一直指向GameControl对象。
         // 将这改变了this的函数作为回调函数
         document.addEventListener('keydown', this.keydownHandler.bind(this));
-
+        // 启动游戏
+        this.run();
     }
 
     // 按下键盘后的回调，键盘按下回调
@@ -40,8 +44,8 @@ class GameControl {
         // 需要检查event.key的值是否合法(用户是否按了正确的按键)
         if (event.key === 'ArrowUp' || event.key === 'ArrowDown' || event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
             // 修改direction属性
+            this.last_direction = this.direction;
             this.direction = event.key;
-            this.run();
         }
     }
     /*
@@ -52,10 +56,7 @@ class GameControl {
     ArrowRight Right
     */
     run() {
-        // 处理撞墙
-        if (this.snake.X <= 0 && this.direction == 'ArrowLeft' || this.snake.X >= 290 && this.direction == 'ArrowRight' || this.snake.Y <= 0 && this.direction == 'ArrowUp' || this.snake.Y >= 290 && this.direction == 'ArrowDown') {
-            this.is_live = false;
-        } else {
+        try {
             switch (this.direction) {
                 case 'ArrowUp':
                 case 'Up':
@@ -76,11 +77,32 @@ class GameControl {
                 case 'Right':
                     // 向右移动，left增加
                     this.snake.X += 10;
+
             }
+        } catch (e: any) {
+            // 撞墙后，打印提示信息
+            alert(e.message);
+            // 让游戏停止
+            this.is_live = false;
         }
+
+        // 判断是否食物：蛇头的坐标和食物的坐标相等
+        this.checkEat(this.snake.X, this.snake.Y);
 
         // 在游戏仍然在进行中的情况下才开启定时器
         this.is_live && setTimeout(this.run.bind(this), 300 - (this.score_panel.level - 1) * 10);
+    }
+
+    // 检查是否吃到食物
+    checkEat(X: number, Y: number) {
+        if (X === this.food.X && this.snake.Y === this.food.Y) {
+            // 分数+1
+            this.score_panel.addScore();
+            // 改变食物坐标
+            this.food.change_coordinate();
+            // 增加蛇身
+            this.snake.addBody(this.direction);
+        }
     }
 }
 
