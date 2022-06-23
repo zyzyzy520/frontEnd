@@ -27,7 +27,6 @@ body {
 }
 #main_container #stage #snake > div {
   position: absolute;
-  transition: all 0.3;
   width: 10px;
   height: 10px;
   background-color: #000;

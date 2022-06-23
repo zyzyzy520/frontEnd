@@ -10,7 +10,7 @@ class ScorePanel {
     threshold: number;
 
     // 设置默认值
-    constructor(max_level: number = 100, threshold: number = 10) {
+    constructor(max_level: number = 100, threshold: number = 2) {
         this.score = 0;
         this.level = 1;
         // 感叹号表示肯定不为空
@@ -25,15 +25,15 @@ class ScorePanel {
     addScore() {
         // 注意innerHTML要求是字符串，而score是number。所以要进行转换。
         this.score_element.innerHTML = ++this.score + '';
-        // 每十级升一次level
-        if (this.score % 10 === 0) {
+        // 每阈值升一次level
+        if (this.score % this.threshold === 0) {
             this.upLevel();
         }
     }
 
     upLevel() {
+        // 没有超出最高等级，才进行升级
         if (this.level < this.max_level) {
-            // 超出最高等级，就不能升级了
             this.level_element.innerHTML = ++this.level + '';
         }
     }
