@@ -63,3 +63,12 @@ function changeDirection2(direction: Direction2) {
 //应传入枚举Direction成员的任意一个
 //直接通过点(.)语法访问枚举的成员
 changeDirection2(Direction2.Up);
+
+let p = { x: 1, y: 2 }
+
+let new_p: typeof p = {
+    x: 3,
+    y: 4
+}
+console.log(new_p)
+
