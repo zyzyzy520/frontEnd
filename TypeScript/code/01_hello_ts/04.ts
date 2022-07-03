@@ -1,11 +1,10 @@
-type Props = {
-    id: string,
-    age: number,
-    sex: string
+import type { Custom } from './04'
+
+
+let people: Custom = {
+    name: 'Ash',
+    age: 12
 }
 
-type pick_props = Pick<Props, 'id' | 'age'>;
-let people3: pick_props = {
-    id: 'Ash',
-    age: 23
-}
+console.log(people);
+export { }
