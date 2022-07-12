@@ -1,25 +1,24 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { Route, Link } from 'react-router-dom'
+import Login from './pages/Login';
+import Home from './pages/Home';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>
+        {/* 改变浏览器地址 */}
+        <Link to='/login'>登录页面</Link> <br/>
+        <Link to='/home'>首页</Link>
+      </div>
+      <div>
+        {/* 根据不同的浏览器地址显示不同的组件页面 */}
+        <Route path='/login' component={Login}></Route>
+        <Route path='/home' component={Home}></Route>
+      </div>
     </div>
+    
   );
 }
 
