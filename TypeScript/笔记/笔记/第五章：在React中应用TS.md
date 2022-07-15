@@ -123,65 +123,130 @@ if (input.current) {
 }
 ```
 
-## useHistory用法
+## 5、useHistory用法
 
-> useHistory如果没有传state参数的时候，可以不用管类型的问题
+- `useHistory`hook是一个==泛型函数==，接收一个类型变量来指定额外数据`state`的类型
+- `useHistory`hook用来实现路由之间的跳转。根据跳转时是否需要携带额外数据，使用方式不同
+
+### 5.1 路由跳转不携带额外数据，用法与JS一样
 
 ```js
- const history = useHistory()
+import { Route, Link, useHistory } from 'react-router-dom' 
+const history = useHistory()
  history.push("/login") // 不用关心 类型的问题
 ```
 
-如果要穿state需要控制类型的话，就得控制它的泛型数据
+### 5.2 路由跳转时携带额外数据，需要指定泛型类型
+
+- 注意：泛型类型指定的是额外数据`state`的类型
 
 ```js
- const history = useHistory<{ name: string }>()
- history.push("/login", { name: string }) // 不用关心 类型的问题
+import { Route, Link, useHistory } from 'react-router-dom'
+// 1. 定义要传递的参数的类型
+type CustomType = {
+  name: string,
+  age: number,
+  sex: string
+}
+
+// 2.利用接口继承类型，?表示可选
+interface CustomType2 extends CustomType {
+  money?: number
+}
+  
+// 3. 指定要传递的参数的泛型
+const history = useHistory<CustomType2>();
+<button onClick={() => {
+  // 4. 第一个参数是浏览器网址显示的跳转的地址，第二个参数是要传递的参数
+   history.push('/home', {
+          name: '123',
+          age: 12,
+          sex:'12'
+        })
+   }}>
+        跳转到首页
+</button>
 ```
 
-## useLocation用法
+## 6、useLocation用法
 
-> useLocation和useHistory是对应的，如果不接收state参数，直接用
+- `useLocation`hook是一个==泛型函数==，接收一个类型变量来指定接收的`state`类型，==与`useHistory`的泛型对应==
+- `useLocation`hook用来获取路由地址相关信息。根据==是否需要获取路由跳转时携带的额外数据state==，使用方式不同
+
+### 6.1 不获取state数据
 
 ```js
- const location = useLocation()
-
+import {useLocation} from 'react-router-dom'
+const location = useLocation()
 ```
 
-想要接收参数
+### 6.2 获取state数据
+
+- 如果跳转路由时没有传递state，state的值就为undefined。所以，此处指定类型时也应该考虑到没有传递state的情况
 
 ```js
- const location = useLocation<{ name: string } | undefined>()
+import {useLocation} from 'react-router-dom' 
+const location = useLocation<{ name: string } | undefined>()
  if (location.state) {
-     
+     console.log(location.state.name);
  }
-location.state?.name
-location.state!.name
+console.log(location.state?.name);
 
 
 ```
 
-## userParams用法
+- 注意：因为`Home`和`Login`都需要指定额外数据`state`的类型，因此可以==将类型存放到类型声明文件中==，实现类型复用。
 
-useParams也是接收泛型的hook函数
+## 7、userParams用法
 
-```js
+- `useParams`也是接收泛型的hook函数，接收一个类型变量来指定`params`对象的类型
+- 根据配置路由规则时，路由参数是否可选，使用方式不同
+
+### 7.1 路由参数必选
+
+``` typescript
+// Link传递参数
+<Link to='publish/123'>
+// Route接收参数
+<Route path='publish/:id'>
+
+// 因为路由规则中要求参数一定存在，此处不需要考虑不存在的情况
 const params = useParams<{ id: string }>()
 console.log(params.id)
 ```
 
-## useSelector用法
-
-第一种用法，传入两个泛型的类型
+### 7.2 路由参数可选
 
 ```js
-useSelector<RootState, ToDoType>(state => state.todos)
+// Link传递参数
+<Link to='publish/123'>
+// Route接收参数
+<Route path='publish/:id?'>
+
+// 因为路由规则中参数是可选的，所以，此处需要考虑id不传的情况，让id变为可选属性
+const params = useParams<{ id?: string }>()
+console.log(params.id)
 ```
 
-第二种用法，指定useSelector的回调参数的类型
+## 8、useSelector用法
+
+- `useSelector`hook是一个泛型函数，接收两个类型变量，分别来指定：
+  - 第一个类型变量：指定 Redux 仓库 ==`state` 的类型==
+  - 第二个类型变量：指定要获取==状态的变量类型==
+- 参数是一个回调函数，返回状态变量里的一些属性值
+
+- 第一种用法，==传入两个泛型的类型==
+
 
 ```js
-useSelector((state: { todos: ToDoList }> state.todos)
+const todos = useSelector<RootState, ToDoType>(state => state.todos)
+```
+
+- 第二种用法，==指定useSelector的回调参数的类型==
+
+
+```js
+const todos = useSelector((state: { todos: ToDoList }> state.todos)
 ```
 
 思考？ 
@@ -190,13 +255,13 @@ state类型是每次都手动这么写吗 ？
 
 不需要
 
-## 使用ReturnType可以反推出state的状态类型
+## 9、使用ReturnType可以反推出state的状态类型
 
 ```js
 type RootState = ReturnType<typeof  store.getState>
 ```
 
-## React路由的使用
+## 10、React路由的使用
 
 - 步骤
 
