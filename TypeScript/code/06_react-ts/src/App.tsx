@@ -1,7 +1,8 @@
 import React from 'react';
 import './App.css';
 import { Route, Link, useHistory } from 'react-router-dom'
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { addTodo as addAction, delTodo as delAction, toggleTodo as toggleAction} from './store/actions/todos';
 import Login from './pages/Login';
 import Home from './pages/Home';
 import Publish from './pages/Publish'
@@ -25,7 +26,31 @@ function App() {
   // 3. 指定要传递的参数的泛型
   const history = useHistory<CustomType2>();
   const todos = useSelector((state: RootState) => state.todos)
-  // console.log(todos)
+  const dispatch = useDispatch();
+  const addRef = React.useRef<HTMLInputElement>(null)
+
+  // 回调函数
+  const addTodo = (): void => {
+    // 1. 获取addRef的值，即输入的内容
+    console.log(addRef.current?.value);
+    const text = addRef.current!.value
+    // 2. 创建action并分发
+    dispatch(addAction(text))
+  }
+
+  const toggleTodo = (id: number) => {
+    // 用到高阶函数，因为需要传递参数
+    return () => {
+      dispatch(toggleAction(id));
+    }
+  }
+
+  const delTodo = (id: number) => {
+    // 用到高阶函数，因为需要传递参数
+    return () => {
+      dispatch(delAction(id));
+    }
+  }
   return (
     <div className="App">
       <div>
@@ -54,9 +79,16 @@ function App() {
       <ul>
         {/* react会自动帮忙渲染数组 */}
         {todos.map((item) => {
-          return <li key={item.id}>{item.text}</li>
+          return (<li key={item.id}>名称：{item.text}; 状态：{item.done === true ? '已完成' : '未完成'}
+            <button onClick={toggleTodo(item.id)}>改变状态</button>
+            <button onClick={delTodo(item.id)}>删除</button>
+          </li>)
         })}
       </ul>
+      <div>
+        <input type="text" ref={addRef} />
+        <button onClick={addTodo}>新增一条</button>
+      </div>
     </div>
     
   );

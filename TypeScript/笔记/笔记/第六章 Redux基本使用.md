@@ -126,7 +126,7 @@
 
 ### 3.1 手动创建`action`的类型
 
-- 先声明类型，再创建action
+1. 先声明类型，再创建action
 
   - ``` typescript
     // 专门处理todos的action
@@ -158,6 +158,132 @@
             payload: id
         }
     }
+    
+    // 5. 暴露创建action的函数
+    export {
+        addTodo,
+        delToDo
+    }
+    ```
+    
+
+### 3.2 先声明创建action的函数，然后用`ReturnType<>`获取函数返回的 action 的类型。最后用联合类型
+
+1. ``` typescript
+   // 1. 声明新增 action 的函数
+   export const addTodo = (data: string) => {
+       return {
+           type: 'todos/add' as const,      // 这里的类型不够精确，使用类型断言表明是常量，类型是字面量
+           payload: data
+       }
+   }
+   
+   // 2. 声明删除 action 的函数
+   export const delToDo = (id: number) => {
+       return {
+           type: 'todos/del' as const,
+           payload: id
+       }
+   }
+   
+   // 3. 声明切换 action 的函数
+   export const toggleToDo = (id: number) => {
+       return {
+           type: 'todos/toggle' as const,
+           payload: id
+       }
+   }
+   
+   // 4. 获取以上操作action的函数，返回值的类型
+   type AddToDoAction = ReturnType<typeof addTodo>
+   type DelToDoAction = ReturnType<typeof delToDo>
+   type ToggleToDoAction = ReturnType<typeof toggleToDo>
+   
+   // 5. 组成联合类型，并暴露
+   export type ToDoAction = AddToDoAction | DelToDoAction | ToggleToDoAction
+   ```
+
+### 3.3 根据action的参数更新state
+
+- reducer/todos
+
+``` typescript
+// 引入action里暴露的类型
+import type {ToDoAction} from '../actions/todos'
+
+// 新建一个todos的reducer函数 它会处理 todos状态
+type ToDoList = Array<{
+    id: number,
+    text: string,
+    done: boolean
+}>
+
+//将类型导出方便其它文件使用
+export type { ToDoList }
+
+const initialState: ToDoList = [{
+    id: 1,
+    text: '吃饭',
+    done: false
+}, {
+    id: 2,
+    text: '睡觉',
+    done: true
+}, {
+    id: 3,
+    text: '打豆豆',
+    done: false
+}];
+
+// reducer 拿到之前的state和action，根据action的类型和参数进行处理。
+// 但这里我们就简单设置为返回，只能是三者中的一种
+const todosReducer = (prevState = initialState, action: ToDoAction) => {
+    // reducer中的作用 根据当前action中的type 进行逻辑数据的处理 返回一个新的状态 => UI更新
+    const { type, payload } = action;
+    switch (type) {
+        case 'todos/add':
+            return [...prevState, {
+                // 一定不能是prevState.length - 1，这样会导致id重复。例如删除了id为1的数据，但这时又要新增数据时
+                id: prevState.length == 0 ? 1 : prevState[prevState.length - 1].id + 1,
+                text: payload,
+                done: false
+            }];
+        case 'todos/del':
+            return prevState.filter((item) => item.id !== payload);
+        // 找到id对应选项，并将状态切换成已完成
+        case 'todos/toggle':
+            return prevState.map((item) => {
+                if (item.id === payload) {
+                    // 取反
+                    item.done = !item.done;
+                }
+                return item;
+            })
+        // 这一步一定要有，当有多个reducer的时候，保持原来的状态
+        default:
+            return prevState;
+            
+    }
+}
+
+export {
+    todosReducer
+}
+```
+
+## 4、useDispatch的使用
+
+- `react-redux`指定useDispatch的类型
+
+- `useDispatch`hook是一个泛型函数，接收一个类型变量用于指定 Action 的类型，该泛型类型可以直接省略
+
+  - ``` typescript
+    import {useDispatch} from 'react-redux'
+    
+    const dispatch = useDispatch()
+    
+    // 点击后，创建action并分发action到store
+    <button onClick = {() => dispatch(delTodo(item.id))}>x</button>
     ```
 
   - 
