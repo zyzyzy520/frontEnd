@@ -1,4 +1,6 @@
-import { type } from "os"
+// 引入redux中异步相关API
+import { ThunkAction } from "redux-thunk"
+import { RootState } from "../index"
 
 // 专门处理todos的action
 export { }
@@ -61,6 +63,18 @@ export const toggleTodo = (id: number) => {
     }
 }
 
+// 声明创建异步添加action的函数，一定要注明类型
+export const asyncAddTodo = (data: string): RootThunkAction => {
+    // 返回的是一个函数，在函数里开启定时器，时间到后分发想要创建的类型
+    // 函数里的参数是store发现得到的是函数后放入的
+    return (dispatch, getState) => {
+        setTimeout(() => {
+            // 等1秒钟之后再创建并分发，分发操作放在了这里
+            dispatch(addTodo(data));
+        }, 1000)
+    }
+}
+
 // 4. 获取以上操作action的函数，返回值的类型
 type AddTodoAction = ReturnType<typeof addTodo>
 type DelTodoAction = ReturnType<typeof delTodo>
@@ -68,3 +82,6 @@ type ToggleTodoAction = ReturnType<typeof toggleTodo>
 
 // 5. 组成联合类型，并暴露
 export type TodoAction = AddTodoAction | DelTodoAction | ToggleTodoAction
+
+// 创建异步类型
+export type RootThunkAction = ThunkAction<void, RootState, unknown, TodoAction>
