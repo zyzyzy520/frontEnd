@@ -5,5 +5,7 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import rootReducer from './reducer'
 
 // 创建store
-const store = createStore(rootReducer,composeWithDevTools(applyMiddleware(thunk)))
+const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
+type RootState = ReturnType<typeof store.getState>;
+export type {RootState}
 export default store
