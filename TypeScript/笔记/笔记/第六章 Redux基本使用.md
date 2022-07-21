@@ -122,6 +122,8 @@
 
 ## 3、reducer函数的类型
 
+- ==一个组件对应一个reducer，在根state里对应一个state。自己的state里可以用一个对象存多种数据==
+
 - 生成`action`有两种方式：1、自己创建action的类型；2、根据`action-creator`来得到
 
 ### 3.1 手动创建`action`的类型

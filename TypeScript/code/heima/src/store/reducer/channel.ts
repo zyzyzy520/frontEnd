@@ -3,18 +3,31 @@
 import type { Channels } from '../../types/data'
 // 2.引入action类型。
 import type {RootAction} from '../../types/store'
-const initialState: Channels = []
+// 3. 定义初始状态的类型
+// 不止有频道列表，还要记录当前频道的id
+type channelState = {
+    currentChannel: number,
+    channels: Channels
+}
+// 4. 定义初始状态
+const initialState: channelState = {
+    currentChannel: 1,   //默认首页展示频道1
+    channels: []
+}
 
-
-export const channelReducer = (prevState: Channels = initialState, action: RootAction) => {
+//返回值也是channelState类型
+export const channelReducer = (prevState = initialState, action: RootAction): channelState => {
     const { type, payload } = action
-    // 1.根据action的不同进行不同的处理
+    // 5.根据action的不同进行不同的处理
     switch (type) {
         case 'channel/get':
-            return payload;
+            // 5.1 在这种情况下的payload是从服务器获取到的数据。是一个数组
+            return {
+                currentChannel: prevState.currentChannel,
+                channels: payload
+            }
         // 一定要有，否则报错
         default:
             return prevState
     }
-
 }
