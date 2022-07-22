@@ -10,13 +10,13 @@ export type getChannelAction = {
 
 // 切换当前频道action 类型
 type toggleChannelAction = {
-    type: 'toggle',
+    type: 'channel/toggle',
     payload: number
 }
 
 // 获取对应频道的文章列表action 类型
 type getArticleAction = {
-    type: 'get',
+    type: 'articles/get',
     payload: Articles
 }
 

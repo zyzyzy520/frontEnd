@@ -6,12 +6,12 @@ import type {RootAction} from '../../types/store'
 // 3. 定义初始状态的类型
 // 不止有频道列表，还要记录当前频道的id
 type channelState = {
-    currentChannel: number,
+    currentChannel: number | null
     channels: Channels
 }
 // 4. 定义初始状态
 const initialState: channelState = {
-    currentChannel: 1,   //默认首页展示频道1
+    currentChannel: null,   //没拿到数据前。暂无
     channels: []
 }
 
@@ -26,6 +26,12 @@ export const channelReducer = (prevState = initialState, action: RootAction): ch
                 currentChannel: prevState.currentChannel,
                 channels: payload
             }
+        case 'channel/toggle':
+            // 5.2 在这种情况下的payload是从前端传递过来的数字
+            return {
+                currentChannel: payload,
+                channels: prevState.channels
+            }           
         // 一定要有，否则报错
         default:
             return prevState
