@@ -21,4 +21,5 @@ type getArticleAction = {
 }
 
 export type RootAction = getChannelAction | toggleChannelAction | getArticleAction
+// export type RootAction1 = toggleChannelAction | getArticleAction
 export type RootThunkAction = ThunkAction<void, RootState, unknown, RootAction>

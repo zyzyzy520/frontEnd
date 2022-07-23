@@ -581,7 +581,7 @@ const dispatch = useDispatch();
       // 第一个类型参数：thunk action返回值类型
       // 第二个类型参数：Redux 状态的类型
       // 第三个类型参数：thunk action 额外参数的类型
-      // 第四个类型参数：Redux 中所有 action 的类型。
+      // 第四个类型参数：Redux 中所有 action 的类型。必须完整，否则出错。
       //最终得到的是一个类型
       export type RootThunkAction = ThunkAction<void, RootState, unknown, TodoAction>
           

@@ -44,7 +44,7 @@ useEffect(() => {
 
 * 第一种情况 ==不传第二个参数==`useEffect()` 组件==每次更新都执行==回调
 * 第二个情况  传入一个==空数组==`useEffect(,[])` 只会在==渲染时(组件挂载时)==执行一次回调
-* 第三种情况，==数组中有依赖项==`useEffect(,[stateVal])`  只要依==赖项发生变化== 回调就会执行
+* 第三种情况，==数组中有依赖项==`useEffect(,[stateVal])`  只要依==赖项发生变化== 回调就会执行。==依赖项可以是 state 数据，也可以是 props 数据，也可以是redux中存储的数据==。
 
 TS与JS的用法几乎一样，不需要做处理
 
@@ -97,7 +97,7 @@ const inputRef = useRef<HTMLInputElement>(null)
 
 使用ref对象，获取进行DOM操作
 
-- 注意：因为current属性的类型是： `HTMLInputElement | null`。所以必须从类型中去掉`null`才能继续操作，否则`inputRef.current.value`会报错。节点实际上是`inputRef.current`
+- 注意：因为current属性的类型是： `HTMLInputElement | null`。所以必须从类型中去掉`null`才能继续操作，否则`inputRef.current.value`会报错。节点实际上是`inputRef.current`。实际上在点击后，内容是不可能为空的，只是说在初始化时为空。
 - 使用JS中的==可选连接操作符(`?`)==来实现
 - 原理：`?`会判断current属性是否为空值(null或undefined)，如果不是空值，就继续访问value值；如果是空值，不会继续访问value
   - 如果`inputRef.current`不为空，其类型为`HTMLInputElement`，就可以拿到value值
@@ -199,7 +199,7 @@ console.log(location.state?.name);
 
 ## 7、userParams用法
 
-- `useParams`也是接收泛型的hook函数，接收一个类型变量来指定`params`对象的类型
+- `useParams`也是接收泛型的hook函数，接收一个类型变量来指定`params`对象的类型。传递的参数附着在路径里
 - 根据配置路由规则时，路由参数是否可选，使用方式不同
 
 ### 7.1 路由参数必选
