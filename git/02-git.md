@@ -258,3 +258,45 @@ git push
    ![image-20220119100135571](C:\Users\zayn\AppData\Roaming\Typora\typora-user-images\image-20220119100135571.png)
 
 3. 
+
+## 补充操作
+
+### git reset 命令
+
+``` bash
+$ git reset [--soft | --mixed | --hard] [HEAD]
+```
+
+- **--mixed** 为默认，可以不用带该参数，用于==重置暂存区的文件与上一次的提交(commit)保持一致==，==工作区文件内容保持不变==。
+
+  - ``` bash
+    $ git reset HEAD^            # 回退所有内容到上一个版本  
+    $ git reset HEAD^ hello.php  # 回退 hello.php 文件的版本到上一个版本  
+    $ git  reset  052e           # 回退到指定版本
+    ```
+
+- **--soft** 参数用于回退到某个版本：
+
+  - ``` bash
+    $ git reset --soft HEAD~3   # 回退上上上一个版本 
+    ```
+
+- **--hard** 参数==撤销工作区中所有未提交的修改内容，将暂存区与工作区都回到上一次版本，并删除之前的所有信息提交==。远程仓库不会改变：
+
+  - ``` bash
+    $ git reset --hard HEAD~3  # 回退上上上一个版本  
+    $ git reset –hard bae128  # 回退到某个版本回退点之前的所有信息。 
+    $ git reset --hard origin/master    # 将本地的状态回退到和远程的一样 
+    ```
+
+- **HEAD 说明：**
+
+  - HEAD 表示当前版本
+  - HEAD^ 上一个版本
+  - HEAD^^ 上上一个版本
+  - HEAD^^^ 上上上一个版本
+  - 可以使用 ～数字表示
+    - HEAD~0 表示当前版本
+    - HEAD~1 上一个版本
+    - HEAD^2 上上一个版本
+    - HEAD^3 上上上一个版本
