@@ -1,0 +1,13 @@
+:root{
+    --blue-color: blue;
+    
+}
+h1{
+    color: var(--blue-color);
+}
+.container{
+    --red-color: red;
+    h2,h3{
+        color: var(--red-color);
+    }
+}

@@ -1,9 +1,9 @@
 import React from 'react';
-import './App.scss';
+import '@/App.scss';
 // 引入路由组件
 import {Redirect, Route, Switch } from 'react-router-dom';
-import Login from './pages/Login'
-import Layout from './pages/Layout'
+import Login from '@/pages/Login'
+import Layout from '@/pages/Layout'
 
 function App() {
   return (
