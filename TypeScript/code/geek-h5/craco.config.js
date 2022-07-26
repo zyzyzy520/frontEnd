@@ -1,4 +1,9 @@
 const path = require('path');
+const pxToViewport = require('postcss-px-to-viewport');
+const vw = pxToViewport({
+  // 视口宽度，一般就是 375（ 设计稿一般采用二倍稿，宽度为 375 ），设置参考标准
+  viewportWidth: 375,
+});
 
 module.exports = {
   // webpack 配置
@@ -12,4 +17,9 @@ module.exports = {
       '@scss': path.resolve(__dirname, 'src/assets/styles'),
     },
   },
+  style: {
+    postcss: {
+      plugins: [vw]
+    }
+  }
 };
