@@ -87,3 +87,23 @@ useEffect有两个参数，`第一个参数是一个回调函数`，`第二个�
 ![image-20220326180128459](C:\Users\zayn\AppData\Roaming\Typora\typora-user-images\image-20220326180128459.png)
 
 ![image-20220326180133506](C:\Users\zayn\AppData\Roaming\Typora\typora-user-images\image-20220326180133506.png)
+
+## 6、props
+
+- 直接作为参数传递即可
+
+  - ``` tsx
+    export default function Icon(props: PropsType ) {
+        console.log(props);
+        const { icon_name } = props;;
+      return (
+        <svg className="icon" aria-hidden="true">
+        {/* 使用时，只需要将此处的 iconbtn_like_sel 替换为 icon 的名称即可*/}
+            <use xlinkHref={icon_name}></use>
+        </svg>
+      )
+    }
+    
+    ```
+
+  - 

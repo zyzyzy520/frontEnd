@@ -1,3 +1,5 @@
+@import '@scss/hairline.scss';
+
 :root{
     --blue-color: blue;
     
@@ -6,8 +8,12 @@ h1{
     color: var(--blue-color);
 }
 .container{
-    --red-color: red;
-    h2,h3{
-        color: var(--red-color);
-    }
+    width: 200px;
+    height: 200px;
+    position: relative;
+    @include hairline(all, red);
 }
+.fs{
+    font-size: 10px;
+}
+
