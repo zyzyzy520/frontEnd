@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .out {
+        perspective: 500px;
+        margin: 100px;
+      }
+      .main {
+        /* margin: 20px 100px; */
+        position: relative;
+        transform-style: preserve-3d;
+        transition: all 0.4s;
+      }
+      .main:hover {
+        transform: rotateX(90deg);
+      }
+      .box {
+        position: absolute;
+        width: 100px;
+        height: 50px;
+      }
+      .front_box {
+        z-index: 1;
+        background-color: pink;
+        transform: translateZ(25px);
+      }
+      .back_box {
+        background-color: purple;
+        transform: translateY(25px) rotateX(-90deg);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="out">
+      <div class="main">
+        <div class="box front_box">HTML</div>
+        <div class="box back_box">CSS</div>
+      </div>
+    </div>
+  </body>
+</html>

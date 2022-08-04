@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h3>AJAX---第一次测试</h3>
+    <button id="btn">点我发送请求(原生js-ajax-get)</button>
+    <div id="content"></div>
+    <script>
+      // 1.拿到元素节点
+      const btn = document.getElementById("btn");
+      const content = document.getElementById("content");
+
+      // 2。绑定事件
+      btn.addEventListener("click", () => {
+        // 2.1 创建xhr实例对象
+        const xhr = new XMLHttpRequest();
+        // 2.2 指定状态，从发送请求到收到想要总共有四种状态，每当状态发生改变时，就会调用该回调
+        xhr.onreadystatechange = () => {
+          if (xhr.readyState === 4) {
+            // console.log(xhr.response);
+            content.innerHTML = `<h4>${xhr.response}</h4>`;
+          }
+        };
+
+        // 3.指定发送请求的method和url
+        xhr.open("GET", "http://127.0.0.1:3000/users");
+
+        // 4.发送请求
+        xhr.send();
+      });
+    </script>
+  </body>
+</html>
