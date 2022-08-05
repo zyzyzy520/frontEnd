@@ -17,7 +17,7 @@ var allowCrossDomain = function (req, res, next) {
   // 设置允许跨域访问的请求头的属性
   res.header(
     "Access-Control-Allow-Headers",
-    "X-Requested-With,Origin,Content-Type,Accept,Authorization"
+    "X-Requested-With,Origin,Content-Type,Accept,Authorization,demo"
   );
   // 设置允许跨域访问的请求类型
   res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");

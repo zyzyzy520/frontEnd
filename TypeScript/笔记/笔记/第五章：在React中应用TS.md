@@ -208,7 +208,7 @@ console.log(location.state?.name);
 // Link传递参数
 <Link to='publish/123'>
 // Route接收参数
-<Route path='publish/:id'>
+<Route path='publish/:id' component={xxxx}>
 
 // 因为路由规则中要求参数一定存在，此处不需要考虑不存在的情况
 const params = useParams<{ id: string }>()
@@ -221,7 +221,7 @@ console.log(params.id)
 // Link传递参数
 <Link to='publish/123'>
 // Route接收参数
-<Route path='publish/:id?'>
+<Route path='publish/:id?' component={xxx}>
 
 // 因为路由规则中参数是可选的，所以，此处需要考虑id不传的情况，让id变为可选属性
 const params = useParams<{ id?: string }>()
