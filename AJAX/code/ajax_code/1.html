@@ -9,25 +9,61 @@
   <body>
     <h3>AJAX---第一次测试</h3>
     <button id="btn">点我发送请求(原生js-ajax-get)</button>
+    <button id="btn_cancel">点我取消发送请求</button>
     <div id="content"></div>
     <script>
       const btn = document.getElementById("btn");
+      const btn2 = document.getElementById("btn_cancel");
       const content = document.getElementById("content");
+      let xhr = new XMLHttpRequest();
+      let timer = null;
       btn.onclick = () => {
-        // 1.创建实例对象
-        const xhr = new XMLHttpRequest();
-        // 4. 设置xhr状态改变回调
+        // 如果发现定时器存在，则清除
+        /*if (timer) clearTimeout(timer);
+        // 开启定时器，在一定时间内没再次点击再发送请求
+        timer = setTimeout(() => {
+          xhr.onreadystatechange = () => {
+            if (xhr.readyState === 4) {
+              if (xhr.status >= 200 && xhr.status < 300) {
+                const { name, age } = xhr.response;
+                content.innerHTML = `<ul>
+                <li>${name}</li>
+                <li>${age}</li>
+              </ul>`;
+              }
+            }
+          };
+          // 2. 设置method和url
+          xhr.open("post", "http://localhost:3000/users/get_req");
+
+          xhr.responseType = "json";
+
+          // 3. 发送请求，要将json对象转换成JSON字符串
+          xhr.send(JSON.stringify({ name: "Ryann", age: 23 }));
+        }, 3000);*/
+        xhr.abort();
+        xhr = new XMLHttpRequest();
         xhr.onreadystatechange = () => {
           if (xhr.readyState === 4) {
-            content.innerHTML = `内容是${xhr.status}`;
+            if (xhr.status >= 200 && xhr.status < 300) {
+              const { name, age } = xhr.response;
+              content.innerHTML = `<ul>
+                <li>${name}</li>
+                <li>${age}</li>
+              </ul>`;
+            }
           }
         };
         // 2. 设置method和url
         xhr.open("post", "http://localhost:3000/users/get_req");
-        // 追加响应头用于表示携带请求体参数的编码形式-----json形式
-        xhr.setRequestHeader("Content-Type", "application/json");
+
+        xhr.responseType = "json";
+
         // 3. 发送请求，要将json对象转换成JSON字符串
         xhr.send(JSON.stringify({ name: "Ryann", age: 23 }));
+      };
+      btn2.onclick = () => {
+        xhr.abort();
       };
     </script>
   </body>
