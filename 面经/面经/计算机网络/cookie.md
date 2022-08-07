@@ -181,6 +181,6 @@ cookie和session都是用来`跟踪浏览器用户身份`的会话方式。
 
 区别就是`cookie的数据是存储在浏览器中的`，`session的数据是存储在服务器中的`。cookie不是很安全，因为别人可以拿到存放的cookie从而进行伪造，而session是存储在服务器中的，如果访问增多，会加大服务器的压力。
 
-
+![image-20220806111918754](C:\Users\zayn\AppData\Roaming\Typora\typora-user-images\image-20220806111918754.png)
 
 ## 11. 网络资源常用的缓存策略

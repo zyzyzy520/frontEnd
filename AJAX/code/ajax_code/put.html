@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h3>AJAX---第一次测试</h3>
+    <button id="btn">点我发送请求(原生js-ajax-get)</button>
+    <div id="content"></div>
+
+    <script>
+      const btn = document.getElementById("btn");
+      const content = document.getElementById("content");
+      btn.onclick = () => {
+        const xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = () => {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+            const { name, age } = xhr.response[0];
+            content.innerHTML = `名字是${name}，年龄是${age}`;
+          }
+        };
+        xhr.open("put", "http://localhost:3000/users/get_req");
+        xhr.responseType = "json";
+        xhr.send();
+      };
+    </script>
+  </body>
+</html>

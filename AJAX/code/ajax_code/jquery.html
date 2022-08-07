@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h3>AJAX---第一次测试</h3>
+    <button id="btn">点我发送请求(原生js-ajax-get)</button>
+    <button id="btn_cancel">点我取消发送请求</button>
+    <div id="content"></div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+      const btn = document.getElementById("btn");
+      const content = document.getElementById("content");
+
+      btn.onclick = () => {
+        // $.ajax({
+        //   url: "http://localhost:3000/users/get_req",
+        //   method: "POST",
+        //   data: {},
+        //   dataType: "json",
+        //   timeout: 4000,
+        //   success: (result, responseText, xhr) => {
+        //     console.log(1);
+        //     // const { name, age } = result[0];
+        //     // content.innerHTML = `名字是${name}， 年龄是${age}`;
+        //   },
+        //   error: (xhr) => {
+        //     console.log("请求出错了");
+        //   },
+        // });
+        $.post(
+          "http://localhost:3000/users/get_req",
+          { name: "Ash", age: 23 },
+          (response) => {
+            console.log(1);
+            const { name, age } = response[0];
+            console.log(response);
+            content.innerHTML = `名字是${name}， 年龄是${age}`;
+          },
+          "json"
+        );
+      };
+    </script>
+  </body>
+</html>
