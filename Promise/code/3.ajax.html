@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="btn">发送请求</button>
+    <div class="content"></div>
+    <script>
+      const btn = document.getElementById("btn");
+      const content = document.getElementById("content");
+
+      btn.onclick = () => {
+        const p = new Promise((resolve, reject) => {
+          // 1. 创建实例对象
+          const xhr = new XMLHttpRequest();
+          xhr.onreadystatechange = () => {
+            // 拿到所有响应数据(既有可能是成功的，也有可能是失败的)了
+            if (xhr.readyState === 4) {
+              if (xhr.status === 200) {
+                resolve(xhr.response);
+              } else {
+                reject("失败啦");
+              }
+            }
+          };
+          xhr.open("get", "http://localhost:3000/users/get_req");
+          xhr.responseType = "json";
+          xhr.send();
+          p.then((value) => {
+            //   content.innerHTML = `<ul>${value}</ul>`;
+            console.log(value);
+          });
+        });
+      };
+    </script>
+  </body>
+</html>

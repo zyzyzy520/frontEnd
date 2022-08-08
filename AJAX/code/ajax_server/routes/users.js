@@ -3,7 +3,7 @@ var router = express.Router();
 
 // 二级路径匹配
 /* GET users listing. */
-router.put("/get_req", function (req, res, next) {
+router.get("/get_req", function (req, res, next) {
   const person = [
     {
       name: "Ash",

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="btn">点我发送请求</button>
+    <script>
+      function sendAjax(url, data) {
+        const p = new Promise((resolve, reject) => {
+          // 发送ajax请求
+          const xhr = new XMLHttpRequest();
+          xhr.onreadystatechange = () => {
+            // 拿到所有响应数据(既有可能是成功的，也有可能是失败的)了
+            if (xhr.readyState === 4) {
+              if (xhr.status === 200) {
+                resolve(xhr.response);
+              } else {
+                reject("失败啦");
+              }
+            }
+          };
+          //   将参数加到url上
+          let query = [];
+          for (let key in data) {
+            query.push(key + "=" + data[key]);
+          }
+          url += "?" + query.join("&");
+          xhr.open("get", url);
+          xhr.responseType = "json";
+          xhr.send(data);
+        });
+        p.then(
+          (value) => {
+            console.log("成功了", value);
+          },
+          (reason) => {
+            console.log("出错了", reason);
+          }
+        );
+        return p;
+      }
+      const btn = document.getElementById("btn");
+      btn.onclick = () => {
+        let p = sendAjax("http://localhost:3000/users/get_req", {});
+      };
+    </script>
+  </body>
+</html>

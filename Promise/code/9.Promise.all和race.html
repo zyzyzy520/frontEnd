@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // all 都成功
+      // #region
+      /*const p1 = Promise.resolve("a");
+      const p2 = new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve("b");
+        }, 500);
+      });
+      const p3 = new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve("c");
+        }, 2000);
+      });
+
+      const p = Promise.all([p1, p3, p2]);
+      p.then(
+        (value) => {
+          console.log("成功了", value);
+        },
+        (reason) => {
+          console.log("失败了", reason);
+        }
+      );*/
+      // #endregion
+
+      // all 出现失败
+      const p1 = Promise.resolve("a");
+      const p2 = new Promise((resolve, reject) => {
+        setTimeout(() => {
+          reject("b");
+        }, 500);
+      });
+      const p3 = new Promise((resolve, reject) => {
+        setTimeout(() => {
+          reject("c");
+        }, 2000);
+      });
+
+      const p = Promise.all([p1, p3, p2]);
+      p.then(
+        (value) => {
+          console.log("成功了", value);
+        },
+        (reason) => {
+          console.log("失败了", reason);
+        }
+      );
+    </script>
+  </body>
+</html>
