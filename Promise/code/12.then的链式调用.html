@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+      // 1. 执行new Promise(executor)，返回一个Promise实例对象，用变量p接收。executor是同步回调函数，会立马执行
+      const p = new Promise((resolve, reject) => {
+        // 1.1 执行setTimeout()，开启定时器，1s钟后将异步回调函数压入异步队列
+        setTimeout(() => {
+          resolve("a");
+          console.log(1);
+        }, 1000);
+      });
+
+      // 2. 执行p.then()，返回一个Promise实例，用变量x接收。指定好了p实例成功和失败状态的回调函数，但目前还未执行
+      const x = p.then(
+        (value) => {
+          console.log("p成功了", value);
+        },
+        (reason) => {
+          console.log("p失败了", reason);
+        }
+      );
+
+      // 3. 执行x.then()，返回一个Promise实例，并未接收。制定好了x实例成功和失败状态的回调函数，但目前还未执行
+      x.then(
+        (value) => {
+          console.log("x成功了", value);
+        },
+        (reason) => {
+          console.log("x失败了", reason);
+        }
+      );*/
+
+      /*// 1. 执行new Promise(executor)，返回一个Promise实例对象，用变量p接收。executor是同步回调函数，会立马执行
+      const p = new Promise((resolve, reject) => {
+        // 1.1 执行setTimeout()，开启定时器，1s钟后将异步回调函数压入异步队列
+        setTimeout(() => {
+          resolve("a");
+          console.log(1);
+        }, 1000);
+      });
+
+      // 2. 执行p.then()，返回一个Promise实例，用变量x接收。指定好了p实例成功和失败状态的回调函数，但目前还未执行
+      const x = p.then(
+        (value) => {
+          console.log("p成功了", value);
+          return 900;
+        },
+        (reason) => {
+          console.log("p失败了", reason);
+        }
+      );
+
+      // 3. 执行x.then()，返回一个Promise实例，并未接收。制定好了x实例成功和失败状态的回调函数，但目前还未执行
+      x.then(
+        (value) => {
+          console.log("x成功了", value);
+        },
+        (reason) => {
+          console.log("x失败了", reason);
+        }
+      );*/
+
+      /*// 2. 执行p.then()，返回一个Promise实例，用变量x接收。指定好了p实例成功和失败状态的回调函数，但目前还未执行
+      const x = p.then(
+        (value) => {
+          console.log("p成功了", value);
+          return Promise.resolve(100);
+        },
+        (reason) => {
+          console.log("p失败了", reason);
+        }
+      );
+
+      // 3. 执行x.then()，返回一个Promise实例，并未接收。制定好了x实例成功和失败状态的回调函数，但目前还未执行
+      x.then(
+        (value) => {
+          console.log("x成功了", value);
+        },
+        (reason) => {
+          console.log("x失败了", reason);
+        }
+      );*/
+
+      /*// 1. 执行new Promise(executor)，返回一个Promise实例对象，用变量p接收。executor是同步回调函数，会立马执行
+      const p = new Promise((resolve, reject) => {
+        // 1.1 执行setTimeout()，开启定时器，1s钟后将异步回调函数压入异步队列
+        setTimeout(() => {
+          reject("a");
+          console.log(1);
+        }, 1000);
+      });
+
+      // 2. 执行p.then()，返回一个Promise实例，用变量x接收。指定好了p实例成功和失败状态的回调函数，但目前还未执行
+      const x = p.then(
+        (value) => {
+          console.log("p成功了", value);
+          return Promise.reject(100);
+        },
+        (reason) => {
+          console.log("p失败了", reason);
+        }
+      );
+
+      // 3. 执行x.then()，返回一个Promise实例，并未接收。指定好了x实例成功和失败状态的回调函数，但目前还未执行
+      x.then(
+        (value) => {
+          console.log("x成功了", value);
+        },
+        (reason) => {
+          console.log("x失败了", reason);
+        }
+      );
+
+      // 4. 同步代码执行完毕后，执行异步队列里的任务，定时器的异步回调，
+      //4.1 改变了实例p的状态为失败，且reason为'a'。然后将实例p的失败回调函数压入异步队列中。
+      //4.2 接着执行console.log(1)，打印出1(得先把当前任务执行完毕，再去考虑其他任务)
+
+      // 5. 执行完毕后，从异步队列里拿出任务，实例p的失败回调函数
+      //5.1 执行console.log("p失败了", reason)，打印 "p失败了"a
+      //5.2 未设置返回值，默认返回undefined，是一个非Promise值。所以x的状态也变为成功的，且value是undefined。将x的成功状态对应的回调函数压入异步队列中。
+
+      // 6. 执行完毕后，从异步队列里拿出任务，实例x的成功回调函数
+      // 6.1 执行console.log("x成功了", value); 打印 "x成功了"undefined*/
+
+      /*// 1. 执行new Promise(executor)，返回一个Promise实例对象，用变量p接收。executor是同步回调函数，会立马执行
+      const p = new Promise((resolve, reject) => {
+        // 1.1 执行setTimeout()，开启定时器，1s钟后将异步回调函数压入异步队列
+        setTimeout(() => {
+          resolve("a");
+          console.log(1);
+        }, 1000);
+      });
+
+      // 2. 执行p.then()，返回一个Promise实例，没有接收，称为Promise实例1。指定好了p实例成功和失败状态的回调函数，但目前还未执行
+      p.then(
+        (value) => {
+          console.log("p成功了1", value);
+          return Promise.reject(-100);
+        },
+        (reason) => {
+          console.log("p失败了1", reason);
+        }
+        // 3. 执行Promise实例1.then()，返回一个Promise实例，没有接收，称为Promise实例2。指定好了Promise实例1成功和失败状态的回调函数，但目前还未执行
+      )
+        .then(
+          (value) => {
+            console.log("p成功了2", value);
+            return true;
+          },
+          (reason) => {
+            console.log("p失败了2", reason);
+            return 100;
+          }
+          // 4. 执行Promise实例2.then()，返回一个Promise实例，没有接收，称为Promise实例3。指定好了Promise实例2成功和失败状态的回调函数，但目前还未执行
+        )
+        .then(
+          (value) => {
+            console.log("p成功了3", value);
+            return false;
+          },
+          (reason) => {
+            console.log("p失败了3", reason);
+            return false;
+          }
+          // 5. 执行Promise实例3.then()，返回一个Promise实例，没有接收，称为Promise实例4。指定好了Promise实例3成功和失败状态的回调函数，但目前还未执行
+        )
+        .then(
+          (value) => {
+            console.log("p成功了4", value);
+            return -100;
+          },
+          (reason) => {
+            console.log("p失败了4", reason);
+          }
+        );*/
+
+      // 1. 执行new Promise(executor)，返回一个Promise实例对象，用变量p接收。executor是同步回调函数，会立马执行
+      const p = new Promise((resolve, reject) => {
+        // 1.1 执行setTimeout()，开启定时器，1s钟后将异步回调函数压入异步队列
+        setTimeout(() => {
+          resolve("a");
+          console.log(1);
+        }, 1000);
+      });
+
+      // 2. 执行p.then()，返回一个Promise实例，没有接收，称为Promise实例1。指定好了p实例成功和失败状态的回调函数，但目前还未执行
+      p.then(
+        (value) => {
+          console.log("p成功了1", value);
+          return Promise.reject(-100);
+        },
+        (reason) => {
+          console.log("p失败了1", reason);
+        }
+        // 3. 执行Promise实例1.then()，返回一个Promise实例，没有接收，称为Promise实例2。指定好了Promise实例1成功和失败状态的回调函数，但目前还未执行
+      )
+        .then(
+          (value) => {
+            console.log("p成功了2", value);
+            return true;
+          },
+          (reason) => {
+            console.log("p失败了2", reason);
+            return 100;
+          }
+          // 4. 执行Promise实例2.then()，返回一个Promise实例，没有接收，称为Promise实例3。指定好了Promise实例2成功和失败状态的回调函数，但目前还未执行
+        )
+        .then(
+          (value) => {
+            console.log("p成功了3", value);
+            throw 900;
+          },
+          (reason) => {
+            console.log("p失败了3", reason);
+            return false;
+          }
+          // 5. 执行Promise实例3.then()，返回一个Promise实例，没有接收，称为Promise实例4。指定好了Promise实例3成功和失败状态的回调函数，但目前还未执行
+        )
+        .then(
+          (value) => {
+            console.log("p成功了4", value);
+            return -100;
+          },
+          (reason) => {
+            console.log("p失败了4", reason);
+          }
+        );
+
+      // 6. 同步代码执行完毕后，执行异步队列里的任务，定时器的异步回调，
+      //4.1 改变了实例p的状态为失败，且value为'a'。然后将实例p的成功回调函数压入异步队列中。
+      //4.2 接着执行console.log(1)，打印出1(得先把当前任务执行完毕，再去考虑其他任务)
+
+      // 5. 执行完毕后，从异步队列里拿出任务，实例p的成功回调函数
+      //5.1 执行console.log("p成功了1", value)，打印 "p成功了1"a
+      //5.2 返回的是一个失败状态的Promise对象，且reason为-100。所以Promise实例1的状态也变为失败的，且reason为-100。将Promise实例1的失败状态对应的回调函数压入异步队列中。
+
+      // 6. 执行完毕后，从异步队列里拿出任务，Promise实例1的失败回调函数
+      // 6.1 执行console.log("p失败了2", reason); 打印 "p失败了2"-100
+      // 6.2 返回的是一个非Promise值100。所以Promise实例2的状态也变为成功的，且value为100。将Promise实例2的成功状态对应的回调函数压入异步队列中。
+
+      // 7. 执行完毕后，从异步队列里拿出任务，Promise实例2的成功回调函数
+      // 7.1 执行console.log("p成功了3", value)); 打印 "p成功了3"100
+      // 7.2 抛出异常，实例3的状态变为fulfilled，且reason为异常值900。将Promise实例3的失败状态对应的回调函数压入异步队列中。
+
+      // 8. 执行完毕后，从异步队列里拿出任务，Promise实例3的失败回调函数
+      // 8.1 执行console.log("p失败了4", value); 打印 "p失败了4"900
+      // 8.2 返回的是一个非Promise值undefined。所以Promise实例4的状态也变为成功的，且value为-100。未指定Promise实例4的回调函数
+
+      //最终输出为
+      // 1
+      // "p成功了1"a
+      // "p失败了2"-100
+      // "p成功了3"100
+      // "p失败了4"900
+    </script>
+  </body>
+</html>

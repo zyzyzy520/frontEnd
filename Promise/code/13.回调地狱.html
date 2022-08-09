@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 定义发送ajax请求的函数
+      function sendAjax(url, data, success, error) {
+        // 实例xhr
+        const xhr = new XMLHttpRequest();
+        // 绑定监听
+        xhr.onreadystatechange = () => {
+          // 拿到所有响应数据(既有可能是成功的，也有可能是失败的)了
+          if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+              success(xhr.response);
+            } else {
+              error("失败啦");
+            }
+          }
+        };
+        // 整理参数
+        let query = [];
+        for (let key in data) {
+          query.push(key + "=" + data[key]);
+        }
+        url += "?" + query.join("&");
+        xhr.open("get", url);
+        xhr.responseType = "json";
+        xhr.send(data);
+      }
+
+      sendAjax(
+        "http://localhost:3000/users/get_req",
+        { name: "Ash", age: 26 },
+        (response) => {
+          console.log("第一次请求成功", response);
+          sendAjax(
+            "http://localhost:3000/users/get_req",
+            { name: "V", age: 26 },
+            (response) => {
+              console.log("第二次请求成功", response);
+              sendAjax(
+                "http://localhost:3000/users/get_req",
+                { name: "Ash", age: 26 },
+                (response) => {
+                  console.log("第三次请求成功", response);
+                },
+                (error) => {
+                  console.log("第三次请求失败", error);
+                }
+              );
+            },
+            (error) => {
+              console.log("第二次请求失败", error);
+            }
+          );
+        },
+        (error) => {
+          console.log("第一次请求失败", error);
+        }
+      );
+    </script>
+  </body>
+</html>

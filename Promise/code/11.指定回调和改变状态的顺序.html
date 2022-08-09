@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 先指定回调，再改变状态
+      // #region
+      //   const p = new Promise((resolve, reject) => {
+      //     setTimeout(() => {
+      //       resolve(100);
+      //     }, 2000);
+      //   });
+
+      //   p.then(
+      //     (value) => {
+      //       console.log("成功了", value);
+      //     },
+      //     (reason) => {
+      //       console.log("失败了", reason);
+      //     }
+      //   );
+      // #endregion
+
+      // 先改变状态，再指定回调
+      const p = new Promise((resolve, reject) => {
+        resolve(100);
+      });
+
+      setTimeout(() => {
+        p.then(
+          (value) => {
+            console.log("成功了", value);
+          },
+          (reason) => {
+            console.log("失败了", reason);
+          }
+        );
+      }, 2000);
+    </script>
+  </body>
+</html>

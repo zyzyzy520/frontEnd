@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function sendAjax(url, data) {
+        const p = new Promise((resolve, reject) => {
+          // 发送ajax请求
+          const xhr = new XMLHttpRequest();
+          xhr.onreadystatechange = () => {
+            // 拿到所有响应数据(既有可能是成功的，也有可能是失败的)了
+            if (xhr.readyState === 4) {
+              if (xhr.status === 200) {
+                resolve(xhr.response);
+              } else {
+                reject("失败啦");
+              }
+            }
+          };
+          //   将参数加到url上
+          let query = [];
+          for (let key in data) {
+            query.push(key + "=" + data[key]);
+          }
+          url += "?" + query.join("&");
+          xhr.open("get", url);
+          xhr.responseType = "json";
+          xhr.send(data);
+        });
+        return p;
+      }
+
+      // 1. 首先发送第一个请求。当第一个请求成功时再发送第二个请求。而如何要得知第一个请求是否发送成功呢，就需要.then指定成功和失败状态的回调，看最终被调用的是哪个。
+      sendAjax("http://localhost:3000/users/get_req", { name: "Ash" })
+        .then(
+          //a
+          (value) => {
+            console.log("第一个请求发送成功");
+            // 2. 第一个请求发送成功后，发送第二个请求, 此时我们return这个promise对象。这样可以使得a处的.then返回的新Promise实例（称为新Promise实例1）它的状态就是用于发送第二个请求的实例的状态，所以想知道第二个请求是否发送成功，就是看新Promise实例1的状态是否是成功，而如何得知新Promise实例1的状态是否成功，就再次在外面用.then
+            return sendAjax("http://localhost:3000/users/get_req", {
+              name: "Ash",
+            });
+          }
+        )
+        .then(
+          //b
+          (value) => {
+            console.log("第二个请求发送成功");
+            // 3. 第二个请求发送成功后，发送第三个请求, 此时我们return这个promise对象。这样可以使得b处的.then返回的新Promise实例（称为新Promise实例2）它的状态就是用于发送第三个请求的实例的状态，所以想知道第三个请求是否发送成功，就是看新Promise实例2的状态是否是成功，而如何得知新Promise实例2的状态是否成功，就再次在外面用.then
+            return sendAjax("http://localhost:3000/users/get_req", {
+              name: "Ash",
+            });
+          }
+        )
+        .then(
+          //c
+          (value) => {
+            console.log("第三个请求发送成功");
+            // 4. 第三个请求发送成功后，发送第四个请求, 此时我们return这个promise对象。这样可以使得c处的.then返回的新Promise实例（称为新Promise实例3）它的状态就是用于发送第四个请求的实例的状态，所以想知道第四个请求是否发送成功，就是看新Promise实例3的状态是否是成功，而如何得知新Promise实例3的状态是否成功，就再次在外面用.then
+            return sendAjax("http://localhost:3000/users/get_req", {
+              name: "Ash",
+            });
+          }
+        );
+    </script>
+  </body>
+</html>

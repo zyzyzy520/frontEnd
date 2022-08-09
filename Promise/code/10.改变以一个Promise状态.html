@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 引擎抛异常
+      // #region
+      //   const p = new Promise((resolve, reject) => {
+      //     // 输出一个未定义的变量
+      //     console.log(a);
+      //     resolve(100);
+      //   });
+
+      //   p.then(
+      //     (value) => {
+      //       console.log("成功了", value);
+      //     },
+      //     (reason) => {
+      //       console.log("失败了", reason);
+      //     }
+      //   );
+      // #endregion
+
+      //   自己主动编码抛出异常
+      //  #region
+      //   const p = new Promise((resolve, reject) => {
+      //     // 主动抛出异常
+      //     throw new Error(99);
+      //     resolve(100);
+      //   });
+
+      //   p.then(
+      //     (value) => {
+      //       console.log("成功了", value);
+      //     },
+      //     (reason) => {
+      //       console.log("失败了", reason);
+      //     }
+      //   );
+      // #endregion
+
+      //
+      const p = new Promise((resolve, reject) => {
+        // 改变状态后抛出异常
+        resolve(100);
+        console.log(1);
+        throw new Error(99);
+      });
+
+      p.then(
+        (value) => {
+          console.log("成功了", value);
+        },
+        (reason) => {
+          console.log("失败了", reason);
+        }
+      );
+    </script>
+  </body>
+</html>
