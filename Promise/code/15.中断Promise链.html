@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function sendAjax(url, data) {
+        const p = new Promise((resolve, reject) => {
+          // 发送ajax请求
+          const xhr = new XMLHttpRequest();
+          xhr.onreadystatechange = () => {
+            // 拿到所有响应数据(既有可能是成功的，也有可能是失败的)了
+            if (xhr.readyState === 4) {
+              if (xhr.status === 200) {
+                resolve(xhr.response);
+              } else {
+                reject("失败啦");
+              }
+            }
+          };
+          //   将参数加到url上
+          let query = [];
+          for (let key in data) {
+            query.push(key + "=" + data[key]);
+          }
+          url += "?" + query.join("&");
+          xhr.open("get", url);
+          xhr.responseType = "json";
+          xhr.send(data);
+        });
+        return p;
+      }
+
+      sendAjax("http://localhost:3000/users/get_req1", { name: "Ash" })
+        .then(
+          //a
+          (value) => {
+            console.log("第一个请求发送成功");
+            return sendAjax("http://localhost:3000/users/get_req", {
+              name: "Ash",
+            });
+          },
+          (reason) => {
+            console.log("第一个请求发送失败", reason);
+            return new Promise(() => {});
+          }
+        )
+        .then(
+          //b
+          (value) => {
+            console.log("第二个请求发送成功");
+            return sendAjax("http://localhost:3000/users/get_req", {
+              name: "Ash",
+            });
+          },
+          (reason) => {
+            console.log("第一个请求发送失败", reason);
+            // return new Promise(() => {});
+          }
+        )
+        .then(
+          //c
+          (value) => {
+            console.log("第三个请求发送成功");
+            return sendAjax("http://localhost:3000/users/get_req", {
+              name: "Ash",
+            });
+          },
+          (reason) => {
+            console.log("第一个请求发送失败", reason);
+            // return new Promise(() => {});
+          }
+        );
+    </script>
+  </body>
+</html>

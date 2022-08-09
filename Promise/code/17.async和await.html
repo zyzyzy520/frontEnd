@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+      const p = new Promise((resolve, reject) => {
+        reject(-100);
+      });
+
+      async function demo() {
+        const result = await p;
+        console.log(result);
+      }
+
+      try {
+        demo();
+      } catch (error) {
+        console.log("出错了", error);
+      }*/
+      /*
+      const p = () => {
+        return new Promise((resolve, reject) => {
+          resolve(1);
+        });
+      };
+      (async function () {
+        const result = await p();
+        console.log(result);
+      })();*/
+
+      /*
+      function sendAjax(url, data) {
+        const p = new Promise((resolve, reject) => {
+          // 发送ajax请求
+          const xhr = new XMLHttpRequest();
+          xhr.onreadystatechange = () => {
+            // 拿到所有响应数据(既有可能是成功的，也有可能是失败的)了
+            if (xhr.readyState === 4) {
+              if (xhr.status === 200) {
+                resolve(xhr.response);
+              } else {
+                reject("失败啦");
+              }
+            }
+          };
+          //   将参数加到url上
+          let query = [];
+          for (let key in data) {
+            query.push(key + "=" + data[key]);
+          }
+          url += "?" + query.join("&");
+          xhr.open("get", url);
+          xhr.responseType = "json";
+          xhr.send(data);
+        });
+        return p;
+      }
+
+      (async function () {
+        try {
+          const res1 = await sendAjax(
+            "http://localhost:3000/users/get_req",
+            {}
+          );
+          console.log("第一次请求成功了", res1);
+          const res2 = await sendAjax(
+            "http://localhost:3000/users/get_req",
+            {}
+          );
+          console.log("第二次请求成功了", res2);
+          const res3 = await sendAjax(
+            "http://localhost:3000/users/get_req",
+            {}
+          );
+          console.log("第三次请求成功了", res3);
+        } catch (error) {
+          console.log("出错了", error);
+        }
+      })();*/
+
+      /*
+      async function demo() {
+        return Promise.reject(-100);
+      }
+      let b = demo();
+      b.then(
+        (value) => {
+          console.log("成功了", value);
+        },
+        (error) => {
+          console.log("失败了", error);
+        }
+      );*/
+
+      const p = new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve("a");
+          console.log("b");
+        }, 4000);
+      });
+
+      async function demo() {
+        const result = await p;
+        console.log(result);
+        console.log(100);
+        console.log(200);
+      }
+      //   demo();
+    </script>
+  </body>
+</html>
