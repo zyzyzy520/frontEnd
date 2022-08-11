@@ -147,6 +147,26 @@ nodemon app.js
 
 ![image-20211018100807394](C:\Users\zayn\AppData\Roaming\Typora\typora-user-images\image-20211018100807394.png)
 
+### 4.快速搭建一个迷你服务器
+
+``` js
+// 引入express
+const express = require('express')
+
+// 初始化express实例
+const app = express()
+
+// 处理请求(例如get)
+app.get('/person', (req, res) => {
+    res.send ('一些人的数据我给你了')
+})
+
+// 将服务器挂载在端口上
+app.listen(8090, (error)=>{
+    if(!error) console.log('服务器开启成功了！')
+})
+```
+
 
 
 

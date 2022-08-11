@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+      setTimeout(() => {
+        console.log("timeout");
+      }, 0);
+
+      // 2. 执行Promise.resolve(1)得到一个状态为成功且value为1的实例对象，然后执行.then()，为该实例对象指定了成功状态的回调。因为实例对象状态已经为成功了，所以该回调函数成功1，迅速被压入微任务队列中，此时 microtask ['成功1']
+      Promise.resolve(1).then((value) => console.log("成功1", value));
+
+      // 3. 执行Promise.resolve(2)得到一个状态为成功且value为2的实例对象，然后执行.then()，为该实例对象指定了成功状态的回调。因为实例对象状态已经为成功了，所以该回调函数成功2，迅速被压入微任务队列中，此时 microtask ['成功1', '成功2']
+      Promise.resolve(2).then((value) => console.log("成功2", value));
+
+      // 4. 执行console.log('主线程')，是同步任务，立马在控制台打印 '主线程'
+      console.log("主线程");*/
+
+      /*
+      setTimeout(() => {
+        console.log("timeout1");
+      });
+
+      // 2.然后执行setTimeout()，开启定时器，0秒后回调函数timeout2被压入宏任务队列中
+      setTimeout(() => {
+        console.log("timeout2");
+      });
+
+      // 3. 执行Promise.resolve(1)得到一个状态为成功且value为1的实例对象，然后执行.then()，为该实例对象指定了成功状态的回调。因为实例对象状态已经为成功了，所以该回调函数成功1，迅速被压入微任务队列中，此时 microtask ['成功1']
+      Promise.resolve(1).then((value) => console.log("成功1", value));
+
+      // 4. 执行Promise.resolve(2)得到一个状态为成功且value为2的实例对象，然后执行.then()，为该实例对象指定了成功状态的回调。因为实例对象状态已经为成功了，所以该回调函数成功2，迅速被压入微任务队列中，此时 microtask ['成功1', '成功2']
+      Promise.resolve(2).then((value) => console.log("成功2", value));*/
+
+      /*
+	宏任务队列 task[script]
+	微任务队列 microtask []
+
+      // 将整个script作为第一个宏任务执行
+      // 1.首先执行setTimeout()，开启定时器，0秒后回调函数timeout1被压入宏任务队列中，task [timeout1]
+      setTimeout(() => {
+        console.log("timeout1");
+        Promise.resolve(5).then((value) => console.log("成功了5"));
+      });
+
+      // 2.然后执行setTimeout()，开启定时器，0秒后回调函数timeout2被压入宏任务队列中，task [timeout1, timeout2]
+      setTimeout(() => {
+        console.log("timeout2");
+      });
+
+      // 3. 执行Promise.resolve(3)得到一个状态为成功且value为3的实例对象，然后执行.then()，为该实例对象指定了成功状态的回调。因为实例对象状态已经为成功了，所以该回调函数成功1，迅速被压入微任务队列中，此时 microtask ['成功1']
+      Promise.resolve(3).then((value) => console.log("成功1", value));
+
+      // 4. 执行Promise.resolve(4)得到一个状态为成功且value为4的实例对象，然后执行.then()，为该实例对象指定了成功状态的回调。因为实例对象状态已经为成功了，所以该回调函数成功2，迅速被压入微任务队列中，此时 microtask ['成功1', '成功2']
+      Promise.resolve(4).then((value) => console.log("成功2", value));*/
+      setTimeout(() => {
+        console.log("0");
+      }, 0);
+
+      // 2.然后执行new Promise(executor)，执行executor函数。命名该new Promise(executor)产生的实例对象为p1
+      new Promise((resolve, reject) => {
+        // 2.1 执行console.log('1')，同步代码，控制台输出1
+        console.log("1");
+        // 2.2 执行resolve()。将该Promise实例p1的状态变为成功的
+        resolve();
+        // 3.接着执行new Promise().then()，为该Promise实例p1指定成功状态的回调函数，而因为Promise实例p1状态已经是成功了，所以该回调迅速被压入微任务队列中，此时 task [timeout1], microtask [p1成功回调]
+      })
+        .then(() => {
+          //8.
+          // 8.1 执行console.log('2')，同步代码，控制台输出2
+          console.log("2");
+          // 8.2 接着执行执行new Promise(executor)，执行executor函数。命名该new Promise(executor)产生的实例对象为p4
+          new Promise((resolve, reject) => {
+            // 8.2.1 执行console.log('3')，同步代码，控制台输出3
+            console.log("3");
+            // 8.2.2 执行resolve()。将该Promise实例p4的状态变为成功的
+            resolve();
+            // 8.3 接着执行new Promise().then()，为该Promise实例p4指定成功状态的回调函数，而因为Promise实例p4状态已经是成功了，所以该回调迅速被压入微任务队列中，此时 task [timeout1], microtask [p3成功回调，p4成功回调]
+          })
+            .then(() => {
+              // 10.
+              // 10.1 执行console.log('4')，同步代码，控制台输出4
+              console.log("4");
+              // 10.2 p4成功回调函数至此已经全部执行完毕了，返回undefined，是非Promise值，因此会影响到p4.then()返回的实例对象的状态，即p5的状态被修改为成功的。而p5成功状态的回调函数在之前就声明过了，因此迅速被压入微任务队列中，此时 task [timeout1], microtask [p2成功回调, p5成功回调]
+
+              // 8.4 接着执行new Promise().then().then()，我们命名new Promise().then()即p4.then()返回的实例对象为p5，因此为p5指定了成功的回调函数，但此时p5的状态仍为pending，所以该回调函数并未被压入。此时 task [timeout1], microtask [p3成功回调，p4成功回调]
+            })
+            .then(() => {
+              // 12.
+              // 12.1 执行console.log('5')，同步代码，控制台输出5
+              console.log("5");
+              // 12.2 p5成功回调函数至此已经全部执行完毕了，返回undefined，是非Promise值，因此会影响到p5.then()返回的实例对象的状态，但并没有为该返回的实例对象设置状态回调函数，因此无影响。此时 task [timeout1], microtask []
+            });
+          // 8.5 p1成功回调函数至此已经全部执行完毕了，返回undefined，是非Promise值，因此会影响到p1.then()返回的实例对象的状态，即p2的状态被修改为成功的。而p2成功状态的回调函数在之前就声明过了，因此迅速被压入微任务队列中，此时 task [timeout1], microtask [p3成功回调，p4成功回调, p2成功回调]
+
+          // 4.然后执行new Promise().then().then()，我们命名new Promise().then()即p1.then()返回的实例对象为p2，因此为p2指定了成功的回调函数，但此时p2的状态仍为pending，所以该回调函数并未被压入。此时 task [timeout1], microtask [p1成功回调]
+        })
+        .then(() => {
+          // 11.
+          // 11.1 执行console.log('6')，同步代码，控制台输出6
+          console.log("6");
+          // 11.2 p2成功回调函数至此已经全部执行完毕了，返回undefined，是非Promise值，因此会影响到p2.then()返回的实例对象的状态，但并没有为该返回的实例对象设置状态回调函数，因此无影响。此时 task [timeout1], microtask [p5成功回调]
+        });
+
+      // 5. 接下来执行new Promise(executor)，执行executor函数。命名该new Promise(executor)产生的实例对象为p3
+      new Promise((resolve, reject) => {
+        // 5.1 执行console.log('7')，同步代码，控制台输出7
+        console.log("7");
+        // 5.2 执行resolve()。将该Promise实例p3的状态变为成功的
+        resolve();
+        // 6.接着执行new Promise().then()，为该Promise实例p3指定成功状态的回调函数，而因为Promise实例p3状态已经是成功了，所以该回调迅速被压入微任务队列中，此时 task [timeout1], microtask [p1成功回调，p3成功回调]
+      }).then(() => {
+        // 9.
+        // 9.1 执行console.log('8')，同步代码，控制台输出8
+        console.log("8");
+        // 9.2 p3成功回调函数至此已经全部执行完毕了，返回undefined，是非Promise值，因此会影响到p3.then()返回的实例对象的状态，但并没有为该返回的实例对象设置状态回调函数，因此无影响。此时 task [timeout1], microtask [p4成功回调, p2成功回调]
+      });
+    </script>
+  </body>
+</html>
