@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- 引入外部文件 -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.27.2/axios.min.js"></script>
+  </head>
+  <body>
+    <button id="btn1">点我获取所有人的数据</button>
+    <div>
+      <button id="btn2">点我获取某个人的数据</button>
+      <input
+        type="text"
+        name=""
+        id="person_id"
+        placeholder="请输入想要查询的人的id"
+      />
+    </div>
+    <div>
+      <button id="btn3">点我添加某个人的数据</button>
+      <input
+        type="text"
+        name=""
+        id="person_add_name"
+        placeholder="输入添加的人的名称"
+      />
+      <input
+        type="text"
+        name=""
+        id="person_add_age"
+        placeholder="输入添加的人的年龄"
+      />
+    </div>
+    <div>
+      <button id="btn4">点击我更新数据</button>
+      <input
+        type="text"
+        id="person_update_id"
+        placeholder="请输入需要更新的id"
+      />
+      <input
+        type="text"
+        id="person_update_name"
+        placeholder="请输入需要更新的名字"
+      />
+      <input
+        type="text"
+        id="person_update_age"
+        placeholder="请输入需要更新的年龄"
+      />
+    </div>
+    <div>
+      <button id="btn5">删除一个人的信息</button>
+      <input
+        type="text"
+        id="person_delete_id"
+        placeholder="请输入需要删除的人的id"
+      />
+    </div>
+    <!-- <script src="./index.js" type="module"></script> -->
+    <script>
+      // 拿到相关节点
+      const btn1 = document.getElementById("btn1");
+      const btn2 = document.getElementById("btn2");
+      const btn3 = document.getElementById("btn3");
+      const btn4 = document.getElementById("btn4");
+      const btn5 = document.getElementById("btn5");
+      const personIdNode = document.getElementById("person_id");
+      const personAddAgeNode = document.getElementById("person_add_age");
+      const personAddNameNode = document.getElementById("person_add_name");
+      const personUpdateIdNode = document.getElementById("person_update_id");
+      const personUpdateNameNode =
+        document.getElementById("person_update_name");
+      const personUpdateAgeNode = document.getElementById("person_update_age");
+      const personDeleteIdNode = document.getElementById("person_delete_id");
+
+      axios.defaults.baseURL = "http://localhost:5000";
+      axios.defaults.timeout = 3000;
+      // 设置点击后发送请求的回调
+      /* 1.发送GET请求---拿到所有人的数据*/
+      btn1.onclick = async () => {
+        // 完整版，因为axios返回的是一个Promise实例，所以要用.then设定回调函数接收
+        axios({
+          url: "/persons",
+          method: "GET",
+        }).then(
+          (response) => {
+            console.log("请求发送成功了", response.data);
+          },
+          (error) => {
+            console.log("请求发送失败了", error);
+          }
+        );
+
+        // 简略版
+        // axios.get("http://localhost:5000/persons").then(
+        //   (response) => {
+        //     console.log("请求发送成功了", response);
+        //   },
+        //   (error) => {
+        //     console.log("请求发送失败了", error);
+        //   }
+
+        // async await版
+        // const result = await axios.get("http://localhost:5000/persons");
+        // console.log("请求发送成功了", result.data);
+      };
+
+      /*2.拿到某个人的数据，发送GET请求
+      btn2.onclick = () => {
+        let personId = personIdNode.value;
+        // 完整版
+        // axios({
+        //   url: "http://localhost:5000/person",
+        //   method: "GET",
+        //   params: {
+        //     id: personId,
+        //   },
+        // }).then(
+        //   (response) => {
+        //     console.log(response.data);
+        //   },
+        //   (error) => {
+        //     console.log("出错啦");
+        //   }
+        // );
+
+        // 简略版
+        axios
+          .get("http://localhost:5000/person", { params: { id: personId } })
+          .then(
+            (response) => {
+              console.log(response.data);
+            },
+            (error) => {
+              console.log("出错啦");
+            }
+          );
+      };*/
+
+      /*3.添加某人的数据，发送POST请求*/
+      btn3.onclick = () => {
+        // 拿到名字和年龄
+        const personAddAge = personAddAgeNode.value;
+        const personAddName = personAddNameNode.value;
+
+        // 完整版
+        axios({
+          url: "/person",
+          method: "POST",
+          //   data: { name: personAddName, age: personAddAge }, //post请求用传body参数，有两种形式，这是第一种json格式
+          data: `name=${personAddName}&age=${personAddAge}`,
+        }).then(
+          (response) => {
+            console.log(response.data);
+          },
+          (error) => {
+            console.log("出错了");
+          }
+        );
+
+        // 简略版
+        // axios
+        //   .post("http://localhost:5000/person", {
+        //     //json格式
+        //     name: personAddName,
+        //     age: personAddAge,
+        //   })
+        //   .then(
+        //     (response) => {
+        //       console.log(response.data);
+        //     },
+        //     (error) => {
+        //       console.log("出错了");
+        //     }
+        //   );
+      };
+
+      /*4. 更新某人的数据，发送PUT请求*/
+      btn4.onclick = () => {
+        // 拿到ID、名字和年龄
+        const personUpdateId = personUpdateIdNode.value;
+        const personUpdateName = personUpdateNameNode.value;
+        const personUpdateAge = personUpdateAgeNode.value;
+
+        // 完整版(使用json格式)
+        // axios({
+        //   url: "http://localhost:5000/person",
+        //   method: "PUT",
+        //   data: {
+        //     id: personUpdateId,
+        //     name: personUpdateName,
+        //     age: personUpdateAge,
+        //   },
+        // }).then(
+        //   (response) => {
+        //     console.log(response.data);
+        //   },
+        //   (error) => {
+        //     console.log("出错了");
+        //   }
+        // );
+
+        // 简略版(使用urlencoded格式)
+        axios
+          .put(
+            "http://localhost:5000/person",
+            `id=${personUpdateId}&name=${personUpdateName}&age=${personUpdateAge}`
+          )
+          .then(
+            (response) => {
+              console.log(response.data);
+            },
+            (error) => {
+              console.log("出错了");
+            }
+          );
+      };
+
+      /*5. 删除某人的数据，发送DELETE请求*/
+      btn5.onclick = () => {
+        //获取节点数据
+        const personDeleteId = personDeleteIdNode.value;
+
+        //完整版发送请求删除数据
+        axios({
+          url: `http://localhost:5000/person/${personDeleteId}`,
+          method: "DELETE",
+        }).then(
+          (response) => {
+            console.log(response.data);
+          },
+          (error) => {
+            console.log("出错了");
+          }
+        );
+
+        // 简略版
+        axios.delete(`http://localhost:5000/person/${personDeleteId}`);
+      };
+    </script>
+  </body>
+</html>
