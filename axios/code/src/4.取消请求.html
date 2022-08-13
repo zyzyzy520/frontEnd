@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.27.2/axios.min.js"></script>
+  </head>
+  <body>
+    <button id="btn_delay1">点我发送延时请求1</button><br />
+    <button id="btn_delay2">点我发送延时请求2</button><br />
+    <button id="btn_delay3">点我发送延时请求3</button><br />
+    <button id="btn_cancel">点我取消请求</button>
+
+    <script>
+      const btnDelay1 = document.getElementById("btn_delay1");
+      const btnDelay2 = document.getElementById("btn_delay2");
+      const btnDelay3 = document.getElementById("btn_delay3");
+      const btnCancel = document.getElementById("btn_cancel");
+      const { CancelToken, isCancel } = axios;
+      let cancel; //要用let，因为cancel可能会被多次赋值
+
+      // 在每个请求发送前，都给它们一个独一无二的token
+      axios.interceptors.request.use((config) => {
+        // 取消之前发送的请求
+        if (cancel) cancel("取消请求");
+        config.cancelToken = new CancelToken((c) => {
+          cancel = c;
+        });
+        return config;
+      });
+
+      //   统一为请求拦截错误
+      axios.interceptors.response.use(
+        (response) => {
+          return response.data;
+        },
+        (error) => {
+          if (isCancel(error)) {
+            console.log("取消请求成功", error.message);
+          } else {
+            console.log("请求出现错误", error);
+          }
+          // 这一步使得发送请求的那个axios返回的Promise实例对象状态为pending，也就终止了调用。
+          return new Promise(() => {});
+        }
+      );
+
+      axios.defaults.baseURL = "http://localhost:5000";
+      btnDelay1.onclick = async () => {
+        // cancel没有给初始值，所以其初始值是undefined，隐式转换中undefined会被转换为false。所以只要用一个if语句判断 cancel 不是 undefined，那么就取消该请求。
+        const result = await axios({
+          url: "/test1",
+          params: {
+            delay: 3000,
+          },
+        });
+        console.log("发送请求1成功", result);
+      };
+
+      btnDelay2.onclick = async () => {
+        // cancel没有给初始值，所以其初始值是undefined，隐式转换中undefined会被转换为false。所以只要用一个if语句判断 cancel 不是 undefined，那么就取消该请求。
+        const result = await axios({
+          url: "/test2",
+          params: {
+            delay: 3000,
+          },
+        });
+        console.log("请求发送成功", result);
+      };
+
+      btnCancel.onclick = () => {
+        console.log(1);
+        cancel("成功取消请求");
+      };
+    </script>
+  </body>
+</html>

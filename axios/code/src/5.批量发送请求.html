@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.27.2/axios.min.js"></script>
+  </head>
+  <body>
+    <button id="btn_delay1">点我发送批量请求</button><br />
+    <script>
+      const btnDelay1 = document.getElementById("btn_delay1");
+      const { CancelToken, isCancel } = axios;
+      let cancel; //要用let，因为cancel可能会被多次赋值
+
+      axios.defaults.baseURL = "http://localhost:5000";
+      btnDelay1.onclick = async () => {
+        // cancel没有给初始值，所以其初始值是undefined，隐式转换中undefined会被转换为false。所以只要用一个if语句判断 cancel 不是 undefined，那么就取消该请求。
+        let p1 = axios({
+          url: "/test1",
+          params: {
+            delay: 3000,
+          },
+        });
+        let p2 = axios({
+          url: "/test2",
+          params: {
+            delay: 3000,
+          },
+        });
+        let p3 = axios({
+          url: "/test2",
+          params: {
+            delay: 3000,
+          },
+        });
+
+        const p = axios.all([p1, p2, p3]);
+        const result = await p;
+        console.log("发送请求1成功", result);
+      };
+    </script>
+  </body>
+</html>
